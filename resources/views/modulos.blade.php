@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LINKS:: Sistema de Talento Humano</title>
+    <title>Humalinks :: Módulos</title>
     <link href="css/application.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +23,7 @@
 			<ul class="nav navbar-nav navbar-right pull-right">
 				<li class="divider"></li>
 				<li class="hidden-xs">
-					<a href="main" id="settings"
+					<a href="configuracion" id="settings"
 					   title="Settings"
 					   data-toggle="popover"
 					   data-placement="bottom">
@@ -52,7 +52,7 @@
 						<div class="caption">
 							<h4 class="text-align-center">Personal</h4>
 							<p class="text-align-center">
-								<a href="main" class="btn btn-danger">Ingresar</a> 
+								<a href="personal" class="btn btn-danger">Ingresar</a> 
 							</p>
 						</div>
 					</div>
@@ -63,7 +63,7 @@
 						<div class="caption">
 							<h4 class="text-align-center">Horarios</h4>
 							<p class="text-align-center">
-								<a href="main" class="btn btn-danger">Ingresar</a> 
+								<a href="horarios" class="btn btn-danger">Ingresar</a> 
 							</p>
 						</div>
 					</div>
@@ -74,7 +74,7 @@
 						<div class="caption">
 							<h4 class="text-align-center">Nómina</h4>
 							<p class="text-align-center">
-								<a href="main" class="btn btn-danger">Ingresar</a> 
+								<a href="nomina" class="btn btn-danger">Ingresar</a> 
 							</p>
 						</div>
 					</div>
@@ -85,7 +85,7 @@
 						<div class="caption">
 							<h4 class="text-align-center">Evaluaciones</h4>
 							<p class="text-align-center">
-								<a href="main" class="btn btn-danger">Ingresar</a> 
+								<a href="evaluacion" class="btn btn-danger">Ingresar</a> 
 							</p>
 						</div>
 					</div>

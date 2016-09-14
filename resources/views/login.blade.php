@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LINKS:: Sistema de Talento Humano</title>
+    <title>Humalinks :: Inicio de sesión</title>
     <link href="css/application.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

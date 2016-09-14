@@ -4,9 +4,8 @@
 <html>
 <head>
     <title>Light Blue - Responsive Admin Dashboard Template</title>
-
-        <link href="css/application.css" rel="stylesheet">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link href="css/application.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
