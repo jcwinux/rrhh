@@ -45,58 +45,52 @@
 	</header>
 	<div class="single-widget-container">
 		<div class="row">
-            <div class="col-md-12">
-                <ul class="row thumbnails">
-					<li class="col-sm-2">
-					</li>
-                    <li class="col-sm-2">
-                        <div class="thumbnail">
-                            <img src="img/12.jpg" alt="">
-                            <div class="caption">
-                                <h4 class="text-align-center">Personal</h4>
-                                <p class="text-align-center">
-									<a href="main" class="btn btn-danger">Ingresar</a> 
-								</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-sm-2">
-                        <div class="thumbnail">
-                            <img src="img/12.jpg" alt="">
-                            <div class="caption">
-                                <h4 class="text-align-center">Horarios</h4>
-                                <p class="text-align-center">
-									<a href="main" class="btn btn-danger">Ingresar</a> 
-								</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-sm-2">
-                        <div class="thumbnail">
-                            <img src="img/12.jpg" alt="">
-                            <div class="caption">
-                                <h4 class="text-align-center">Nómina</h4>
-                                <p class="text-align-center">
-									<a href="main" class="btn btn-danger">Ingresar</a> 
-								</p>
-                            </div>
-                        </div>
-                    </li>
-					<li class="col-sm-2">
-                        <div class="thumbnail">
-                            <img src="img/12.jpg" alt="">
-                            <div class="caption">
-                                <h4 class="text-align-center">Evaluaciones</h4>
-                                <p class="text-align-center">
-									<a href="main" class="btn btn-danger">Ingresar</a> 
-								</p>
-                            </div>
-                        </div>
-                    </li>
-					<li class="col-sm-2">
-					</li>
-                </ul>
-            </div>
+			<ul class="row thumbnails">
+				<li class="col-sm-2 col-sm-offset-2">
+					<div class="thumbnail">
+						<img src="img/12.jpg" alt="">
+						<div class="caption">
+							<h4 class="text-align-center">Personal</h4>
+							<p class="text-align-center">
+								<a href="main" class="btn btn-danger">Ingresar</a> 
+							</p>
+						</div>
+					</div>
+				</li>
+				<li class="col-sm-2">
+					<div class="thumbnail">
+						<img src="img/12.jpg" alt="">
+						<div class="caption">
+							<h4 class="text-align-center">Horarios</h4>
+							<p class="text-align-center">
+								<a href="main" class="btn btn-danger">Ingresar</a> 
+							</p>
+						</div>
+					</div>
+				</li>
+				<li class="col-sm-2">
+					<div class="thumbnail">
+						<img src="img/12.jpg" alt="">
+						<div class="caption">
+							<h4 class="text-align-center">Nómina</h4>
+							<p class="text-align-center">
+								<a href="main" class="btn btn-danger">Ingresar</a> 
+							</p>
+						</div>
+					</div>
+				</li>
+				<li class="col-sm-2">
+					<div class="thumbnail">
+						<img src="img/12.jpg" alt="">
+						<div class="caption">
+							<h4 class="text-align-center">Evaluaciones</h4>
+							<p class="text-align-center">
+								<a href="main" class="btn btn-danger">Ingresar</a> 
+							</p>
+						</div>
+					</div>
+				</li>
+			</ul>
         </div>
 	</div>
 </body>
