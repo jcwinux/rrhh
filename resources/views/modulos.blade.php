@@ -22,31 +22,32 @@
 		<div class="navbar">
 			<ul class="nav navbar-nav navbar-right pull-right">
 				<li class="divider"></li>
-				<li class="hidden-xs">
+				<li>
 					<a href="configuracion" id="settings"
-					   title="Settings"
+					   title="Parámetros del sistema"
 					   data-toggle="popover"
 					   data-placement="bottom">
 						<i class="glyphicon glyphicon-cog"></i>
 					</a>
 				</li>
-				<li class="visible-xs">
-					<a href="#"
-					   class="btn-navbar"
-					   data-toggle="collapse"
-					   data-target=".sidebar"
-					   title="">
-						<i class="fa fa-bars"></i>
-					</a>
-				</li>
-				<li class="hidden-xs"><a href="/"><i class="glyphicon glyphicon-off"></i></a></li>
+				<li><a href="/" title="Cerrar sesión"><i class="glyphicon glyphicon-off"></i></a></li>
 			</ul>
 		</div>
 	</header>
-	<div class="single-widget-container">
-		<div class="row">
+	<div class="error-container">
 			<ul class="row thumbnails">
-				<li class="col-sm-2 col-sm-offset-2">
+				<li class="col-sm-2 col-sm-offset-1">
+					<div class="thumbnail">
+						<img src="img/12.jpg" alt="">
+						<div class="caption">
+							<h4 class="text-align-center">Reclutación y Selección</h4>
+							<p class="text-align-center">
+								<a href="personal" class="btn btn-danger">Ingresar</a> 
+							</p>
+						</div>
+					</div>
+				</li>
+				<li class="col-sm-2">
 					<div class="thumbnail">
 						<img src="img/12.jpg" alt="">
 						<div class="caption">
@@ -91,7 +92,7 @@
 					</div>
 				</li>
 			</ul>
-        </div>
+        
 	</div>
 </body>
 </html>
