@@ -170,15 +170,6 @@
 				</li>
 				<li class="hidden-xs"><a href="login.html"><i class="glyphicon glyphicon-off"></i></a></li>
 			</ul>
-			<form id="search-form" class="navbar-form pull-right" role="search">
-				<input type="search" class="form-control search-query" placeholder="Search...">
-			</form>
-			<div class="notifications pull-right">
-				<div class="alert pull-right">
-					<a href="#" class="close ml-xs" data-dismiss="alert">&times;</a>
-					<i class="fa fa-info-circle mr-xs"></i> Check out Light Blue <a id="notification-link" href="#">settings</a> on the right!
-				</div>
-			</div>
 		</div>
 	</header>
 </div>

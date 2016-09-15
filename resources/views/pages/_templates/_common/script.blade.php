@@ -27,18 +27,6 @@
             <button type="button" data-value="false" class="btn btn-sm btn-default <%= display? '' : 'active' %>">Hide</button>
         </div>
     </div>
-    <div class="setting clearfix">
-        <div>Dark Version</div>
-        <div>
-            <a href="../dark/index.html" class="btn btn-sm btn-default">&nbsp; Switch &nbsp;   <i class="fa fa-angle-right"></i></a>
-        </div>
-    </div>
-    <div class="setting clearfix">
-        <div>Light Version</div>
-        <div>
-            <a href="../light/index.html" class="btn btn-sm btn-default">&nbsp; Switch &nbsp;   <i class="fa fa-angle-right"></i></a>
-        </div>
-    </div>
 </script>
 
 <script type="text/template" id="sidebar-settings-template">

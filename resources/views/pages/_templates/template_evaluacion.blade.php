@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-   @extends('pages._templates.head')
+   @extends('pages._templates._common.head')
 </head>
 <body>
-	@extends('pages._templates.menu_evaluacion')
-	@extends('pages._templates.header')
-	@extends('pages._templates.script')
+	@extends('pages._templates._menu.menu_evaluacion')
+	@extends('pages._templates._common.header')
+	@extends('pages._templates._common.script')
 </body>
 </html>
 @section('titulo')
