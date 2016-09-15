@@ -12,7 +12,7 @@
 <!-- common templates -->
 <script type="text/template" id="settings-template">
     <div class="setting clearfix">
-        <div>Sidebar on the</div>
+        <div>Menú lateral</div>
         <div id="sidebar-toggle" class="pull-left btn-group" data-toggle="buttons-radio">
             <% onRight = sidebar == 'right'%>
             <button type="button" data-value="left" class="btn btn-sm btn-default <%= onRight? '' : 'active' %>">Left</button>
@@ -20,11 +20,17 @@
         </div>
     </div>
     <div class="setting clearfix">
-        <div>Sidebar</div>
+        <div>Menú lateral</div>
         <div id="display-sidebar-toggle" class="pull-left btn-group" data-toggle="buttons-radio">
             <% display = displaySidebar%>
             <button type="button" data-value="true" class="btn btn-sm btn-default <%= display? 'active' : '' %>">Show</button>
             <button type="button" data-value="false" class="btn btn-sm btn-default <%= display? '' : 'active' %>">Hide</button>
+        </div>
+    </div>
+	<div class="setting clearfix">
+        <div>Módulos</div>
+        <div class="pull-left btn-group" data-toggle="buttons-radio">
+            <button onclick="location.href='modulos'" type="button" data-value="true" class="btn btn-sm btn-default <%= display? 'active' : '' %>">&nbsp;&nbsp;&nbsp;&nbsp;Cambiar&nbsp;&nbsp;&nbsp;</button>
         </div>
     </div>
 </script>
