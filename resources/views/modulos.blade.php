@@ -34,65 +34,56 @@
 			</ul>
 		</div>
 	</header>
-	<div class="error-container">
-			<ul class="row thumbnails">
-				<li class="col-sm-2 col-sm-offset-1">
-					<div class="thumbnail">
-						<img src="img/12.jpg" alt="">
-						<div class="caption">
-							<h4 class="text-align-center">Reclutación y Selección</h4>
-							<p class="text-align-center">
-								<a href="personal" class="btn btn-danger">Ingresar</a> 
-							</p>
+	<div class="container" style="margin-top: 60px;">
+		<div class="row">
+			 <div class="widget col-md-6 col-md-offset-3">
+				<div id="carousel-example-generic" class="carousel slide">
+					<ol class="carousel-indicators outer">
+						<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+						<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+					</ol>
+					<div class="carousel-inner text-align-center">
+						<div class="item active">
+							<h4 class="no-margin"><em>Reclutamiento y selección</em></h4>
+							<p><small>Built-in Twitter Bootstrap 3 support</small></p>
+							<p><small>Built-in Twitter Bootstrap 3 support</small></p>
+							<p><small>Built-in Twitter Bootstrap 3 support</small></p>
+							<p><small>Built-in Twitter Bootstrap 3 support</small></p>
+						</div>
+						<div class="item">
+							<h4 class="no-margin"><em>Personal</em></h4>
+							<p><small>Simple & intuitive code</small></p>
+							<p><small>Simple & intuitive code</small></p>
+							<p><small>Simple & intuitive code</small></p>
+							<p><small>Simple & intuitive code</small></p>
+						</div>
+						<div class="item">
+							<h4 class="no-margin"><em>Nómina</em></h4>
+							<p><small>Light Blue is really easy to customize</small></p>
+							<p><small>Light Blue is really easy to customize</small></p>
+							<p><small>Light Blue is really easy to customize</small></p>
+							<p><small>Light Blue is really easy to customize</small></p>
 						</div>
 					</div>
-				</li>
-				<li class="col-sm-2">
-					<div class="thumbnail">
-						<img src="img/12.jpg" alt="">
-						<div class="caption">
-							<h4 class="text-align-center">Personal</h4>
-							<p class="text-align-center">
-								<a href="personal" class="btn btn-danger">Ingresar</a> 
-							</p>
-						</div>
-					</div>
-				</li>
-				<li class="col-sm-2">
-					<div class="thumbnail">
-						<img src="img/12.jpg" alt="">
-						<div class="caption">
-							<h4 class="text-align-center">Horarios</h4>
-							<p class="text-align-center">
-								<a href="horarios" class="btn btn-danger">Ingresar</a> 
-							</p>
-						</div>
-					</div>
-				</li>
-				<li class="col-sm-2">
-					<div class="thumbnail">
-						<img src="img/12.jpg" alt="">
-						<div class="caption">
-							<h4 class="text-align-center">Nómina</h4>
-							<p class="text-align-center">
-								<a href="nomina" class="btn btn-danger">Ingresar</a> 
-							</p>
-						</div>
-					</div>
-				</li>
-				<li class="col-sm-2">
-					<div class="thumbnail">
-						<img src="img/12.jpg" alt="">
-						<div class="caption">
-							<h4 class="text-align-center">Evaluaciones</h4>
-							<p class="text-align-center">
-								<a href="evaluacion" class="btn btn-danger">Ingresar</a> 
-							</p>
-						</div>
-					</div>
-				</li>
-			</ul>
-        
+					<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+						<i class="fa fa-angle-left"></i>
+					</a>
+					<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+						<i class="fa fa-angle-right"></i>
+					</a>
+				</div>
+			</div>
+		</div>
 	</div>
+	<script src="lib/jquery/dist/jquery.min.js"></script>
+	<script src="lib/jquery-pjax/jquery.pjax.js"></script>
+	<script src="lib/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+	<script src="lib/widgster/widgster.js"></script>
+	<script src="lib/underscore/underscore.js"></script>
+
+	<!-- common application js -->
+	<script src="js/app.js"></script>
+	<script src="js/settings.js"></script>
 </body>
 </html>
