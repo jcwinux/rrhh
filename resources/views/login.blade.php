@@ -1,5 +1,11 @@
 @extends('pages._templates.template_base')
 @section('content')
+<div class="row" style="margin-top: 25px">
+	<div class="alert alert-warning col-md-4 col-md-offset-4">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<strong><i class="fa fa-bell-o"></i> ¡Advertencia!</strong> {{ $mensaje_error or ""}}
+	</div>
+</div>
 <div class="single-widget-container">
 	<section class="widget login-widget">
 		<header class="text-align-center">
@@ -10,22 +16,21 @@
 				  action="modulos" method="get">
 				<fieldset>
 					<div class="form-group">
-						<label for="email" >Usuario</label>
+						<label for="usuario" >Usuario</label>
 						<div class="input-group">
 							<span class="input-group-addon">
 								<i class="fa fa-user"></i>
 							</span>
-							<input id="user" type="text" class="form-control input-lg" placeholder="Ingrese usuario">
+							<input id="usuario" name="usuario" type="text" class="form-control input-lg" placeholder="Ingrese usuario">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="password" >Contraseña</label>
-
 						<div class="input-group input-group-lg">
 							<span class="input-group-addon">
 								<i class="fa fa-lock"></i>
 							</span>
-							<input id="password" type="password" class="form-control input-lg" placeholder="Ingrese contraseña">
+							<input id="clave" name="clave" type="password" class="form-control input-lg" placeholder="Ingrese contraseña">
 						</div>
 					</div>
 				</fieldset>
