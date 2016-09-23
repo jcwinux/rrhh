@@ -36,3 +36,6 @@ Route::get('/nomina', function () {
 Route::get('/evaluacion', function () {
     return view('pages.evaluacion.index');
 });
+Route::get('/reclutamiento', function () {
+    return view('pages.reclutamiento.index');
+});

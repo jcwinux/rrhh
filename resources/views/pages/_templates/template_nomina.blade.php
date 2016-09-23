@@ -8,8 +8,12 @@
 	@extends('pages._templates._menu.menu_nomina')
 	@extends('pages._templates._common.header')
 	@extends('pages._templates._common.script')
+	@extends('pages._templates._common.script_boton_conf')
 </body>
 </html>
 @section('titulo')
 	Nómina
+@stop
+@section('usuario')
+	RR.HH.
 @stop

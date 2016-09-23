@@ -12,7 +12,7 @@
 </body>
 </html>
 @section('titulo')
-	Personal
+	Reclutamiento
 @stop
 @section('usuario')
 	RR.HH.
