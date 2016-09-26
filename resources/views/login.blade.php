@@ -13,8 +13,10 @@
 		</header>
 		<div class="body">
 			<form class="no-margin"
-				  action="modulos" method="get">
+				  action="modulos" method="post">
 				<fieldset>
+				{{ method_field('PATCH') }}
+				{{ csrf_field() }}
 					<div class="form-group">
 						<label for="usuario" >Usuario</label>
 						<div class="input-group">

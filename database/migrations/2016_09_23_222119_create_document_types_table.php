@@ -15,14 +15,9 @@ class CreateDocumentTypesTable extends Migration
     {
         Schema::create('document_types', function (Blueprint $table) {
             $table->increments('id');
-			$table->string('descripcion')->unique();
+			$table->string('descripcion',50)->unique();
             $table->timestamps();
         });
-		
-		/*Agregando registros iniciales*/
-		$data = array(array('descripcion'=>'Cédula'),
-					  array('descripcion'=>'Pasaporte'));
-		DB::table('document_types')->insert($data);
     }
 
     /**

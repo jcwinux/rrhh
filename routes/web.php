@@ -18,7 +18,7 @@
 Route::get('/', function () {
     return view('login');
 });
-Route::get('/modulos', function () {
+Route::patch('/modulos', function () {
     return view('modulos');
 });
 Route::get('/configuracion', function () {
