@@ -42,6 +42,7 @@ class CreatePeopleTable extends Migration
 			
 			$table->string('username',50)->unique();
 			$table->string('password',200);
+			$table->string('remember_token',100)->nullable();
 			
 			$table->string('estado',25)->default('ACTIVO');
             $table->timestamps();

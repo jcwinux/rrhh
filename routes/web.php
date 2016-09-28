@@ -18,7 +18,7 @@
 Route::get('/', function () {
     return view('login');
 });
-Route::patch('/modulos', function () {
+Route::get('/modulos', function () {
     return view('modulos');
 });
 Route::get('/configuracion', function () {
@@ -39,3 +39,4 @@ Route::get('/evaluacion', function () {
 Route::get('/reclutamiento', function () {
     return view('pages.reclutamiento.index');
 });
+Route::patch('/authenticate', 'AuthController@authenticate');

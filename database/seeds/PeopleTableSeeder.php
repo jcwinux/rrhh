@@ -33,7 +33,7 @@ class PeopleTableSeeder extends Seeder
 							 'manzana'=>$faker->numberBetween(1,1000),
 							 'villa'=>$faker->buildingNumber,
 							 'username'=>$faker->userName,
-							 'password'=>bcrypt($faker->userName),
+							 'password'=>bcrypt('juanca'),
 							 'created_at'=>Carbon\Carbon::now()->todatetimestring(),
 							 'updated_at'=>Carbon\Carbon::now()->todatetimestring());
 							 

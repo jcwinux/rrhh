@@ -1,11 +1,28 @@
 @extends('pages._templates.template_base')
 @section('content')
+
+@if (Session::has('message'))
+<div class="row" style="margin-top: 25px">
+	<div class="alert alert-danger col-md-4 col-md-offset-4">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<h4><i class="fa fa-ban"></i> <strong>Error de autenticación</strong></h4>
+		<p>{{ Session::get('message') }}</p>
+	</div>
+</div>
+@endif
+@if (count($errors))
 <div class="row" style="margin-top: 25px">
 	<div class="alert alert-warning col-md-4 col-md-offset-4">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-		<strong><i class="fa fa-bell-o"></i> ¡Advertencia!</strong> {{ $mensaje_error or ""}}
+		<strong><i class="fa fa-bell-o"></i> ¡Advertencia!</strong>
+		<ul class="text-list">
+			@foreach ($errors->all() as $error)
+				<li> {{ $error }} </li>
+			@endforeach
+		</ul>
 	</div>
 </div>
+@endif
 <div class="single-widget-container">
 	<section class="widget login-widget">
 		<header class="text-align-center">
@@ -13,7 +30,7 @@
 		</header>
 		<div class="body">
 			<form class="no-margin"
-				  action="modulos" method="post">
+				  action="authenticate" method="post">
 				<fieldset>
 				{{ method_field('PATCH') }}
 				{{ csrf_field() }}
@@ -23,7 +40,7 @@
 							<span class="input-group-addon">
 								<i class="fa fa-user"></i>
 							</span>
-							<input id="usuario" name="usuario" type="text" class="form-control input-lg" placeholder="Ingrese usuario">
+							<input id="usuario" name="usuario" type="text" class="form-control input-lg" placeholder="Ingrese usuario" value="{{ old('usuario') }}">
 						</div>
 					</div>
 					<div class="form-group">
@@ -32,7 +49,7 @@
 							<span class="input-group-addon">
 								<i class="fa fa-lock"></i>
 							</span>
-							<input id="clave" name="clave" type="password" class="form-control input-lg" placeholder="Ingrese contraseña">
+							<input id="clave" name="clave" type="password" class="form-control input-lg" placeholder="Ingrese contraseña" value="{{ old('clave') }}">
 						</div>
 					</div>
 				</fieldset>
