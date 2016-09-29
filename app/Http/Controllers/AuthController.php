@@ -14,11 +14,18 @@ use Session;
 class AuthController extends Controller
 {
     public function authenticate(LoginUser $request)
-    {	if (Auth::attempt(['username' => $request->usuario, 'password' => $request->clave])) {
+    {	if (Auth::attempt(['username' => $request->usuario, 'password' => $request->clave],true)) {
             return redirect()->intended('modulos');
         }
 		
 		Session::flash('message', "El usuario o la contraseña no son correctos.");
 		return Redirect::back();
     }
+	
+	public function logout()
+	{	if (Auth::check())
+		{	Auth::logout(); 
+			return redirect('/');
+		}
+	}
 }

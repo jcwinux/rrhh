@@ -13,6 +13,7 @@
 				</a>
 			</li>
 			<li><a href="/" title="Cerrar sesión"><i class="glyphicon glyphicon-off"></i></a></li>
+			<li>{{ Auth::user()->trato }} {{ Auth::user()->nombre_1 }} {{ Auth::user()->apellido_1 }}</li>
 		</ul>
 	</div>
 </header>

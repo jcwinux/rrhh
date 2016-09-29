@@ -15,12 +15,19 @@
     return view('welcome');
 });*/
 
-Route::get('/', function () {
+Route::get('/', ['middleware'=>'index',function () {
     return view('login');
-});
-Route::get('/modulos', function () {
+}]);
+
+Route::patch('/authenticate', 'AuthController@authenticate');
+
+Route::get('/modulos', ['middleware'=>'verificar_sesion',function () {
     return view('modulos');
-});
+}]);
+
+
+
+
 Route::get('/configuracion', function () {
     return view('pages.configuracion.index');
 });
@@ -39,4 +46,3 @@ Route::get('/evaluacion', function () {
 Route::get('/reclutamiento', function () {
     return view('pages.reclutamiento.index');
 });
-Route::patch('/authenticate', 'AuthController@authenticate');
