@@ -18,14 +18,16 @@ class AuthController extends Controller
             return redirect()->intended('modulos');
         }
 		
-		Session::flash('message', "El usuario o la contraseña no son correctos.");
+		Session::flash('fail_message', "El usuario o la contraseña no son correctos.");
 		return Redirect::back();
     }
 	
 	public function logout()
 	{	if (Auth::check())
 		{	Auth::logout(); 
-			return redirect('/');
 		}
+		
+		Session::flash('bye_message', "Sesión finalizada con éxito.");
+		return redirect('/');
 	}
 }

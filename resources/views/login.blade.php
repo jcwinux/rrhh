@@ -1,12 +1,21 @@
 @extends('pages._templates.template_base')
 @section('content')
 
-@if (Session::has('message'))
+@if (Session::has('fail_message'))
 <div class="row" style="margin-top: 25px">
 	<div class="alert alert-danger col-md-4 col-md-offset-4">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 		<h4><i class="fa fa-ban"></i> <strong>Error de autenticación</strong></h4>
-		<p>{{ Session::get('message') }}</p>
+		<p>{{ Session::get('fail_message') }}</p>
+	</div>
+</div>
+@endif
+@if (Session::has('bye_message'))
+<div class="row" style="margin-top: 25px">
+	<div class="alert alert-success col-md-4 col-md-offset-4">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<h4><i class="fa fa-check"></i> <strong>¡Perfecto!</strong></h4>
+		<p>{{ Session::get('bye_message') }}</p>
 	</div>
 </div>
 @endif
@@ -23,6 +32,7 @@
 	</div>
 </div>
 @endif
+
 <div class="single-widget-container">
 	<section class="widget login-widget">
 		<header class="text-align-center">

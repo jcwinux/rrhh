@@ -84,12 +84,12 @@
 				<ul id="account-menu" class="dropdown-menu account" role="menu">
 					<li role="presentation" class="account-picture">
 						<img src="img/2.png" alt="">
-						@yield('usuario')
+						{{ Auth::user()->nombre_1 }} {{ Auth::user()->apellido_1 }}
 					</li>
 					<li role="presentation">
 						<a href="form_account.html" class="link">
 							<i class="fa fa-user"></i>
-							Profile
+							Perfil
 						</a>
 					</li>
 				</ul>
@@ -103,7 +103,7 @@
 					<i class="fa fa-bars"></i>
 				</a>
 			</li>
-			<li class="hidden-xs"><a href="/" title="Cerrar sesión"><i class="glyphicon glyphicon-off"></i></a></li>
+			<li class="hidden-xs"><a href="logout" title="Cerrar sesión"><i class="glyphicon glyphicon-off"></i></a></li>
 		</ul>
 	</div>
 </header>

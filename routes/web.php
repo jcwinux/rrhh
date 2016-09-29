@@ -11,38 +11,42 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-
 Route::get('/', ['middleware'=>'index',function () {
     return view('login');
 }]);
 
 Route::patch('/authenticate', 'AuthController@authenticate');
 
-Route::get('/modulos', ['middleware'=>'verificar_sesion',function () {
-    return view('modulos');
-}]);
+Route::group(['middleware'=>['verificar_sesion']], function()
+{
+	Route::get('/modulos', function () {
+		return view('modulos');
+	});
 
+	Route::get('/configuracion', function () {
+		return view('pages.configuracion.index');
+	});
 
+	Route::get('/personal', function () {
+		return view('pages.personal.index');
+	});
 
+	Route::get('/horarios', function () {
+		return view('pages.horarios.index');
+	});
 
-Route::get('/configuracion', function () {
-    return view('pages.configuracion.index');
-});
-Route::get('/personal', function () {
-    return view('pages.personal.index');
-});
-Route::get('/horarios', function () {
-    return view('pages.horarios.index');
-});
-Route::get('/nomina', function () {
-    return view('pages.nomina.index');
-});
-Route::get('/evaluacion', function () {
-    return view('pages.evaluacion.index');
-});
-Route::get('/reclutamiento', function () {
-    return view('pages.reclutamiento.index');
-});
+	Route::get('/nomina', function () {
+		return view('pages.nomina.index');
+	});
+
+	Route::get('/evaluacion', function () {
+		return view('pages.evaluacion.index');
+	});
+
+	Route::get('/reclutamiento', function () {
+		return view('pages.reclutamiento.index');
+	});
+	
+	Route::get('/logout','AuthController@logout');
+}
+);

@@ -14,6 +14,3 @@
 @section('titulo')
 	Configuración
 @stop
-@section('usuario')
-	RR.HH.
-@stop
