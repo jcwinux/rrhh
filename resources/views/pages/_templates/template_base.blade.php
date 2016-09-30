@@ -2,10 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-   @extends('pages._templates._common.head')
+   @include('pages._templates._common.head')
 </head>
 <body>
 	@yield('content')
-	@extends('pages._templates._common.script')
+	@include('pages._templates._common.script')
 </body>
 </html>

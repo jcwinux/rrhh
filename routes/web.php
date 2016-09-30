@@ -14,10 +14,8 @@
 Route::get('/', ['middleware'=>'index',function () {
     return view('login');
 }]);
-
 Route::patch('/authenticate', 'AuthController@authenticate');
-
-Route::group(['middleware'=>['verificar_sesion']], function()
+Route::group(['middleware'=>['checkSession','sessionTimeOut']], function()
 {
 	Route::get('/modulos', function () {
 		return view('modulos');
@@ -48,5 +46,6 @@ Route::group(['middleware'=>['verificar_sesion']], function()
 	});
 	
 	Route::get('/logout','AuthController@logout');
+	Route::get('/quit_app','AuthController@quit_app');
 }
 );

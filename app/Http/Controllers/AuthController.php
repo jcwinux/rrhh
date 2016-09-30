@@ -30,4 +30,13 @@ class AuthController extends Controller
 		Session::flash('bye_message', "Sesión finalizada con éxito.");
 		return redirect('/');
 	}
+	
+	public function quit_app()
+	{	if (Auth::check())
+		{	Auth::logout(); 
+		}
+		
+		Session::flash('quit_message', "Su sesión ha sido finalizada, porque se ha detectado inactividad en los últimos 15 minutos.");
+		return redirect('/');
+	}
 }

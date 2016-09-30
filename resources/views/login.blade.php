@@ -2,28 +2,37 @@
 @section('content')
 
 @if (Session::has('fail_message'))
-<div class="row" style="margin-top: 25px">
+<div class="row" style="margin-top: 25px;margin-bottom:5px;">
 	<div class="alert alert-danger col-md-4 col-md-offset-4">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-		<h4><i class="fa fa-ban"></i> <strong>Error de autenticación</strong></h4>
+		<span class="label label-danger"><strong><i class="fa fa-ban"></i> ¡Error de autenticación!</strong></span>
 		<p>{{ Session::get('fail_message') }}</p>
 	</div>
 </div>
 @endif
 @if (Session::has('bye_message'))
-<div class="row" style="margin-top: 25px">
+<div class="row" style="margin-top: 25px;margin-bottom:5px;">
 	<div class="alert alert-success col-md-4 col-md-offset-4">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-		<h4><i class="fa fa-check"></i> <strong>¡Perfecto!</strong></h4>
+		<span class="label label-success"><strong><i class="glyphicon glyphicon-exclamation-sign"></i> ¡Perfecto!</strong></span>
 		<p>{{ Session::get('bye_message') }}</p>
 	</div>
 </div>
 @endif
-@if (count($errors))
-<div class="row" style="margin-top: 25px">
+@if (Session::has('quit_message'))
+<div class="row" style="margin-top: 25px;margin-bottom:5px;">
 	<div class="alert alert-warning col-md-4 col-md-offset-4">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-		<strong><i class="fa fa-bell-o"></i> ¡Advertencia!</strong>
+		<span class="label label-warning"><strong><i class="fa fa-bell-o"></i> ¡Atención!</strong></span>
+		<p>{{ Session::get('quit_message') }}</p>
+	</div>
+</div>
+@endif
+@if (count($errors))
+<div class="row" style="margin-top: 25px;margin-bottom:5px;">
+	<div class="alert alert-warning col-md-4 col-md-offset-4">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="label label-warning"><strong><i class="fa fa-bell-o"></i> ¡Advertencia!</strong></span>
 		<ul class="text-list">
 			@foreach ($errors->all() as $error)
 				<li> {{ $error }} </li>
