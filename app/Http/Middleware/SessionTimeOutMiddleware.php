@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Session\Store;
 class SessionTimeoutMiddleware {
     protected $session;
-    protected $timeout=10;
+    protected $timeout=3600;
     public function __construct(Store $session){
         $this->session=$session;
     }
@@ -17,13 +17,12 @@ class SessionTimeoutMiddleware {
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        if(!$this->session->has('lastActivityTime'))
+    {	if(!$this->session->has('lastActivityTime'))
             $this->session->put('lastActivityTime',time());
         elseif(time() - $this->session->get('lastActivityTime') > $this->getTimeOut()){
             $this->session->forget('lastActivityTime');
             //Auth::logout();
-            return redirect('/quit_app')->withErrors(['Se ha detectado inactividad por 15 minutos.']);
+            return redirect('/quit_app')->withErrors(['Se ha detectado inactividad por 20 minutos.']);
         }
         $this->session->put('lastActivityTime',time());
         return $next($request);

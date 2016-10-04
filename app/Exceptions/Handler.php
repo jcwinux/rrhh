@@ -45,11 +45,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-         if($exception instanceof NotFoundHttpException)
-		{
-			return response()->view('error', [], 404);
+        if($exception instanceof NotFoundHttpException)
+		{	return response()->view('error', [], 404);
 		}
-
 		return parent::render($request, $exception);
     }
 
@@ -66,6 +64,6 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        return redirect()->guest('login');
+        return redirect()->guest('/')->with('nosession_message','Debe iniciar sesión para acceder al sistema.');
     }
 }

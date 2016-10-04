@@ -28,6 +28,15 @@
 	</div>
 </div>
 @endif
+@if (session('nosession_message'))
+<div class="row" style="margin-top: 25px;margin-bottom:5px;">
+	<div class="alert alert-warning col-md-4 col-md-offset-4">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+		<span class="label label-warning"><strong><i class="fa fa-bell-o"></i> ¡Atención!</strong></span>
+		<p>{{ session('nosession_message') }}</p>
+	</div>
+</div>
+@endif
 @if (count($errors))
 <div class="row" style="margin-top: 25px;margin-bottom:5px;">
 	<div class="alert alert-warning col-md-4 col-md-offset-4">
@@ -41,7 +50,6 @@
 	</div>
 </div>
 @endif
-
 <div class="single-widget-container">
 	<section class="widget login-widget">
 		<header class="text-align-center">
@@ -50,9 +58,8 @@
 		<div class="body">
 			<form class="no-margin"
 				  action="authenticate" method="post">
-				<fieldset>
-				{{ method_field('PATCH') }}
 				{{ csrf_field() }}
+				<fieldset>
 					<div class="form-group">
 						<label for="usuario" >Usuario</label>
 						<div class="input-group">
