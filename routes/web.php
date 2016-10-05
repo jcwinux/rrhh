@@ -48,5 +48,11 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::get('/reclutamiento', function () {
 		return view('pages.reclutamiento.index');
 	});
+	/*Formulario para agregar nueva persona*/
+	Route::get('/persona', function () {
+		$tipo_doc	= App\DocumentType::all();
+		$provinc	= App\Province::all();
+		return view('pages.reclutamiento.form_persona',compact('tipo_doc','provinc'));
+	});
 }
 );

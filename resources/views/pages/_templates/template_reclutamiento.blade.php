@@ -9,5 +9,6 @@
 	@include('pages._templates._common.header')
 	@include('pages._templates._common.script')
 	@include('pages._templates._common.script_boton_conf')
+	@yield('content')
 </body>
 </html>

@@ -278,9 +278,8 @@ class ComposerStaticInit339f24fb0188ee367c77c2b982b54b9e
 
     public static $classMap = array (
         'CreateDocumentTypesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_222119_create_document_types_table.php',
-        'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreatePeopleTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_221854_create_people_table.php',
-        'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
+        'CreateProvincesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_05_170130_create_provinces_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DocumentTypesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DocumentTypesTableSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -725,6 +724,7 @@ class ComposerStaticInit339f24fb0188ee367c77c2b982b54b9e
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PeopleTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PeopleTableSeeder.php',
+        'ProvincesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProvincesTableSeeder.php',
         'SebastianBergmann\\CodeCoverage\\CodeCoverage' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/CodeCoverage.php',
         'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
         'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => __DIR__ . '/..' . '/phpunit/php-code-coverage/src/Driver/Driver.php',

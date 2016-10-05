@@ -7,9 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'CreateDocumentTypesTable' => $baseDir . '/database/migrations/2016_09_23_222119_create_document_types_table.php',
-    'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreatePeopleTable' => $baseDir . '/database/migrations/2016_09_23_221854_create_people_table.php',
-    'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
+    'CreateProvincesTable' => $baseDir . '/database/migrations/2016_10_05_170130_create_provinces_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'DocumentTypesTableSeeder' => $baseDir . '/database/seeds/DocumentTypesTableSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -454,6 +453,7 @@ return array(
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PeopleTableSeeder' => $baseDir . '/database/seeds/PeopleTableSeeder.php',
+    'ProvincesTableSeeder' => $baseDir . '/database/seeds/ProvincesTableSeeder.php',
     'SebastianBergmann\\CodeCoverage\\CodeCoverage' => $vendorDir . '/phpunit/php-code-coverage/src/CodeCoverage.php',
     'SebastianBergmann\\CodeCoverage\\CoveredCodeNotExecutedException' => $vendorDir . '/phpunit/php-code-coverage/src/Exception/CoveredCodeNotExecutedException.php',
     'SebastianBergmann\\CodeCoverage\\Driver\\Driver' => $vendorDir . '/phpunit/php-code-coverage/src/Driver/Driver.php',

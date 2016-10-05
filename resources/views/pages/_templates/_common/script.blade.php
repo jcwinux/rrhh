@@ -24,6 +24,14 @@
 <script src="{{asset('js/index.js')}}"></script>
 <script src="{{asset('js/chat.js')}}"></script>
 
+<!-- forms -->
+<script src="{{asset('lib/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
+<script src="{{asset('lib/select2/select2.min.js')}}"></script>
+<script src="{{asset('lib/moment/moment.js')}}"></script>
+<script src="{{asset('lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
+<script src="{{asset('lib/parsleyjs/dist/parsley.min.js')}}"></script>
+<script src="{{asset('js/forms-account.js')}}"></script>
+
 <!-- page template -->
 <script type="text/template" id="message-template">
 	<div class="sender pull-left">
