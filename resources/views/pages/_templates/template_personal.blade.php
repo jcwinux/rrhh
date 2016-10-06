@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>{{ config('app.name') }} :: Personal </title>
    @include('pages._templates._common.head')
 </head>
 <body>
@@ -11,3 +12,6 @@
 	@include('pages._templates._common.script_boton_conf')
 </body>
 </html>
+@section('titulo')
+	Personal
+@stop

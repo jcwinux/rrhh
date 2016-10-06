@@ -277,9 +277,12 @@ class ComposerStaticInit339f24fb0188ee367c77c2b982b54b9e
     );
 
     public static $classMap = array (
+        'CitiesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CitiesTableSeeder.php',
+        'CreateCitiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_06_090134_create_cities_table.php',
         'CreateDocumentTypesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_222119_create_document_types_table.php',
         'CreatePeopleTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_221854_create_people_table.php',
         'CreateProvincesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_05_170130_create_provinces_table.php',
+        'CreateTownsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_06_102308_create_towns_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DocumentTypesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DocumentTypesTableSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -806,6 +809,7 @@ class ComposerStaticInit339f24fb0188ee367c77c2b982b54b9e
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'TownsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/TownsTableSeeder.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

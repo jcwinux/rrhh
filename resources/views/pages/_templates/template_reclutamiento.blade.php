@@ -2,13 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>{{ config('app.name') }} :: Reclutamiento </title>
    @include('pages._templates._common.head')
 </head>
 <body>
-	@include('pages._templates._menu.menu_personal')
+	@include('pages._templates._menu.menu_reclutamiento')
 	@include('pages._templates._common.header')
+	@yield('content')
 	@include('pages._templates._common.script')
 	@include('pages._templates._common.script_boton_conf')
-	@yield('content')
 </body>
 </html>

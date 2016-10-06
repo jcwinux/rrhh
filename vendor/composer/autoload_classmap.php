@@ -6,9 +6,12 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CitiesTableSeeder' => $baseDir . '/database/seeds/CitiesTableSeeder.php',
+    'CreateCitiesTable' => $baseDir . '/database/migrations/2016_10_06_090134_create_cities_table.php',
     'CreateDocumentTypesTable' => $baseDir . '/database/migrations/2016_09_23_222119_create_document_types_table.php',
     'CreatePeopleTable' => $baseDir . '/database/migrations/2016_09_23_221854_create_people_table.php',
     'CreateProvincesTable' => $baseDir . '/database/migrations/2016_10_05_170130_create_provinces_table.php',
+    'CreateTownsTable' => $baseDir . '/database/migrations/2016_10_06_102308_create_towns_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'DocumentTypesTableSeeder' => $baseDir . '/database/seeds/DocumentTypesTableSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
@@ -535,4 +538,5 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'TownsTableSeeder' => $baseDir . '/database/seeds/TownsTableSeeder.php',
 );

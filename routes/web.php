@@ -52,7 +52,19 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::get('/persona', function () {
 		$tipo_doc	= App\DocumentType::all();
 		$provinc	= App\Province::all();
-		return view('pages.reclutamiento.form_persona',compact('tipo_doc','provinc'));
+		return view('pages.reclutamiento.form_persona_crear',compact('tipo_doc','provinc'));
 	});
+	
+	Route::get('/ajax-cities/{province_id}',function ($province_id) {
+		$cities = App\City::where('province_id','=',$province_id)->get();
+		return Response::json($cities);
+	});
+	
+	Route::get('/ajax-towns/{city_id}',function ($city_id) {
+		$towns = App\Town::where('city_id','=',$city_id)->get();
+		return Response::json($towns);
+	});
+	
+	Route::post('/crearPersona', 'PeopleController@crearPersona');
 }
 );

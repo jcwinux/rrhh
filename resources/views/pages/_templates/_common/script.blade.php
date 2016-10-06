@@ -50,3 +50,7 @@
 		</div>
 	</div>
 </script>
+<script src="{{asset('lib/messenger/build/js/messenger.js')}}"></script>
+<script src="{{asset('lib/messenger/build/js/messenger-theme-flat.js')}}"></script>
+<!--Funciones del sistema-->
+@yield('javascript_functions')

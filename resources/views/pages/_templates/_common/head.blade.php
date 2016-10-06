@@ -1,4 +1,3 @@
-<title>{{ config('app.name') }} :: @yield('titulo') </title>
 <link href="{{asset('css/application.css')}}" rel="stylesheet">
 <link rel="shortcut icon" href="{{asset('favicon.ico')}}">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">

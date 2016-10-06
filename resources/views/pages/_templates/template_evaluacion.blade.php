@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>{{ config('app.name') }} :: Evaluación </title>
    @include('pages._templates._common.head')
 </head>
 <body>
