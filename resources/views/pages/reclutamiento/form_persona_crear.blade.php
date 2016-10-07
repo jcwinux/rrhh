@@ -58,17 +58,17 @@
 										<div class="col-sm-3">
 											<div id="gender" class="btn-group" data-toggle="buttons">
 												<label class="btn btn-primary active" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-													<input type="radio" name="sexo" value="1" checked>Hombre
+													<input type="radio" id="hombre" name="sexo" value="hombre" checked>Hombre
 												</label>
 												<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-													<input type="radio" name="sexo" value="0">&nbsp; Mujer &nbsp;
+													<input type="radio" id="mujer" name="sexo" value="mujer">&nbsp; Mujer &nbsp;
 												</label>
 											</div>
 										</div>
 									</div>
 									<div class="cols-md-6">
 										<label for="fecha_ncto" class="control-label col-sm-2 col-sm-offset-1">Fecha de nacimiento <span class="required">*</span></label>
-										<div class="col-sm-3"><input id="fecha_ncto" class="date-picker form-control" required="required" type="text" name="fecha_ncto" value=""></div>
+										<div class="col-sm-3"><input id="fecha_ncto" class="date-picker form-control" required="required" type="text" name="fecha_ncto" value="" ></div>
 									</div>
                                 </div>
 								<div class="form-group">
@@ -157,7 +157,7 @@
 								<div class="form-group">
 									<div class="cols-md-6">
 										<label class="control-label col-sm-2" for="manzana">Manzana</label>
-										<div class="col-sm-3"><input type="text" id="manzana" name="first-name" class="form-control" ></div>
+										<div class="col-sm-3"><input type="text" id="manzana" name="manzana" class="form-control" ></div>
 									</div>
 									<div class="cols-md-6">
 										<label class="control-label col-sm-2 col-sm-offset-1" for="villa">Villa</label>
@@ -185,5 +185,5 @@
     </div>
 @stop
 @section('javascript_functions')
-	 <script src="{{asset('js/functions/form_persona_crear.js')}}"></script> 
+	 <script src="{{asset('js/functions/form_persona_crear.js')}}?{{$str_random[0]}}{{$str_random[1]}}{{$str_random[2]}}"></script> 
 @stop

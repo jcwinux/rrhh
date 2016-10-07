@@ -1,6 +1,6 @@
 $(function(){
     function pageLoad(){
-        $('.date-picker').datepicker();
+        $('.date-picker').datepicker({ format: 'dd/mm/yyyy' });
 
         $('.selectpicker').selectpicker();
         //selectpicker doesn't seem to be flexible enough (can't change template), so need to replace span.caret externally
