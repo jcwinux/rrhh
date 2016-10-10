@@ -6,7 +6,11 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'CatalogTypesTableSeeder' => $baseDir . '/database/seeds/CatalogTypesTableSeeder.php',
+    'CatalogsTableSeeder' => $baseDir . '/database/seeds/CatalogsTableSeeder.php',
     'CitiesTableSeeder' => $baseDir . '/database/seeds/CitiesTableSeeder.php',
+    'CreateCatalogTypesTable' => $baseDir . '/database/migrations/2016_10_10_101811_create_catalog_types_table.php',
+    'CreateCatalogsTable' => $baseDir . '/database/migrations/2016_10_10_102027_create_catalogs_table.php',
     'CreateCitiesTable' => $baseDir . '/database/migrations/2016_10_06_090134_create_cities_table.php',
     'CreateDocumentTypesTable' => $baseDir . '/database/migrations/2016_09_23_222119_create_document_types_table.php',
     'CreatePeopleTable' => $baseDir . '/database/migrations/2016_09_23_221854_create_people_table.php',

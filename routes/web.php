@@ -52,8 +52,10 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::get('/persona', function () {
 		$tipo_doc	= App\DocumentType::all();
 		$provinc	= App\Province::all();
+		$est_civil	= App\Catalog::where('catalog_type_id',1)->get();
+		$niv_estudio = App\Catalog::where('catalog_type_id',2)->get();
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.reclutamiento.form_persona_crear',compact('tipo_doc','provinc','str_random'));
+		return view('pages.reclutamiento.form_persona_crear',compact('tipo_doc','provinc','est_civil','niv_estudio','str_random'));
 	});
 	
 	Route::get('/ajax-cities/{province_id}',function ($province_id) {

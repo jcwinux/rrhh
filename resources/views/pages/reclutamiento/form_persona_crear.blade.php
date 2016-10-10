@@ -83,7 +83,18 @@
 								</div>
 								<div class="form-group">
 									<div class="cols-md-6">
-										<label class="control-label col-sm-2" for="nacionalidad">Foto <span class="required">*</span></label>
+										<label class="control-label col-sm-2" for="estado_civil">Estado civil</label>
+										<div class="col-sm-3">
+											<select class="form-control" id="estado_civil" name="estado_civil" required="required">
+												<option value=""></option>
+												@foreach ($est_civil as $e)
+													<option value="{{$e->id}}">{{$e->descripcion}}</option>
+												@endforeach
+											</select>
+										</div>
+									</div>	
+									<div class="cols-md-6">
+										<label class="control-label col-sm-2 col-sm-offset-1" for="nacionalidad">Foto <span class="required">*</span></label>
 										<div class="col-sm-3"><input type="file" id="nacionalidad" name="nacionalidad" required="required" class="form-control" ></div>
 									</div>
 								</div>
@@ -110,13 +121,13 @@
                             </fieldset>
                             <fieldset>
                                 <legend class="section">
-                                    Dirección
+                                    Domicilio actual
                                 </legend>
                                 <div class="form-group">
 									<div class="cols-md-6">
 										<label class="control-label col-sm-2" for="provincia_residencia">Provincia residencia</label>
 										<div class="col-sm-3">
-											<select class="form-control" id="provincia_residencia" name="provincia_residencia" required="required">
+											<select class="form-control select2" id="provincia_residencia" name="provincia_residencia" required="required">
 												<option value=""></option>
 												@foreach ($provinc as $p)
 													<option value="{{$p->id}}">{{$p->nombre}}</option>
@@ -127,7 +138,7 @@
 									<div class="cols-md-6">
 										<label class="control-label col-sm-2 col-sm-offset-1" for="ciudad_residencia">Ciudad residencia</label>
 										<div class="col-sm-3">
-											<select class="form-control" id="ciudad_residencia" name="ciudad_residencia" required="required">
+											<select class="form-control select2" id="ciudad_residencia" name="ciudad_residencia" required="required">
 											</select>
 										</div>
 									</div>
@@ -137,7 +148,7 @@
 									<div class="cols-md-12">
 										<label class="control-label col-sm-2" for="parroquia_residencia">Parroquia residencia</label>
 										<div class="col-sm-3">
-											<select class="form-control" id="parroquia_residencia" name="parroquia_residencia" required="required">
+											<select class="form-control select2" id="parroquia_residencia" name="parroquia_residencia" required="required">
 											</select>
 										</div>
 									</div>
@@ -165,6 +176,70 @@
 									</div>
 								</div>
                             </fieldset>
+							<fieldset>
+                                <legend class="section">
+                                    Estudios realizados
+                                    <button type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalEstudiosRealizados" data-backdrop="static">
+                                        <i class="fa fa-plus"></i>
+                                        Añadir
+                                    </button>
+                                </legend>
+								<table class="table table-hover table-bordered" id="estudios_agregados" name="estudios_agregados">
+								<thead>
+									<tr>
+										<th width="40%">Nivel</th>
+										<th width="40%">Institución</th>
+										<th width="10%">Año</th>
+										<th width="10%">Opciones</th>
+									</tr>
+								</thead>
+								<tbody id="det_estudios_agregados">
+								</tbody>
+								</table>
+                            </fieldset>
+							<fieldset>
+                                <legend class="section">
+                                    Cursos realizados
+                                    <button type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalCursosRealizados" data-backdrop="static">
+                                        <i class="fa fa-plus"></i>
+                                        Añadir
+                                    </button>
+                                </legend>
+								<table class="table table-hover table-bordered" id="cursos_realizados" name="cursos_realizados">
+								<thead>
+									<tr>
+										<th width="40%">Curso</th>
+										<th width="40%">Institución</th>
+										<th width="10%">Año</th>
+										<th width="10%">Opciones</th>
+									</tr>
+								</thead>
+								<tbody id="det_cursos_realizados">
+								</tbody>
+								</table>
+                            </fieldset>
+							<fieldset>
+                                <legend class="section">
+                                    Experiencia laboral
+                                    <button type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalExperienciasLaborales" data-backdrop="static">
+                                        <i class="fa fa-plus"></i>
+                                        Añadir
+                                    </button>
+                                </legend>
+								<table class="table table-hover table-bordered" id="experiencias_laborales" name="experiencias_laborales">
+								<thead>
+									<tr>
+										<th width="20%">Empresa</th>
+										<th width="40%">Cargo</th>
+										<th width="15%">Desde</th>
+										<th width="15%">Hasta</th>
+										<th width="10%">Opciones</th>
+									</tr>
+								</thead>
+								<tbody id="det_experiencias_laborales">
+								</tbody>
+								</table>
+                            </fieldset>
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-sm-8 col-sm-offset-4">
@@ -183,6 +258,111 @@
             <i class="fa fa-circle-o-notch fa-spin"></i>
         </div>
     </div>
+	<!--Modals-->
+	<div id="modalEstudiosRealizados" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel2">Estudios realizados</h4>
+				</div>
+				<div class="modal-body">
+					<fieldset>
+					<div class="form-group">
+						<label class="control-label" for="nivel_estudio">Nivel</label>
+						<select class="form-control" id="nivel_estudio" name="nivel_estudio" required="required">
+							<option value=""></option>
+							@foreach ($niv_estudio as $n)
+								<option value="{{$n->id}}">{{$n->descripcion}}</option>
+							@endforeach
+						</select>
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="institucion">Institución</label>
+						<input type="text" id="institucion" name="institucion" class="form-control">
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="anio">Año</label>
+						<input type="text" id="anio" name="anio" class="form-control">
+					</div>
+				</fieldset>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="AgregarEstudio" name="AgregarEstudio">Agregar</button>
+				</div>
+
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+	
+	<div id="modalCursosRealizados" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel2">Cursos realizados</h4>
+				</div>
+				<div class="modal-body">
+					<fieldset>
+					<div class="form-group">
+						<label class="control-label" for="curso">Curso</label>
+						<input type="text" id="curso" name="curso" class="form-control">
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="institucion_curso">Institución</label>
+						<input type="text" id="institucion_curso" name="institucion_curso" class="form-control">
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="anio_curso">Año</label>
+						<input type="text" id="anio_curso" name="anio_curso" class="form-control">
+					</div>
+				</fieldset>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="AgregarCurso" name="AgregarCurso">Agregar</button>
+				</div>
+
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+	
+	<div id="modalExperienciasLaborales" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel2">Experiencias laborales</h4>
+				</div>
+				<div class="modal-body">
+					<fieldset>
+					<div class="form-group">
+						<label class="control-label" for="empresa">Empresa</label>
+						<input type="text" id="empresa" name="empresa" class="form-control">
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="cargo">Cargo</label>
+						<input type="text" id="cargo" name="cargo" class="form-control">
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="fecha_desde">Desde</label>
+						<input id="fecha_desde" class="date-picker form-control" required="required" type="text" name="fecha_desde" value="" >
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="fecha_hasta">Hasta</label>
+						<input id="fecha_hasta" class="date-picker form-control" required="required" type="text" name="fecha_hasta" value="" >
+					</div>
+				</fieldset>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="AgregarExperienciaLaboral" name="AgregarExperienciaLaboral">Agregar</button>
+				</div>
+
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
 @stop
 @section('javascript_functions')
 	 <script src="{{asset('js/functions/form_persona_crear.js')}}?{{$str_random[0]}}{{$str_random[1]}}{{$str_random[2]}}"></script> 

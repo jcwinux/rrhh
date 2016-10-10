@@ -32,9 +32,56 @@ $(document).ready(function(){
 			});
 		});
 	});
+	/*Agregar estudio*/
+	$('#AgregarEstudio').on('click',function(e){
+		row = '<tr><td>'+$('#nivel_estudio option:selected').text()+
+			  '</td><td>'+$('#institucion').val()+'</td><td>'+$('#anio').val()+
+			  '</td><td class="text-align-center"><a href="#"><span class="label label-danger">X</span></a></td></tr>';
+		$('#nivel_estudio').val("");
+		$('#institucion').val("");
+		$('#anio').val("");
+		
+		$('#det_estudios_agregados').append(row);
+	});
+	/*Agregar curso*/
+	$('#AgregarCurso').on('click',function(e){
+		row = '<tr><td>'+$('#curso').val()+
+			  '</td><td>'+$('#institucion_curso').val()+'</td><td>'+$('#anio_curso').val()+
+			  '</td><td class="text-align-center"><a href="#"><span class="label label-danger">X</span></a></td></tr>';
+		$('#curso').val("");
+		$('#institucion_curso').val("");
+		$('#anio_curso').val("");
+		
+		$('#det_cursos_realizados').append(row);
+		
+		$('#det_cursos_realizados').find('tr').each(function(i,el){
+			var $tds = $(this).find('td');
+			var a=$tds.eq(0).text();
+			var b=$tds.eq(1).text();
+			var c=$tds.eq(2).text();
+			console.log(a);
+			console.log(b);
+			console.log(c);
+		});
+	});
+	/*Agregar experiencia*/
+	$('#AgregarExperienciaLaboral').on('click',function(e){
+		row = '<tr><td>'+$('#empresa').val()+
+			  '</td><td>'+$('#cargo').val()+'</td><td>'+$('#fecha_desde').val()+'<td>'+$('#fecha_hasta').val()+
+			  '</td><td class="text-align-center"><a href="#"><span class="label label-danger">X</span></a></td></tr>';
+		$('#empresa').val("");
+		$('#cargo').val("");
+		$('#desde').val("");
+		$('#hasta').val("");
+		
+		$('#det_experiencias_laborales').append(row);
+	});
+	
 	/*Crea una nueva persona*/
 	$('#persona-form').submit(function(e){
 		e.preventDefault();
+		
+		var i=1;
 		
 		Messenger().post("El registro ha sido grabado exitosamente!");
 		

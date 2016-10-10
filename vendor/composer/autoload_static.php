@@ -277,7 +277,11 @@ class ComposerStaticInit339f24fb0188ee367c77c2b982b54b9e
     );
 
     public static $classMap = array (
+        'CatalogTypesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CatalogTypesTableSeeder.php',
+        'CatalogsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CatalogsTableSeeder.php',
         'CitiesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CitiesTableSeeder.php',
+        'CreateCatalogTypesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_10_101811_create_catalog_types_table.php',
+        'CreateCatalogsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_10_102027_create_catalogs_table.php',
         'CreateCitiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_06_090134_create_cities_table.php',
         'CreateDocumentTypesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_222119_create_document_types_table.php',
         'CreatePeopleTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_221854_create_people_table.php',
