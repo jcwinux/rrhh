@@ -53,16 +53,6 @@ $(document).ready(function(){
 		$('#anio_curso').val("");
 		
 		$('#det_cursos_realizados').append(row);
-		
-		$('#det_cursos_realizados').find('tr').each(function(i,el){
-			var $tds = $(this).find('td');
-			var a=$tds.eq(0).text();
-			var b=$tds.eq(1).text();
-			var c=$tds.eq(2).text();
-			console.log(a);
-			console.log(b);
-			console.log(c);
-		});
 	});
 	/*Agregar experiencia*/
 	$('#AgregarExperienciaLaboral').on('click',function(e){
@@ -80,8 +70,6 @@ $(document).ready(function(){
 	/*Crea una nueva persona*/
 	$('#persona-form').submit(function(e){
 		e.preventDefault();
-		
-		var i=1;
 		
 		Messenger().post("El registro ha sido grabado exitosamente!");
 		
@@ -107,16 +95,57 @@ $(document).ready(function(){
 		var manzana = $('#manzana').val();
 		var villa = $('#villa').val();
 		
+		json_persona = {};
+		json_persona["num_identificacion"]=num_identificacion;
+		json_persona["document_type"]=document_type;
+		json_persona["primer_nombre"]=primer_nombre;
+		json_persona["segundo_nombre"]=segundo_nombre;
+		json_persona["primer_apellido"]=primer_apellido;
+		json_persona["segundo_apellido"]=segundo_apellido;
+		json_persona["sexo"]=sexo;
+		json_persona["fecha_ncto"]=fecha_ncto;
+		json_persona["nacionalidad"]=nacionalidad;
+		json_persona["trato"]=trato;
+		json_persona["correo_electronico"]=correo_electronico;
+		json_persona["numero_convencional"]=numero_convencional;
+		json_persona["numero_celular"]=numero_celular;
+		json_persona["provincia_residencia"]=provincia_residencia;
+		json_persona["ciudad_residencia"]=ciudad_residencia;
+		json_persona["parroquia_residencia"]=parroquia_residencia;
+		json_persona["calle_principal"]=calle_principal;
+		json_persona["calle_transversal"]=calle_transversal;
+		json_persona["manzana"]=manzana;
+		json_persona["villa"]=villa;
+		
+		json_cursos = [];
+		$('#det_cursos_realizados').find('tr').each(function(i,el){
+			var $tds = $(this).find('td');
+			var curso = $tds.eq(0).text();
+			var institucion = $tds.eq(1).text();
+			var año = $tds.eq(2).text();
+			
+			item = {}
+			item["curso"]=curso;
+			item["institucion"]=institucion;
+			item["año"]=año;
+			
+			json_cursos.push(item);
+		});
+		json_persona["cursos"] = json_cursos;
+		console.log(JSON.stringify(json_persona));
+		
 		var dataString = 'num_identificacion='+num_identificacion+'&document_type='+document_type+'&primer_nombre='+primer_nombre+'&segundo_nombre='+segundo_nombre+
 						 '&primer_apellido='+primer_apellido+'&segundo_apellido='+segundo_apellido+'&sexo='+sexo+'&fecha_ncto='+fecha_ncto+'&nacionalidad='+nacionalidad+
 						 '&trato='+trato+'&correo_electronico='+correo_electronico+'&numero_convencional='+numero_convencional+'&numero_celular='+numero_celular+
 						 '&provincia_residencia='+provincia_residencia+'&ciudad_residencia='+ciudad_residencia+'&parroquia_residencia='+parroquia_residencia+'&calle_principal='+calle_principal+
 						 '&calle_transversal='+calle_transversal+'&manzana='+manzana+'&villa='+villa;
+						 
+		
 		
 		$.ajax({
 			type: "POST",
 			url: "crearPersona",
-			data: dataString,
+			data: {data: JSON.stringify(json_persona)},
 			success: function(data){
 				console.log(data);
 			},

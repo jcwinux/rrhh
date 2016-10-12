@@ -127,7 +127,7 @@
 									<div class="cols-md-6">
 										<label class="control-label col-sm-2" for="provincia_residencia">Provincia residencia</label>
 										<div class="col-sm-3">
-											<select class="form-control select2" id="provincia_residencia" name="provincia_residencia" required="required">
+											<select class="form-control" id="provincia_residencia" name="provincia_residencia" required="required">
 												<option value=""></option>
 												@foreach ($provinc as $p)
 													<option value="{{$p->id}}">{{$p->nombre}}</option>
@@ -138,7 +138,7 @@
 									<div class="cols-md-6">
 										<label class="control-label col-sm-2 col-sm-offset-1" for="ciudad_residencia">Ciudad residencia</label>
 										<div class="col-sm-3">
-											<select class="form-control select2" id="ciudad_residencia" name="ciudad_residencia" required="required">
+											<select class="form-control" id="ciudad_residencia" name="ciudad_residencia" required="required">
 											</select>
 										</div>
 									</div>
@@ -148,7 +148,7 @@
 									<div class="cols-md-12">
 										<label class="control-label col-sm-2" for="parroquia_residencia">Parroquia residencia</label>
 										<div class="col-sm-3">
-											<select class="form-control select2" id="parroquia_residencia" name="parroquia_residencia" required="required">
+											<select class="form-control" id="parroquia_residencia" name="parroquia_residencia" required="required">
 											</select>
 										</div>
 									</div>
