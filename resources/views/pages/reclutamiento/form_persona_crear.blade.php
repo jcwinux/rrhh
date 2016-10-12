@@ -209,7 +209,8 @@
 								<thead>
 									<tr>
 										<th width="40%">Curso</th>
-										<th width="40%">Institución</th>
+										<th width="30%">Institución</th>
+										<th width="10%">Horas</th>
 										<th width="10%">Año</th>
 										<th width="10%">Opciones</th>
 									</tr>
@@ -312,6 +313,10 @@
 					<div class="form-group">
 						<label class="control-label" for="institucion_curso">Institución</label>
 						<input type="text" id="institucion_curso" name="institucion_curso" class="form-control">
+					</div>
+					<div class="form-group">
+						<label class="control-label" for="anio_curso">Número de horas</label>
+						<input type="text" id="horas_curso" name="horas_curso" class="form-control">
 					</div>
 					<div class="form-group">
 						<label class="control-label" for="anio_curso">Año</label>

@@ -46,10 +46,11 @@ $(document).ready(function(){
 	/*Agregar curso*/
 	$('#AgregarCurso').on('click',function(e){
 		row = '<tr><td>'+$('#curso').val()+
-			  '</td><td>'+$('#institucion_curso').val()+'</td><td>'+$('#anio_curso').val()+
+			  '</td><td>'+$('#institucion_curso').val()+'</td><td>'+$('#horas_curso').val()+'</td><td>'+$('#anio_curso').val()+
 			  '</td><td class="text-align-center"><a href="#"><span class="label label-danger">X</span></a></td></tr>';
 		$('#curso').val("");
 		$('#institucion_curso').val("");
+		$('#horas_curso').val("");
 		$('#anio_curso').val("");
 		
 		$('#det_cursos_realizados').append(row);
@@ -122,25 +123,19 @@ $(document).ready(function(){
 			var $tds = $(this).find('td');
 			var curso = $tds.eq(0).text();
 			var institucion = $tds.eq(1).text();
-			var año = $tds.eq(2).text();
+			var horas = $tds.eq(2).text();
+			var año = $tds.eq(3).text();
 			
 			item = {}
 			item["curso"]=curso;
 			item["institucion"]=institucion;
+			item["horas"]=horas;
 			item["año"]=año;
 			
 			json_cursos.push(item);
 		});
 		json_persona["cursos"] = json_cursos;
 		console.log(JSON.stringify(json_persona));
-		
-		var dataString = 'num_identificacion='+num_identificacion+'&document_type='+document_type+'&primer_nombre='+primer_nombre+'&segundo_nombre='+segundo_nombre+
-						 '&primer_apellido='+primer_apellido+'&segundo_apellido='+segundo_apellido+'&sexo='+sexo+'&fecha_ncto='+fecha_ncto+'&nacionalidad='+nacionalidad+
-						 '&trato='+trato+'&correo_electronico='+correo_electronico+'&numero_convencional='+numero_convencional+'&numero_celular='+numero_celular+
-						 '&provincia_residencia='+provincia_residencia+'&ciudad_residencia='+ciudad_residencia+'&parroquia_residencia='+parroquia_residencia+'&calle_principal='+calle_principal+
-						 '&calle_transversal='+calle_transversal+'&manzana='+manzana+'&villa='+villa;
-						 
-		
 		
 		$.ajax({
 			type: "POST",
@@ -150,7 +145,7 @@ $(document).ready(function(){
 				console.log(data);
 			},
 			error: function(data){
-				console.log(data);
+				  
 			}
 		});
 	});
