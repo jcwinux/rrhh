@@ -14,12 +14,13 @@ class CreateTrainingsTable extends Migration
     public function up()
     {
         Schema::create('trainings', function (Blueprint $table) {
-            $table->increments('id');
+            //$table->increments('id');
 			$table->integer('person_id');
 			$table->string('institucion',100);
 			$table->string('descripcion',100);
 			$table->string('numero_horas',10);
 			$table->string('año',10);
+			//$table->softDeletes();
             $table->timestamps();
         });
     }
