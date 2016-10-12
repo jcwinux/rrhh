@@ -21,6 +21,7 @@
 									<div class="col-sm-3">
 										<div class="input-group">
 											<input id="num_identificacion" class="form-control" required="required" type="text" name="num_identificacion" maxlength="30">
+											<input id="person_id" type="hidden" name="person_id" value="">
 											<span class="input-group-btn">
 												<select id="document_type" class="selectpicker" data-style="btn-default" data-width="auto">
 												@foreach ($tipo_doc as $t)

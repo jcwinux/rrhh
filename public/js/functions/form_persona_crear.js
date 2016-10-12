@@ -72,8 +72,7 @@ $(document).ready(function(){
 	$('#persona-form').submit(function(e){
 		e.preventDefault();
 		
-		Messenger().post("El registro ha sido grabado exitosamente!");
-		
+		var person_id = $('#person_id').val();
 		var num_identificacion = $('#num_identificacion').val();
 		var document_type = $('#document_type').val();
 		var primer_nombre = $('#primer_nombre').val();
@@ -97,6 +96,7 @@ $(document).ready(function(){
 		var villa = $('#villa').val();
 		
 		json_persona = {};
+		json_persona["person_id"]=person_id;
 		json_persona["num_identificacion"]=num_identificacion;
 		json_persona["document_type"]=document_type;
 		json_persona["primer_nombre"]=primer_nombre;
@@ -135,14 +135,16 @@ $(document).ready(function(){
 			json_cursos.push(item);
 		});
 		json_persona["cursos"] = json_cursos;
-		console.log(JSON.stringify(json_persona));
 		
 		$.ajax({
 			type: "POST",
 			url: "crearPersona",
 			data: {data: JSON.stringify(json_persona)},
 			success: function(data){
-				console.log(data);
+				var json_x = $.parseJSON(data);
+				console.log(json_x);
+				$("#person_id").val(json_x.person_id);
+				Messenger().post("El registro ha sido grabado exitosamente!");
 			},
 			error: function(data){
 				  

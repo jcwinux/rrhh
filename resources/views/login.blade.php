@@ -14,7 +14,7 @@
 <div class="row" style="margin-top: 25px;margin-bottom:5px;">
 	<div class="alert alert-success col-md-4 col-md-offset-4">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-		<span class="label label-success"><strong><i class="glyphicon glyphicon-exclamation-sign"></i> ¡Perfecto!</strong></span>
+		<span class="label label-success"><strong><i class="glyphicon glyphicon-exclamation-sign"></i> ¡Correcto!</strong></span>
 		<p>{{ Session::get('bye_message') }}</p>
 	</div>
 </div>

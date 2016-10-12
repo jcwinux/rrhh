@@ -13,8 +13,11 @@ class PeopleController extends Controller
 	{	DB::beginTransaction();
 		/*Guardo JSON*/
 		$json_persona = json_decode($request->data,true);
+		if ($json_persona["person_id"]=="")
+			$oPersona = new Person ();
+		else
+			$oPersona = Person::find($json_persona["person_id"]);
 		
-		$oPersona = new Person ();
 		$oPersona->document_type_id = $json_persona["document_type"];
 		$oPersona->num_identificacion = $json_persona["num_identificacion"];
 		$oPersona->nombre_1 = $json_persona["primer_nombre"];
@@ -47,6 +50,8 @@ class PeopleController extends Controller
 		$oPersona->password = bcrypt($json_persona["num_identificacion"]);
 		$oPersona->save();
 		
+		/*Elimino las capacitaciones anteriores*/
+		Training::where('person_id',$oPersona->id)->delete();
 		/*Guardo los capacitaciones*/
 		foreach ($json_persona["cursos"] as $cursos)
 		{	$oCursos = new Training();
@@ -54,14 +59,12 @@ class PeopleController extends Controller
 			$oCursos->descripcion = $cursos["curso"];
 			$oCursos->institucion = $cursos["institucion"];
 			$oCursos->numero_horas = $cursos["horas"];
-			$oCursos->año = $cursos["añoi"];
+			$oCursos->año = $cursos["año"];
 			$oCursos->save();
 			if (!$oCursos)
-			{
 				DB::rollBack();
-			}
 		}
 		DB::commit();
-		print json_encode(array("result"=>"success","msg"=>"Todo OK","usuario"=>$oPersona->id));
+		print json_encode(array("result"=>"success","msg"=>"Todo OK","person_id"=>$oPersona->id));
 	}
 }
