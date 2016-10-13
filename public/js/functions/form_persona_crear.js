@@ -34,9 +34,13 @@ $(document).ready(function(){
 	});
 	/*Agregar estudio*/
 	$('#AgregarEstudio').on('click',function(e){
-		row = '<tr><td>'+$('#nivel_estudio option:selected').text()+
-			  '</td><td>'+$('#institucion').val()+'</td><td>'+$('#anio').val()+
-			  '</td><td class="text-align-center"><a href="#"><span class="label label-danger">X</span></a></td></tr>';
+		row = 
+			'<tr>'+
+				'<td data-nivel_estudio="'+$('#nivel_estudio option:selected').val()+'">'+$('#nivel_estudio option:selected').text()+'</td>'+
+				'<td>'+$('#institucion').val()+'</td>'+
+				'<td>'+$('#anio').val()+'</td>'+
+				'<td class="text-align-center"><a href="#"><span class="label label-danger">X</span></a></td>'+
+			'</tr>';
 		$('#nivel_estudio').val("");
 		$('#institucion').val("");
 		$('#anio').val("");
@@ -45,25 +49,56 @@ $(document).ready(function(){
 	});
 	/*Agregar curso*/
 	$('#AgregarCurso').on('click',function(e){
-		row = '<tr><td>'+$('#curso').val()+
-			  '</td><td>'+$('#institucion_curso').val()+'</td><td>'+$('#horas_curso').val()+'</td><td>'+$('#anio_curso').val()+
-			  '</td><td class="text-align-center"><a href="#"><span class="label label-danger">X</span></a></td></tr>';
+		row = 
+			'<tr>'+
+				'<td>'+$('#curso').val()+'</td>'+
+				'<td>'+$('#institucion_curso').val()+'</td>'+
+				'<td data-tipo_curso="'+$('#tipo_curso option:selected').val()+'">'+$('#tipo_curso option:selected').text()+'</td>'+
+				'<td data-modalidad_curso="'+$('#modalidad_curso option:selected').val()+'">'+$('#modalidad_curso option:selected').text()+'</td>'+
+				'<td>'+$('#curso_fecha_desde').val()+'</td>'+
+				'<td>'+$('#curso_fecha_hasta').val()+'</td>'+
+				'<td>'+$('#horas_curso').val()+'</td>'+
+				'<td class="text-align-center"><a href="#"><span class="label label-danger">X</span></a></td>'+
+			'</tr>';
 		$('#curso').val("");
 		$('#institucion_curso').val("");
 		$('#horas_curso').val("");
-		$('#anio_curso').val("");
+		$('#curso_fecha_desde').val("");
+		$('#curso_fecha_hasta').val("");
+		$('#tipo_curso').val($('#tipo_curso option:first').val());
+		$('#modalidad_curso').val($('#modalidad_curso option:first').val());
 		
 		$('#det_cursos_realizados').append(row);
+		
+		
+		$('#det_cursos_realizados').find('tr').each(function(i,el){
+			var $tds = $(this).find('td');
+			var curso = $tds.eq(0).text();
+			var institucion = $tds.eq(1).text();
+			var horas = $tds.eq(2).text();
+			var año = $tds.eq(3).text();
+		});
+		
+		
 	});
 	/*Agregar experiencia*/
 	$('#AgregarExperienciaLaboral').on('click',function(e){
-		row = '<tr><td>'+$('#empresa').val()+
-			  '</td><td>'+$('#cargo').val()+'</td><td>'+$('#fecha_desde').val()+'<td>'+$('#fecha_hasta').val()+
-			  '</td><td class="text-align-center"><a href="#"><span class="label label-danger">X</span></a></td></tr>';
+		row = 
+			'<tr>'+
+				'<td>'+$('#empresa').val()+'</td>'+
+				'<td>'+$('#direccion').val()+'</td>'+
+				'<td>'+$('#cargo').val()+'</td>'+
+				'<td>'+$('#exp_fecha_desde').val()+
+				'<td>'+$('#exp_fecha_hasta').val()+
+				'<td>'+$('#exp_descripcion').val()+
+				'</td><td class="text-align-center"><a href="#"><span class="label label-danger">X</span></a></td>'+
+			'</tr>';
 		$('#empresa').val("");
+		$('#direccion').val("");
 		$('#cargo').val("");
-		$('#desde').val("");
-		$('#hasta').val("");
+		$('#exp_fecha_desde').val("");
+		$('#exp_fecha_hasta').val("");
+		$('#exp_descripcion').val("");
 		
 		$('#det_experiencias_laborales').append(row);
 	});
@@ -118,23 +153,71 @@ $(document).ready(function(){
 		json_persona["manzana"]=manzana;
 		json_persona["villa"]=villa;
 		
+		
+		json_estudios = [];
+		$('#det_estudios_agregados').find('tr').each(function(i,el){
+			var $tds = $(this).find('td');
+			var nivel_estudio = $tds.eq(0).attr('data-nivel_estudio');
+			var institucion = $tds.eq(1).text();
+			var año = $tds.eq(2).text();
+			
+			item = {}
+			item["nivel_estudio"]=nivel_estudio;
+			item["institucion"]=institucion;
+			item["año"]=año;
+			
+			json_estudios.push(item);
+		});
+		json_persona["estudios"] = json_estudios;
+		
 		json_cursos = [];
 		$('#det_cursos_realizados').find('tr').each(function(i,el){
 			var $tds = $(this).find('td');
 			var curso = $tds.eq(0).text();
 			var institucion = $tds.eq(1).text();
-			var horas = $tds.eq(2).text();
-			var año = $tds.eq(3).text();
+			var tipo_curso = $tds.eq(2).attr('data-tipo_curso');
+			var modalidad_curso = $tds.eq(3).attr('data-modalidad_curso');
+			var curso_fecha_desde = $tds.eq(4).text();
+			var curso_fecha_hasta = $tds.eq(5).text();
+			var horas = $tds.eq(6).text();
 			
 			item = {}
 			item["curso"]=curso;
 			item["institucion"]=institucion;
+			item["tipo_curso"]=tipo_curso;
+			item["modalidad_curso"]=modalidad_curso;
+			item["curso_fecha_desde"]=curso_fecha_desde;
+			item["curso_fecha_hasta"]=curso_fecha_hasta;
 			item["horas"]=horas;
-			item["año"]=año;
+			
 			
 			json_cursos.push(item);
 		});
 		json_persona["cursos"] = json_cursos;
+		
+		
+		json_experiencias = [];
+		$('#det_experiencias_laborales').find('tr').each(function(i,el){
+			var $tds = $(this).find('td');
+			var empresa = $tds.eq(0).text();
+			var direccion = $tds.eq(1).text();
+			var cargo = $tds.eq(2).text();
+			var exp_fecha_desde = $tds.eq(3).text();
+			var exp_fecha_hasta = $tds.eq(4).text();
+			var funciones = $tds.eq(5).text();
+			
+			item = {}
+			item["empresa"]=empresa;
+			item["direccion"]=direccion;
+			item["cargo"]=cargo;
+			item["exp_fecha_desde"]=exp_fecha_desde;
+			item["exp_fecha_hasta"]=exp_fecha_hasta;
+			item["funciones"]=funciones;
+			
+			
+			json_experiencias.push(item);
+		});
+		json_persona["experiencias"] = json_experiencias;
 		
 		$.ajax({
 			type: "POST",
@@ -147,7 +230,7 @@ $(document).ready(function(){
 				Messenger().post("El registro ha sido grabado exitosamente!");
 			},
 			error: function(data){
-				  
+				Messenger().post("¡Ocurrió un error!");
 			}
 		});
 	});

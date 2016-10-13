@@ -179,7 +179,7 @@
                             </fieldset>
 							<fieldset>
                                 <legend class="section">
-                                    Estudios realizados
+                                    Formación académica
                                     <button type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalEstudiosRealizados" data-backdrop="static">
                                         <i class="fa fa-plus"></i>
                                         Añadir
@@ -209,10 +209,13 @@
 								<table class="table table-hover table-bordered" id="cursos_realizados" name="cursos_realizados">
 								<thead>
 									<tr>
-										<th width="40%">Curso</th>
-										<th width="30%">Institución</th>
+										<th width="20%">Curso</th>
+										<th width="20%">Institución</th>
+										<th width="10%">Tipo</th>
+										<th width="10%">Modalidad</th>
+										<th width="10%">Desde</th>
+										<th width="10%">Hasta</th>
 										<th width="10%">Horas</th>
-										<th width="10%">Año</th>
 										<th width="10%">Opciones</th>
 									</tr>
 								</thead>
@@ -231,10 +234,12 @@
 								<table class="table table-hover table-bordered" id="experiencias_laborales" name="experiencias_laborales">
 								<thead>
 									<tr>
-										<th width="20%">Empresa</th>
-										<th width="40%">Cargo</th>
-										<th width="15%">Desde</th>
-										<th width="15%">Hasta</th>
+										<th width="15%">Empresa</th>
+										<th width="20%">Dirección</th>
+										<th width="15%">Cargo</th>
+										<th width="10%">Desde</th>
+										<th width="10%">Hasta</th>
+										<th width="20%">Funciones</th>
 										<th width="10%">Opciones</th>
 									</tr>
 								</thead>
@@ -273,7 +278,6 @@
 					<div class="form-group">
 						<label class="control-label" for="nivel_estudio">Nivel</label>
 						<select class="form-control" id="nivel_estudio" name="nivel_estudio" required="required">
-							<option value=""></option>
 							@foreach ($niv_estudio as $n)
 								<option value="{{$n->id}}">{{$n->descripcion}}</option>
 							@endforeach
@@ -307,21 +311,66 @@
 				</div>
 				<div class="modal-body">
 					<fieldset>
-					<div class="form-group">
-						<label class="control-label" for="curso">Curso</label>
-						<input type="text" id="curso" name="curso" class="form-control">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label" for="curso">Curso</label>
+								<input type="text" id="curso" name="curso" class="form-control">
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="institucion_curso">Institución</label>
-						<input type="text" id="institucion_curso" name="institucion_curso" class="form-control">
+					
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label" for="institucion_curso">Institución</label>
+								<input type="text" id="institucion_curso" name="institucion_curso" class="form-control">
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="anio_curso">Número de horas</label>
-						<input type="text" id="horas_curso" name="horas_curso" class="form-control">
-					</div>
-					<div class="form-group">
-						<label class="control-label" for="anio_curso">Año</label>
-						<input type="text" id="anio_curso" name="anio_curso" class="form-control">
+					
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label" for="curso">Tipo</label>
+								<select id="tipo_curso" name="tipo_curso" class="form-control">
+								@foreach ($tipo_curso as $tc)
+									<option value="{{$tc->id}}">{{$tc->descripcion}}</option>
+								@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label" for="curso">Modalidad</label>
+								<select id="modalidad_curso" name="modalidad_curso" class="form-control">
+								@foreach ($mod_curs as $mc)
+									<option value="{{$mc->id}}">{{$mc->descripcion}}</option>
+								@endforeach
+								</select>
+							</div>
+						</div>
+					</div>	
+					
+					<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label" for="fecha_desde">Desde</label>
+								<input id="curso_fecha_desde" class="date-picker form-control" required="required" type="text" name="curso_fecha_desde" value="" >
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label" for="fecha_hasta">Hasta</label>
+								<input id="curso_fecha_hasta" class="date-picker form-control" required="required" type="text" name="curso_fecha_hasta" value="" >
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label" for="anio_curso">Número de horas</label>
+								<input type="text" id="horas_curso" name="horas_curso" class="form-control">
+							</div>
+						</div>
 					</div>
 				</fieldset>
 				</div>
@@ -343,21 +392,51 @@
 				</div>
 				<div class="modal-body">
 					<fieldset>
-					<div class="form-group">
-						<label class="control-label" for="empresa">Empresa</label>
-						<input type="text" id="empresa" name="empresa" class="form-control">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label" for="empresa">Empresa</label>
+								<input type="text" id="empresa" name="empresa" class="form-control">
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="cargo">Cargo</label>
-						<input type="text" id="cargo" name="cargo" class="form-control">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label" for="cargo">Dirección</label>
+								<input type="text" id="direccion" name="direccion" class="form-control">
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="fecha_desde">Desde</label>
-						<input id="fecha_desde" class="date-picker form-control" required="required" type="text" name="fecha_desde" value="" >
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label" for="cargo">Cargo</label>
+								<input type="text" id="cargo" name="cargo" class="form-control">
+							</div>
+						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label" for="fecha_hasta">Hasta</label>
-						<input id="fecha_hasta" class="date-picker form-control" required="required" type="text" name="fecha_hasta" value="" >
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label" for="fecha_desde">Desde</label>
+								<input id="exp_fecha_desde" class="date-picker form-control" required="required" type="text" name="exp_fecha_desde" value="" >
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="control-label" for="fecha_hasta">Hasta</label>
+								<input id="exp_fecha_hasta" class="date-picker form-control" required="required" type="text" name="exp_fecha_hasta" value="" >
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label" for="fecha_desde">Descripción de las funciones</label>
+								<textarea id="exp_descripcion" name="exp_descripcion" class="form-control"></textarea>
+							</div>
+						</div>
 					</div>
 				</fieldset>
 				</div>

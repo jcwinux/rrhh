@@ -14,7 +14,9 @@ class CatalogTypesTableSeeder extends Seeder
         $data = array 
 					(
 						array('descripcion'=>'Estados civiles','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
-						array('descripcion'=>'Nivel de Estudios','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('descripcion'=>'Nivel de estudios','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('descripcion'=>'Tipos de capacitaciones','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('descripcion'=>'Modalidad de capacitaciones','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())
 					);
 		DB::table('catalog_types')->insert($data);
     }
