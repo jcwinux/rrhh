@@ -225,6 +225,27 @@
                             </fieldset>
 							<fieldset>
                                 <legend class="section">
+                                    Idiomas
+                                    <button type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalIdiomas" data-backdrop="static">
+                                        <i class="fa fa-plus"></i>
+                                        Añadir
+                                    </button>
+                                </legend>
+								<table class="table table-hover table-bordered" id="idiomas_agregados" name="idiomas_agregados">
+								<thead>
+									<tr>
+										<th width="30%">Idioma</th>
+										<th width="30%">Habilidad</th>
+										<th width="30%">Dominio</th>
+										<th width="10%">Opciones</th>
+									</tr>
+								</thead>
+								<tbody id="det_idiomas_agregados">
+								</tbody>
+								</table>
+                            </fieldset>
+							<fieldset>
+                                <legend class="section">
                                     Experiencia laboral
                                     <button type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalExperienciasLaborales" data-backdrop="static">
                                         <i class="fa fa-plus"></i>
@@ -249,9 +270,8 @@
                             </fieldset>
                             <div class="form-actions">
                                 <div class="row">
-                                    <div class="col-sm-8 col-sm-offset-4">
-                                        <button type="submit" class="btn btn-primary">Validar y Enviar</button>
-                                        <button type="reset" class="btn btn-default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Limpiar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                                    <div class="col-sm-7 col-sm-offset-5">
+                                        <button type="submit" class="btn btn-primary" title="Guardar cambios"> Guardar <span class=" fa fa-floppy-o"></span></button>
                                     </div>
                                 </div>
                             </div>
@@ -377,6 +397,58 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 					<button type="button" class="btn btn-primary" id="AgregarCurso" name="AgregarCurso">Agregar</button>
+				</div>
+
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+	
+	<div id="modalIdiomas" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel2">Idiomas</h4>
+				</div>
+				<div class="modal-body">
+					<fieldset>
+						<div class="row">
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label" for="idioma">Idioma</label>
+								<select id="idioma" name="idioma" class="form-control">
+								@foreach ($idiomas as $idioma)
+									<option value="{{$idioma->id}}">{{$idioma->descripcion}}</option>
+								@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label" for="hablidad">Habilidad</label>
+								<select id="hablidad" name="hablidad" class="form-control">
+								@foreach ($habilidades as $habilidad)
+									<option value="{{$habilidad->id}}">{{$habilidad->descripcion}}</option>
+								@endforeach
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div class="form-group">
+								<label class="control-label" for="dominio">Dominio</label>
+								<select id="dominio" name="dominio" class="form-control">
+								@foreach ($dominios as $dominio)
+									<option value="{{$dominio->id}}">{{$dominio->descripcion}}</option>
+								@endforeach
+								</select>
+							</div>
+						</div>
+					</div>
+					</fieldset>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="AgregarIdioma" name="AgregarIdioma">Agregar</button>
 				</div>
 
 			</div><!-- /.modal-content -->

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePersonStudiesTable extends Migration
+class CreateLanguagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreatePersonStudiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('person_studies', function (Blueprint $table) {
+        Schema::create('languages', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('person_id')->unsigned();
-			$table->integer('catalog_id_nivel_estudio');
-			$table->string('institucion',100);
+			$table->integer('person_id');
+			$table->integer('catalog_id_idioma');
+			$table->integer('catalog_id_habilidad');
+			$table->integer('catalog_id_dominio');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreatePersonStudiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('person_studies');
+        Schema::dropIfExists('languages');
     }
 }

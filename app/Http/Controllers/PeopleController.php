@@ -8,6 +8,7 @@ use App\Person;
 use App\Study;
 use App\Training;
 use App\PreviousJob;
+use App\Language;
 
 class PeopleController extends Controller
 {
@@ -63,6 +64,20 @@ class PeopleController extends Controller
 			$oEstudios->año = $estudio["año"];
 			$oEstudios->save();
 			if (!$oEstudios)
+				DB::rollBack();
+		}
+		
+		/*Elimino los idiomas anteriores*/
+		Language::where('person_id',$oPersona->id)->delete();
+		/*Guardo los idiomas*/
+		foreach ($json_persona["idiomas"] as $idioma)
+		{	$oLanguages = new Language();
+			$oLanguages->person_id=$oPersona->id;
+			$oLanguages->catalog_id_idioma = $idioma["idioma"];
+			$oLanguages->catalog_id_habilidad = $idioma["habilidad"];
+			$oLanguages->catalog_id_dominio = $idioma["dominio"];
+			$oLanguages->save();
+			if (!$oLanguages)
 				DB::rollBack();
 		}
 		

@@ -33,7 +33,26 @@ class CatalogsTableSeeder extends Seeder
 						array('catalog_type_id'=>4,'descripcion'=>'PRESENCIAL','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
 						array('catalog_type_id'=>4,'descripcion'=>'SEMIPRESENCIAL','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
 						array('catalog_type_id'=>4,'descripcion'=>'A DISTANCIA','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
-						array('catalog_type_id'=>4,'descripcion'=>'ONLINE','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())
+						array('catalog_type_id'=>4,'descripcion'=>'ONLINE','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						
+						array('catalog_type_id'=>5,'descripcion'=>'ESPAÑOL','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>5,'descripcion'=>'QUICHUA','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>5,'descripcion'=>'INGLÉS','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>5,'descripcion'=>'FRANCÉS','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>5,'descripcion'=>'ITALIANO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>5,'descripcion'=>'ALEMAN','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>5,'descripcion'=>'MANDARÍN','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>5,'descripcion'=>'JAPONÉS','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						
+						array('catalog_type_id'=>6,'descripcion'=>'NINGUNO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>6,'descripcion'=>'BÁSICO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>6,'descripcion'=>'INTERMEDIO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>6,'descripcion'=>'AVANZADO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>6,'descripcion'=>'NATIVO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						
+						array('catalog_type_id'=>7,'descripcion'=>'ESCRITO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>7,'descripcion'=>'ORAL','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>7,'descripcion'=>'LEÍDO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())
 					);
 		DB::table('catalogs')->insert($data);
     }

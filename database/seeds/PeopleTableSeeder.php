@@ -13,7 +13,7 @@ class PeopleTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('es_ES');
-		for ($i=0;$i<100;$i++)
+		for ($i=0;$i<10;$i++)
 			$data[] = array ('document_type_id'=>$faker->numberBetween(1,2),
 							 'num_identificacion'=>$faker->dni,
 							 'nombre_1'=>$faker->firstName,

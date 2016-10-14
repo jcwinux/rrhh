@@ -56,8 +56,11 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 		$niv_estudio = App\Catalog::where('catalog_type_id',2)->get();
 		$tipo_curso	= App\Catalog::where('catalog_type_id',3)->get();
 		$mod_curs	= App\Catalog::where('catalog_type_id',4)->get();
+		$idiomas	= App\Catalog::where('catalog_type_id',5)->get();
+		$dominios	= App\Catalog::where('catalog_type_id',6)->get();
+		$habilidades	= App\Catalog::where('catalog_type_id',7)->get();
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.reclutamiento.form_persona_crear',compact('tipo_doc','provinc','est_civil','niv_estudio','tipo_curso','mod_curs','str_random'));
+		return view('pages.reclutamiento.form_persona_crear',compact('tipo_doc','provinc','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','str_random'));
 	});
 	
 	Route::get('/ajax-cities/{province_id}',function ($province_id) {
