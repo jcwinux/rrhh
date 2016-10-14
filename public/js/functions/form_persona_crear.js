@@ -1,4 +1,7 @@
 $(document).ready(function(){
+	/*Tabla personas*/
+	$('#datatable-table').DataTable();
+
 	/*Configurando ajax*/
 	$(function () {
 		$.ajaxSetup({

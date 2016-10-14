@@ -1,3 +1,5 @@
+<!--Tablas-->
+<script src="{{asset('lib/datatables/media/js/jquery.dataTables.min.js')}}"></script>
 <!-- common libraries. required for every page-->
 <script src="{{asset('lib/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('lib/jquery-pjax/jquery.pjax.js')}}"></script>
@@ -23,7 +25,6 @@
 <!-- page application js -->
 <script src="{{asset('js/index.js')}}"></script>
 <script src="{{asset('js/chat.js')}}"></script>
-
 <!-- forms -->
 <script src="{{asset('lib/bootstrap-select/dist/js/bootstrap-select.min.js')}}"></script>
 <script src="{{asset('lib/select2/select2.min.js')}}"></script>
@@ -31,6 +32,7 @@
 <script src="{{asset('lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js')}}"></script>
 <script src="{{asset('lib/parsleyjs/dist/parsley.min.js')}}"></script>
 <script src="{{asset('js/forms-account.js')}}"></script>
+<script src="{{asset('js/tables-dynamic.js')}}"></script>
 
 <!-- page template -->
 <script type="text/template" id="message-template">
@@ -52,5 +54,23 @@
 </script>
 <script src="{{asset('lib/messenger/build/js/messenger.js')}}"></script>
 <script src="{{asset('lib/messenger/build/js/messenger-theme-flat.js')}}"></script>
+
+
+
+
+
+<script src="lib/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+<script src="lib/underscore/underscore.js"></script>
+<script src="lib/backbone/backbone.js"></script>
+<script src="lib/backbone.paginator/lib/backbone.paginator.min.js"></script>
+<script src="lib/backgrid/lib/backgrid.min.js"></script>
+<script src="lib/backgrid-paginator/backgrid-paginator.js"></script>
+<script src="lib/datatables/media/js/jquery.dataTables.min.js"></script>
+
+<!-- page application js -->
+<script src="js/tables-dynamic.js"></script>
+		
+		
+		
 <!--Funciones del sistema-->
 @yield('javascript_functions')

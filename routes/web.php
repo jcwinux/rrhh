@@ -62,6 +62,12 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
 		return view('pages.reclutamiento.form_persona_crear',compact('tipo_doc','provinc','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','str_random'));
 	});
+	/*Formulario para buscar personas*/
+	Route::get('/persona_search', function () {
+		$tipo_doc	= App\DocumentType::all();
+		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
+		return view('pages.reclutamiento.form_persona_buscar',compact('tipo_doc','str_random'));
+	});
 	
 	Route::get('/ajax-cities/{province_id}',function ($province_id) {
 		$cities = App\City::where('province_id','=',$province_id)->get();
