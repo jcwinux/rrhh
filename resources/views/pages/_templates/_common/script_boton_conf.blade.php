@@ -8,7 +8,7 @@
             <button type="button" data-value="right" class="btn btn-sm btn-default <%= onRight? 'active' : '' %>">Right</button>
         </div>
     </div>
-    <div class="setting clearfix">
+    <div class="setting clearfix"> 
         <div>Menú lateral</div>
         <div id="display-sidebar-toggle" class="pull-left btn-group" data-toggle="buttons-radio">
             <% display = displaySidebar%>
@@ -45,7 +45,7 @@
 <script src="{{asset('lib/slimScroll/jquery.slimscroll.min.js')}}"></script>
 <script src="{{asset('lib/jquery.sparkline/index.js')}}"></script>
 
-<script src="{{asset('lib/backbone/backbone.js')}}"></script>
+<!--<script src="{{asset('lib/backbone/backbone.js')}}"></script>-->
 <script src="{{asset('lib/backbone.localStorage/backbone.localStorage-min.js')}}"></script>
 
 <script src="{{asset('lib/d3/d3.min.js')}}"></script>
@@ -54,6 +54,9 @@
 <!-- page application js -->
 <script src="{{asset('js/index.js')}}"></script>
 <script src="{{asset('js/chat.js')}}"></script>
+
+<script src="lib/messenger/build/js/messenger.js"></script>
+<script src="lib/messenger/build/js/messenger-theme-flat.js"></script>
 
 <!-- page template -->
 <script type="text/template" id="message-template">

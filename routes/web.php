@@ -49,25 +49,13 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 		return view('pages.reclutamiento.index');
 	});
 	/*Formulario para agregar nueva persona*/
-	Route::get('/persona', function () {
-		$tipo_doc	= App\DocumentType::all();
-		$provinc	= App\Province::all();
-		$est_civil	= App\Catalog::where('catalog_type_id',1)->get();
-		$niv_estudio = App\Catalog::where('catalog_type_id',2)->get();
-		$tipo_curso	= App\Catalog::where('catalog_type_id',3)->get();
-		$mod_curs	= App\Catalog::where('catalog_type_id',4)->get();
-		$idiomas	= App\Catalog::where('catalog_type_id',5)->get();
-		$dominios	= App\Catalog::where('catalog_type_id',6)->get();
-		$habilidades	= App\Catalog::where('catalog_type_id',7)->get();
-		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.reclutamiento.form_persona_crear',compact('tipo_doc','provinc','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','str_random'));
-	});
+	Route::get('/persona', 'PeopleController@persona_new_view');
+	
+	/*Formulario para agregar nueva persona*/
+	Route::get('/persona_edit/{person_id}', 'PeopleController@persona_edit_view');
+	
 	/*Formulario para buscar personas*/
-	Route::get('/persona_search', function () {
-		$tipo_doc	= App\DocumentType::all();
-		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.reclutamiento.form_persona_buscar',compact('tipo_doc','str_random'));
-	});
+	Route::get('/persona_search', 'PeopleController@personas_view');
 	
 	Route::get('/ajax-cities/{province_id}',function ($province_id) {
 		$cities = App\City::where('province_id','=',$province_id)->get();

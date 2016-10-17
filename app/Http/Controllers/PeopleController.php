@@ -9,6 +9,9 @@ use App\Study;
 use App\Training;
 use App\PreviousJob;
 use App\Language;
+use App\DocumentType;
+use App\Province;
+use App\Catalog;
 
 class PeopleController extends Controller
 {
@@ -133,5 +136,38 @@ class PeopleController extends Controller
 		}
 		DB::commit();
 		print json_encode(array("result"=>"success","msg"=>"Todo OK","person_id"=>$oPersona->id));
+	}
+	public function persona_new_view()
+	{	$tipo_doc	= DocumentType::all();
+		$provinc	= Province::all();
+		$est_civil	= Catalog::where('catalog_type_id',1)->get();
+		$niv_estudio = Catalog::where('catalog_type_id',2)->get();
+		$tipo_curso	= Catalog::where('catalog_type_id',3)->get();
+		$mod_curs	= Catalog::where('catalog_type_id',4)->get();
+		$idiomas	= Catalog::where('catalog_type_id',5)->get();
+		$dominios	= Catalog::where('catalog_type_id',6)->get();
+		$habilidades	= Catalog::where('catalog_type_id',7)->get();
+		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
+		return view('pages.reclutamiento.form_persona_crear',compact('tipo_doc','provinc','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','str_random'));
+	}
+	public function persona_edit_view(Request $request)
+	{	$id = $request->person_id;
+		$person	= Person::find($id);
+		$tipo_doc	= DocumentType::all();
+		$provinc	= Province::all();
+		$est_civil	= Catalog::where('catalog_type_id',1)->get();
+		$niv_estudio = Catalog::where('catalog_type_id',2)->get();
+		$tipo_curso	= Catalog::where('catalog_type_id',3)->get();
+		$mod_curs	= Catalog::where('catalog_type_id',4)->get();
+		$idiomas	= Catalog::where('catalog_type_id',5)->get();
+		$dominios	= Catalog::where('catalog_type_id',6)->get();
+		$habilidades	= Catalog::where('catalog_type_id',7)->get();
+		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
+		return view('pages.reclutamiento.form_persona_editar',compact('tipo_doc','provinc','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','person','str_random'));
+	}
+	public function personas_view()
+	{	$personas	= DB::table('people')->join('document_types','people.document_type_id','=','document_types.id')->select('people.*','document_types.descripcion')->get();
+		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
+		return view('pages.reclutamiento.form_persona_buscar',compact('personas','str_random'));
 	}
 }
