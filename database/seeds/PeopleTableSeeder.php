@@ -19,6 +19,7 @@ class PeopleTableSeeder extends Seeder
 							 'nombre_1'=>$faker->firstName,
 							 'apellido_1'=>$faker->lastName,
 							 'fecha_ncto'=>$faker->dateTimeThisCentury->format('Y-m-d'),
+							 'catalog_id_estado_civil'=>$faker->numberBetween(1,5),
 							 'trato'=>$faker->title,
 							 'sexo'=>$faker->numberBetween(1,0),
 							 'discapacidad'=>$faker->numberBetween(1,0),

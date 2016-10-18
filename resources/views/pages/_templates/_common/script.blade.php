@@ -22,15 +22,6 @@
 <!-- page application js -->
 <script src="{{asset('js/tables-dynamic.js')}}"></script>
 
-
-
-
-
-
-
-
-
-
 <!-- common application js -->
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/settings.js')}}"></script>

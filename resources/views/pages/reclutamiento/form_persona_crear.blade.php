@@ -9,7 +9,7 @@
                         <h4><i class="fa fa-user"></i> Persona <small>Creación</small></h4>
                     </header>
                     <div class="body">
-                        <form id="persona-form" 
+                        <form id="persona_crear-form" 
 							  action="#"
 							  class="form-horizontal form-label-left"
                               method="post">
@@ -95,8 +95,8 @@
 										</div>
 									</div>	
 									<div class="cols-md-6">
-										<label class="control-label col-sm-2 col-sm-offset-1" for="nacionalidad">Foto <span class="required">*</span></label>
-										<div class="col-sm-3"><input type="file" id="nacionalidad" name="nacionalidad" required="required" class="form-control" ></div>
+										<label class="control-label col-sm-2 col-sm-offset-1" for="nacionalidad">Foto </label>
+										<div class="col-sm-3"><input type="file" id="nacionalidad" name="nacionalidad" class="form-control" ></div>
 									</div>
 								</div>
                             </fieldset>
@@ -235,8 +235,9 @@
 								<thead>
 									<tr>
 										<th width="30%">Idioma</th>
-										<th width="30%">Habilidad</th>
-										<th width="30%">Dominio</th>
+										<th width="20%">Escrito</th>
+										<th width="20%">Leído</th>
+										<th width="20%">Oral</th>
 										<th width="10%">Opciones</th>
 									</tr>
 								</thead>
@@ -413,37 +414,53 @@
 				<div class="modal-body">
 					<fieldset>
 						<div class="row">
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label class="control-label" for="idioma">Idioma</label>
-								<select id="idioma" name="idioma" class="form-control">
-								@foreach ($idiomas as $idioma)
-									<option value="{{$idioma->id}}">{{$idioma->descripcion}}</option>
-								@endforeach
-								</select>
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label class="control-label" for="idioma">Idioma</label>
+									<select id="idioma" name="idioma" class="form-control">
+									@foreach ($idiomas as $idioma)
+										<option value="{{$idioma->id}}">{{$idioma->descripcion}}</option>
+									@endforeach
+									</select>
+								</div>
 							</div>
 						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label class="control-label" for="hablidad">Habilidad</label>
-								<select id="hablidad" name="hablidad" class="form-control">
-								@foreach ($habilidades as $habilidad)
-									<option value="{{$habilidad->id}}">{{$habilidad->descripcion}}</option>
-								@endforeach
-								</select>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label class="control-label" for="dominio_escrito">Escrito</label>
+									<select id="dominio_escrito" name="dominio_escrito" class="form-control">
+									@foreach ($dominios as $dominio)
+										<option value="{{$dominio->id}}">{{$dominio->descripcion}}</option>
+									@endforeach
+									</select>
+								</div>
 							</div>
 						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label class="control-label" for="dominio">Dominio</label>
-								<select id="dominio" name="dominio" class="form-control">
-								@foreach ($dominios as $dominio)
-									<option value="{{$dominio->id}}">{{$dominio->descripcion}}</option>
-								@endforeach
-								</select>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label class="control-label" for="dominio_leido">Leído</label>
+									<select id="dominio_leido" name="dominio_leido" class="form-control">
+									@foreach ($dominios as $dominio)
+										<option value="{{$dominio->id}}">{{$dominio->descripcion}}</option>
+									@endforeach
+									</select>
+								</div>
 							</div>
 						</div>
-					</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label class="control-label" for="dominio_oral">Oral</label>
+									<select id="dominio_oral" name="dominio_oral" class="form-control">
+									@foreach ($dominios as $dominio)
+										<option value="{{$dominio->id}}">{{$dominio->descripcion}}</option>
+									@endforeach
+									</select>
+								</div>
+							</div>
+						</div>
 					</fieldset>
 				</div>
 				<div class="modal-footer">

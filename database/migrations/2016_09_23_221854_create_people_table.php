@@ -22,6 +22,7 @@ class CreatePeopleTable extends Migration
 			$table->string('apellido_1',30);
 			$table->string('apellido_2',30)->nullable();
 			$table->date('fecha_ncto');
+			$table->integer('catalog_id_estado_civil')->unsigned();
 			$table->string('nacionalidad',50)->default('ECUATORIANO');
 			$table->string('trato',30);
 			$table->boolean('sexo');

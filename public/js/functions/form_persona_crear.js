@@ -71,8 +71,9 @@ $(document).ready(function(){
 		row = 
 			'<tr>'+
 				'<td data-idioma="'+$('#idioma option:selected').val()+'">'+$('#idioma option:selected').text()+'</td>'+
-				'<td data-habilidad="'+$('#hablidad option:selected').val()+'">'+$('#hablidad option:selected').text()+'</td>'+
-				'<td data-dominio="'+$('#dominio option:selected').val()+'">'+$('#dominio option:selected').text()+'</td>'+
+				'<td data-dominio_escrito="'+$('#dominio_escrito option:selected').val()+'">'+$('#dominio_escrito option:selected').text()+'</td>'+
+				'<td data-dominio_leido="'+$('#dominio_leido option:selected').val()+'">'+$('#dominio_leido option:selected').text()+'</td>'+
+				'<td data-dominio_oral="'+$('#dominio_oral option:selected').val()+'">'+$('#dominio_oral option:selected').text()+'</td>'+
 				'<td class="text-align-center"><a class="btnDelIdioma"><span class="label label-danger">X</span></a></td>'+
 			'</tr>';
 		$('#idioma').val($('#idioma option:first').val());
@@ -230,7 +231,7 @@ $(document).ready(function(){
 	});
 	
 	/*Crea una nueva persona*/
-	$('#persona-form').submit(function(e){
+	$('#persona_crear-form').submit(function(e){
 		e.preventDefault();
 		
 		var person_id = $('#person_id').val();
@@ -241,6 +242,7 @@ $(document).ready(function(){
 		var primer_apellido = $('#primer_apellido').val();
 		var segundo_apellido = $('#segundo_apellido').val();
 		var sexo = $('#hombre').is(':checked');
+		var estado_civil = $('#estado_civil').val();
 		var fecha_ncto = $('#fecha_ncto').val();
 		var nacionalidad = $('#nacionalidad').val();
 		var trato = $('#trato').val();
@@ -265,6 +267,7 @@ $(document).ready(function(){
 		json_persona["primer_apellido"]=primer_apellido;
 		json_persona["segundo_apellido"]=segundo_apellido;
 		json_persona["sexo"]=sexo;
+		json_persona["estado_civil"]=estado_civil;
 		json_persona["fecha_ncto"]=fecha_ncto;
 		json_persona["nacionalidad"]=nacionalidad;
 		json_persona["trato"]=trato;
@@ -326,13 +329,15 @@ $(document).ready(function(){
 		$('#det_idiomas_agregados').find('tr').each(function(i,el){
 			var $tds = $(this).find('td');
 			var idioma = $tds.eq(0).attr('data-idioma');
-			var habilidad = $tds.eq(1).attr('data-habilidad');
-			var dominio = $tds.eq(2).attr('data-dominio');
+			var dominio_escrito = $tds.eq(1).attr('data-dominio_escrito');
+			var dominio_leido = $tds.eq(2).attr('data-dominio_leido');
+			var dominio_oral = $tds.eq(3).attr('data-dominio_oral');
 			
 			item = {}
 			item["idioma"]=idioma;
-			item["habilidad"]=habilidad;
-			item["dominio"]=dominio;
+			item["dominio_escrito"]=dominio_escrito;
+			item["dominio_leido"]=dominio_leido;
+			item["dominio_oral"]=dominio_oral;
 			
 			json_idiomas.push(item);
 		});
@@ -371,6 +376,160 @@ $(document).ready(function(){
 				console.log(json_x);
 				$("#person_id").val(json_x.person_id);
 				Messenger().post("El registro ha sido grabado exitosamente!");
+			},
+			error: function(data){
+				Messenger().post("¡Ocurrió un error!");
+			}
+		});
+	});
+	
+	/*Crea una nueva persona*/
+	$('#persona_editar-form').submit(function(e){
+		e.preventDefault();
+		
+		var _method = $('#_method').val();
+		var person_id = $('#person_id').val();
+		var num_identificacion = $('#num_identificacion').val();
+		var document_type = $('#document_type').val();
+		var primer_nombre = $('#primer_nombre').val();
+		var segundo_nombre = $('#segundo_nombre').val();
+		var primer_apellido = $('#primer_apellido').val();
+		var segundo_apellido = $('#segundo_apellido').val();
+		var sexo = $('#hombre').is(':checked');
+		var estado_civil = $('#estado_civil').val();
+		var fecha_ncto = $('#fecha_ncto').val();
+		var nacionalidad = $('#nacionalidad').val();
+		var trato = $('#trato').val();
+		var correo_electronico = $('#correo_electronico').val();
+		var numero_convencional = $('#numero_convencional').val();
+		var numero_celular = $('#numero_celular').val();
+		var provincia_residencia = $('#provincia_residencia').val();
+		var ciudad_residencia = $('#ciudad_residencia').val();
+		var parroquia_residencia = $('#parroquia_residencia').val();
+		
+		var calle_principal = $('#calle_principal').val();
+		var calle_transversal = $('#calle_transversal').val();
+		var manzana = $('#manzana').val();
+		var villa = $('#villa').val();
+		
+		json_persona = {};
+		json_persona["person_id"]=person_id;
+		json_persona["num_identificacion"]=num_identificacion;
+		json_persona["document_type"]=document_type;
+		json_persona["primer_nombre"]=primer_nombre;
+		json_persona["segundo_nombre"]=segundo_nombre;
+		json_persona["primer_apellido"]=primer_apellido;
+		json_persona["segundo_apellido"]=segundo_apellido;
+		json_persona["sexo"]=sexo;
+		json_persona["estado_civil"]=estado_civil;
+		json_persona["fecha_ncto"]=fecha_ncto;
+		json_persona["nacionalidad"]=nacionalidad;
+		json_persona["trato"]=trato;
+		json_persona["correo_electronico"]=correo_electronico;
+		json_persona["numero_convencional"]=numero_convencional;
+		json_persona["numero_celular"]=numero_celular;
+		json_persona["provincia_residencia"]=provincia_residencia;
+		json_persona["ciudad_residencia"]=ciudad_residencia;
+		json_persona["parroquia_residencia"]=parroquia_residencia;
+		json_persona["calle_principal"]=calle_principal;
+		json_persona["calle_transversal"]=calle_transversal;
+		json_persona["manzana"]=manzana;
+		json_persona["villa"]=villa;
+		
+		
+		json_estudios = [];
+		$('#det_estudios_agregados').find('tr').each(function(i,el){
+			var $tds = $(this).find('td');
+			var nivel_estudio = $tds.eq(0).attr('data-nivel_estudio');
+			var institucion = $tds.eq(1).text();
+			var año = $tds.eq(2).text();
+			
+			item = {}
+			item["nivel_estudio"]=nivel_estudio;
+			item["institucion"]=institucion;
+			item["año"]=año;
+			
+			json_estudios.push(item);
+		});
+		json_persona["estudios"] = json_estudios;
+		
+		json_cursos = [];
+		$('#det_cursos_realizados').find('tr').each(function(i,el){
+			var $tds = $(this).find('td');
+			var curso = $tds.eq(0).text();
+			var institucion = $tds.eq(1).text();
+			var tipo_curso = $tds.eq(2).attr('data-tipo_curso');
+			var modalidad_curso = $tds.eq(3).attr('data-modalidad_curso');
+			var curso_fecha_desde = $tds.eq(4).text();
+			var curso_fecha_hasta = $tds.eq(5).text();
+			var horas = $tds.eq(6).text();
+			
+			item = {}
+			item["curso"]=curso;
+			item["institucion"]=institucion;
+			item["tipo_curso"]=tipo_curso;
+			item["modalidad_curso"]=modalidad_curso;
+			item["curso_fecha_desde"]=curso_fecha_desde;
+			item["curso_fecha_hasta"]=curso_fecha_hasta;
+			item["horas"]=horas;
+			
+			
+			json_cursos.push(item);
+		});
+		json_persona["cursos"] = json_cursos;
+		
+		
+		json_idiomas = [];
+		$('#det_idiomas_agregados').find('tr').each(function(i,el){
+			var $tds = $(this).find('td');
+			var idioma = $tds.eq(0).attr('data-idioma');
+			var dominio_escrito = $tds.eq(1).attr('data-dominio_escrito');
+			var dominio_leido = $tds.eq(2).attr('data-dominio_leido');
+			var dominio_oral = $tds.eq(3).attr('data-dominio_oral');
+			
+			item = {}
+			item["idioma"]=idioma;
+			item["dominio_escrito"]=dominio_escrito;
+			item["dominio_leido"]=dominio_leido;
+			item["dominio_oral"]=dominio_oral;
+			
+			json_idiomas.push(item);
+		});
+		json_persona["idiomas"] = json_idiomas;
+		
+		
+		json_experiencias = [];
+		$('#det_experiencias_laborales').find('tr').each(function(i,el){
+			var $tds = $(this).find('td');
+			var empresa = $tds.eq(0).text();
+			var direccion = $tds.eq(1).text();
+			var cargo = $tds.eq(2).text();
+			var exp_fecha_desde = $tds.eq(3).text();
+			var exp_fecha_hasta = $tds.eq(4).text();
+			var funciones = $tds.eq(5).text();
+			
+			item = {}
+			item["empresa"]=empresa;
+			item["direccion"]=direccion;
+			item["cargo"]=cargo;
+			item["exp_fecha_desde"]=exp_fecha_desde;
+			item["exp_fecha_hasta"]=exp_fecha_hasta;
+			item["funciones"]=funciones;
+			
+			
+			json_experiencias.push(item);
+		});
+		json_persona["experiencias"] = json_experiencias;
+		
+		$.ajax({
+			type: "PATCH",
+			url: person_id+"/edit",
+			data: {data: JSON.stringify(json_persona), _method: "PATCH"},
+			success: function(data){
+				var json_x = $.parseJSON(data);
+				console.log(json_x);
+				$("#person_id").val(json_x.person_id);
+				Messenger().post("El registro ha sido actualizado exitosamente!");
 			},
 			error: function(data){
 				Messenger().post("¡Ocurrió un error!");

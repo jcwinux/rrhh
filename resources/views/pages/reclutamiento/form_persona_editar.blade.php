@@ -9,10 +9,11 @@
                         <h4><i class="fa fa-user"></i> Persona <small>Edición</small></h4>
                     </header>
                     <div class="body">
-                        <form id="persona-form" 
+                        <form id="persona_editar-form" 
 							  action="#"
 							  class="form-horizontal form-label-left"
-                              method="post">
+                              method="POST">
+							  {{ method_field('PATCH') }}
 							  {{ csrf_field() }}
                             <fieldset>
                                 <legend class="section">Información personal</legend>
@@ -89,14 +90,14 @@
 											<select class="form-control" id="estado_civil" name="estado_civil" required="required">
 												<option value=""></option>
 												@foreach ($est_civil as $e)
-													<option value="{{$e->id}}">{{$e->descripcion}}</option>
+													<option value="{{$e->id}}" {{($person->catalog_id_estado_civil==$e->id?'selected':'')}}>{{$e->descripcion}}</option>
 												@endforeach
 											</select>
 										</div>
 									</div>	
 									<div class="cols-md-6">
-										<label class="control-label col-sm-2 col-sm-offset-1" for="nacionalidad">Foto <span class="required">*</span></label>
-										<div class="col-sm-3"><input type="file" id="nacionalidad" name="nacionalidad" required="required" class="form-control" value="{{$person->nacionalidad}}"></div>
+										<label class="control-label col-sm-2 col-sm-offset-1" for="nacionalidad">Foto </label>
+										<div class="col-sm-3"><input type="file" id="nacionalidad" name="nacionalidad" class="form-control" value="{{$person->nacionalidad}}"></div>
 									</div>
 								</div>
                             </fieldset>
@@ -131,7 +132,7 @@
 											<select class="form-control" id="provincia_residencia" name="provincia_residencia" required="required">
 												<option value=""></option>
 												@foreach ($provinc as $p)
-													<option value="{{$p->id}}">{{$p->nombre}}</option>
+													<option value="{{$p->id}}" {{($person->province_id==$p->id?'selected':'')}}>{{$p->nombre}}</option>
 												@endforeach
 											</select>
 										</div>
@@ -140,6 +141,10 @@
 										<label class="control-label col-sm-2 col-sm-offset-1" for="ciudad_residencia">Ciudad residencia</label>
 										<div class="col-sm-3">
 											<select class="form-control" id="ciudad_residencia" name="ciudad_residencia" required="required">
+											<option value=""></option>
+											@foreach ($city as $c)
+													<option value="{{$c->id}}" {{($person->city_id==$c->id?'selected':'')}}>{{$c->nombre}}</option>
+											@endforeach
 											</select>
 										</div>
 									</div>
@@ -150,6 +155,10 @@
 										<label class="control-label col-sm-2" for="parroquia_residencia">Parroquia residencia</label>
 										<div class="col-sm-3">
 											<select class="form-control" id="parroquia_residencia" name="parroquia_residencia" required="required">
+											<option value=""></option>
+											@foreach ($town as $t)
+													<option value="{{$t->id}}" {{($person->town_id==$t->id?'selected':'')}}>{{$t->nombre}}</option>
+											@endforeach
 											</select>
 										</div>
 									</div>
@@ -195,6 +204,18 @@
 									</tr>
 								</thead>
 								<tbody id="det_estudios_agregados">
+									@foreach ($person_estudio as $pe)
+									<tr>
+										<td data-nivel_estudio="{{$pe->catalog_id_nivel_estudio}}">{{$pe->descripcion}}</td>
+										<td>{{$pe->institucion}}</td>
+										<td>{{$pe->año}}</td>
+										<td class="text-align-center">
+											<a class="btnDelEstudio" title="Eliminar">
+												<span class="glyphicon glyphicon-trash"></span>
+											</a>
+										</td>
+									</tr>
+									@endforeach
 								</tbody>
 								</table>
                             </fieldset>
@@ -220,6 +241,20 @@
 									</tr>
 								</thead>
 								<tbody id="det_cursos_realizados">
+									@foreach ($person_training as $pt)
+										<td>{{$pt->descripcion}}</td>
+										<td>{{$pt->institucion}}</td>
+										<td data-tipo_curso="{{$pt->catalog_id_tipo_curso}}">{{$pt->desc_tipo_curso}}</td>
+										<td data-modalidad_curso="{{$pt->catalog_id_modalidad}}">{{$pt->desc_modalidad}}</td>
+										<td>{{$pt->fecha_inicio}}</td>
+										<td>{{$pt->fecha_fin}}</td>
+										<td>{{$pt->numero_horas}}</td>
+										<td class="text-align-center">
+											<a class="btnDelCurso" title="Eliminar">
+												<span class="glyphicon glyphicon-trash"></span>
+											</a>
+										</td>
+									@endforeach
 								</tbody>
 								</table>
                             </fieldset>
@@ -235,12 +270,26 @@
 								<thead>
 									<tr>
 										<th width="30%">Idioma</th>
-										<th width="30%">Habilidad</th>
-										<th width="30%">Dominio</th>
+										<th width="20%">Escrito</th>
+										<th width="20%">Leído</th>
+										<th width="20%">Oral</th>
 										<th width="10%">Opciones</th>
 									</tr>
 								</thead>
 								<tbody id="det_idiomas_agregados">
+								@foreach ($person_language as $pl)
+								<tr>
+									<td data-idioma="{{$pl->catalog_id_idioma}}">{{$pl->desc_idioma}}</td>
+									<td data-dominio_escrito="{{$pl->catalog_id_dominio_escrito}}">{{$pl->desc_dominio_escrito}}</td>
+									<td data-dominio_leido="{{$pl->catalog_id_dominio_leido}}">{{$pl->desc_dominio_leido}}</td>
+									<td data-dominio_oral="{{$pl->catalog_id_dominio_oral}}">{{$pl->desc_dominio_oral}}</td>
+									<td class="text-align-center">
+										<a class="btnDelIdioma" title="Eliminar">
+											<span class="glyphicon glyphicon-trash"></span>
+										</a>
+									</td>
+								</tr>
+								@endforeach
 								</tbody>
 								</table>
                             </fieldset>
@@ -265,6 +314,21 @@
 									</tr>
 								</thead>
 								<tbody id="det_experiencias_laborales">
+								@foreach ($person_previous_job as $pj)
+								<tr>
+									<td>{{$pj->empresa}}</td>
+									<td>{{$pj->direccion}}</td>
+									<td>{{$pj->cargo}}</td>
+									<td>{{$pj->desde}}</td>
+									<td>{{$pj->hasta}}</td>
+									<td>{{$pj->descripcion}}</td>
+									<td class="text-align-center">
+										<a class="btnDelExperiencia" title="Eliminar">
+											<span class="glyphicon glyphicon-trash"></span>
+										</a>
+									</td>
+								</tr>
+								@endforeach
 								</tbody>
 								</table>
                             </fieldset>
@@ -413,37 +477,53 @@
 				<div class="modal-body">
 					<fieldset>
 						<div class="row">
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label class="control-label" for="idioma">Idioma</label>
-								<select id="idioma" name="idioma" class="form-control">
-								@foreach ($idiomas as $idioma)
-									<option value="{{$idioma->id}}">{{$idioma->descripcion}}</option>
-								@endforeach
-								</select>
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label class="control-label" for="idioma">Idioma</label>
+									<select id="idioma" name="idioma" class="form-control">
+									@foreach ($idiomas as $idioma)
+										<option value="{{$idioma->id}}">{{$idioma->descripcion}}</option>
+									@endforeach
+									</select>
+								</div>
 							</div>
 						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label class="control-label" for="hablidad">Habilidad</label>
-								<select id="hablidad" name="hablidad" class="form-control">
-								@foreach ($habilidades as $habilidad)
-									<option value="{{$habilidad->id}}">{{$habilidad->descripcion}}</option>
-								@endforeach
-								</select>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label class="control-label" for="dominio_escrito">Escrito</label>
+									<select id="dominio_escrito" name="dominio_escrito" class="form-control">
+									@foreach ($dominios as $dominio)
+										<option value="{{$dominio->id}}">{{$dominio->descripcion}}</option>
+									@endforeach
+									</select>
+								</div>
 							</div>
 						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
-								<label class="control-label" for="dominio">Dominio</label>
-								<select id="dominio" name="dominio" class="form-control">
-								@foreach ($dominios as $dominio)
-									<option value="{{$dominio->id}}">{{$dominio->descripcion}}</option>
-								@endforeach
-								</select>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label class="control-label" for="dominio_leido">Leído</label>
+									<select id="dominio_leido" name="dominio_leido" class="form-control">
+									@foreach ($dominios as $dominio)
+										<option value="{{$dominio->id}}">{{$dominio->descripcion}}</option>
+									@endforeach
+									</select>
+								</div>
 							</div>
 						</div>
-					</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="form-group">
+									<label class="control-label" for="dominio_oral">Oral</label>
+									<select id="dominio_oral" name="dominio_oral" class="form-control">
+									@foreach ($dominios as $dominio)
+										<option value="{{$dominio->id}}">{{$dominio->descripcion}}</option>
+									@endforeach
+									</select>
+								</div>
+							</div>
+						</div>
 					</fieldset>
 				</div>
 				<div class="modal-footer">

@@ -17,8 +17,9 @@ class CreateLanguagesTable extends Migration
             $table->increments('id');
 			$table->integer('person_id');
 			$table->integer('catalog_id_idioma');
-			$table->integer('catalog_id_habilidad');
-			$table->integer('catalog_id_dominio');
+			$table->integer('catalog_id_dominio_escrito');
+			$table->integer('catalog_id_dominio_leido');
+			$table->integer('catalog_id_dominio_oral');
             $table->timestamps();
         });
     }

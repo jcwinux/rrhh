@@ -51,7 +51,7 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	/*Formulario para agregar nueva persona*/
 	Route::get('/persona', 'PeopleController@persona_new_view');
 	
-	/*Formulario para agregar nueva persona*/
+	/*Formulario para editar una persona*/
 	Route::get('/persona_edit/{person_id}', 'PeopleController@persona_edit_view');
 	
 	/*Formulario para buscar personas*/
@@ -68,5 +68,6 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	});
 	
 	Route::post('/crearPersona', 'PeopleController@crearPersona');
+	Route::patch('/persona_edit/{person_id}/edit', 'PeopleController@editarPersona');
 }
 );
