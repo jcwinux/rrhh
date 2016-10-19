@@ -54,7 +54,7 @@ $(document).ready(function(){
 				'<td data-nivel_estudio="'+$('#nivel_estudio option:selected').val()+'">'+$('#nivel_estudio option:selected').text()+'</td>'+
 				'<td>'+$('#institucion').val()+'</td>'+
 				'<td>'+$('#anio').val()+'</td>'+
-				'<td class="text-align-center"><a class="btnDelEstudio"><span class="label label-danger">X</span></a></td>'+
+				'<td class="text-align-center"><a class="btnDelEstudio" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></a></td>'+
 			'</tr>';
 		$('#nivel_estudio').val($('#nivel_estudio option:first').val());
 		$('#institucion').val("");
@@ -64,7 +64,8 @@ $(document).ready(function(){
 	});
 	/*Quitar estudio*/
 	$('#estudios_agregados').on('click','.btnDelEstudio', function (){
-		$(this).closest('tr').remove();
+		if (confirm("¿Desea eliminar el registro?"))
+			$(this).closest('tr').remove();
 	});
 	/*Agregar idioma*/
 	$('#AgregarIdioma').on('click',function(e){
@@ -74,17 +75,17 @@ $(document).ready(function(){
 				'<td data-dominio_escrito="'+$('#dominio_escrito option:selected').val()+'">'+$('#dominio_escrito option:selected').text()+'</td>'+
 				'<td data-dominio_leido="'+$('#dominio_leido option:selected').val()+'">'+$('#dominio_leido option:selected').text()+'</td>'+
 				'<td data-dominio_oral="'+$('#dominio_oral option:selected').val()+'">'+$('#dominio_oral option:selected').text()+'</td>'+
-				'<td class="text-align-center"><a class="btnDelIdioma"><span class="label label-danger">X</span></a></td>'+
+				'<td class="text-align-center"><a class="btnDelIdioma" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></a></td>'+
 			'</tr>';
 		$('#idioma').val($('#idioma option:first').val());
 		$('#hablidad').val($('#hablidad option:first').val());
 		$('#dominio').val($('#dominio option:first').val());
-		
 		$('#det_idiomas_agregados').append(row);
 	});
 	/*Quitar idioma*/
 	$('#idiomas_agregados').on('click','.btnDelIdioma', function (){
-		$(this).closest('tr').remove();
+		if (confirm("¿Desea eliminar el registro?"))
+			$(this).closest('tr').remove();
 	});
 	/*Agregar curso*/
 	$('#AgregarCurso').on('click',function(e){
@@ -133,7 +134,7 @@ $(document).ready(function(){
 				'<td>'+$('#curso_fecha_desde').val()+'</td>'+
 				'<td>'+$('#curso_fecha_hasta').val()+'</td>'+
 				'<td>'+$('#horas_curso').val()+'</td>'+
-				'<td class="text-align-center"><a class="btnDelCurso"><span class="label label-danger">X</span></a></td>'+
+				'<td class="text-align-center"><a class="btnDelCurso" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></a></td>'+
 			'</tr>';
 		$('#curso').val("");
 		$('#institucion_curso').val("");
@@ -158,7 +159,8 @@ $(document).ready(function(){
 	});
 	/*Quitar curso*/
 	$('#cursos_realizados').on('click','.btnDelCurso', function (){
-		$(this).closest('tr').remove();
+		if (confirm("¿Desea eliminar el registro?"))
+			$(this).closest('tr').remove();
 	});
 	
 	/*Agregar experiencia*/
@@ -214,7 +216,7 @@ $(document).ready(function(){
 				'<td>'+$('#exp_fecha_desde').val()+
 				'<td>'+$('#exp_fecha_hasta').val()+
 				'<td>'+$('#exp_descripcion').val()+
-				'</td><td class="text-align-center"><a class="btnDelExperiencia"><span class="label label-danger">X</span></a></td>'+
+				'</td><td class="text-align-center"><a class="btnDelExperiencia" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></a></td>'+
 			'</tr>';
 		$('#empresa').val("");
 		$('#direccion').val("");
@@ -227,7 +229,8 @@ $(document).ready(function(){
 	});
 	/*Quitar experiencia laboral*/
 	$('#experiencias_laborales').on('click','.btnDelExperiencia', function (){
-		$(this).closest('tr').remove();
+		if (confirm("¿Desea eliminar el registro?"))
+			$(this).closest('tr').remove();
 	});
 	
 	/*Crea una nueva persona*/
