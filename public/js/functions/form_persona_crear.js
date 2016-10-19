@@ -233,6 +233,28 @@ $(document).ready(function(){
 			$(this).closest('tr').remove();
 	});
 	
+	/*Agregar discapacidad*/
+	$('#AgregarDiscapacidad').on('click',function(e){
+		row = 
+			'<tr>'+
+				'<td data-discapacidad="'+$('#discapacidad option:selected').val()+'">'+$('#discapacidad option:selected').text()+'</td>'+
+				'<td data-grado_discapacidad="'+$('#grado_discapacidad option:selected').val()+'">'+$('#grado_discapacidad option:selected').text()+'</td>'+
+				'<td data-porcentaje="'+$('#porcentaje').val()+'">'+$('#porcentaje').val()+' %</td>'+
+				'<td>'+$('#observacion').val()+'</td>'+
+				'<td class="text-align-center"><a class="btnDelDiscapacidad" title="Eliminar"><span class="glyphicon glyphicon-trash"></span></a></td>'+
+			'</tr>';
+		$('#discapacidad').val($('#idioma option:first').val());
+		$('#grado_discapacidad').val($('#hablidad option:first').val());
+		$('#porcentaje').val($("").val());
+		$('#observacion').val("");
+		$('#det_discapacidades').append(row);
+	});
+	/*Quitar idioma*/
+	$('#det_discapacidades').on('click','.btnDelDiscapacidad', function (){
+		if (confirm("¿Desea eliminar el registro?"))
+			$(this).closest('tr').remove();
+	});
+	
 	/*Crea una nueva persona*/
 	$('#persona_crear-form').submit(function(e){
 		e.preventDefault();
@@ -369,6 +391,25 @@ $(document).ready(function(){
 			json_experiencias.push(item);
 		});
 		json_persona["experiencias"] = json_experiencias;
+		
+		
+		json_discapacidades = [];
+		$('#det_discapacidades').find('tr').each(function(i,el){
+			var $tds = $(this).find('td');
+			var discapacidad = $tds.eq(0).attr('data-discapacidad');
+			var grado_discapacidad = $tds.eq(1).attr('data-grado_discapacidad');
+			var porcentaje = $tds.eq(2).attr('data-porcentaje');
+			var observacion = $tds.eq(3).text();
+			
+			item = {}
+			item["discapacidad"]=discapacidad;
+			item["grado_discapacidad"]=grado_discapacidad;
+			item["porcentaje"]=porcentaje;
+			item["observacion"]=observacion;
+			
+			json_discapacidades.push(item);
+		});
+		json_persona["discapacidades"] = json_discapacidades;
 		
 		$.ajax({
 			type: "POST",
@@ -523,6 +564,24 @@ $(document).ready(function(){
 			json_experiencias.push(item);
 		});
 		json_persona["experiencias"] = json_experiencias;
+		
+		json_discapacidades = [];
+		$('#det_discapacidades').find('tr').each(function(i,el){
+			var $tds = $(this).find('td');
+			var discapacidad = $tds.eq(0).attr('data-discapacidad');
+			var grado_discapacidad = $tds.eq(1).attr('data-grado_discapacidad');
+			var porcentaje = $tds.eq(2).attr('data-porcentaje');
+			var observacion = $tds.eq(3).text();
+			
+			item = {}
+			item["discapacidad"]=discapacidad;
+			item["grado_discapacidad"]=grado_discapacidad;
+			item["porcentaje"]=porcentaje;
+			item["observacion"]=observacion;
+			
+			json_discapacidades.push(item);
+		});
+		json_persona["discapacidades"] = json_discapacidades;
 		
 		$.ajax({
 			type: "PATCH",

@@ -14,6 +14,7 @@ use App\Province;
 use App\City;
 use App\Town;
 use App\Catalog;
+use App\Disability;
 
 class PeopleController extends Controller
 {
@@ -116,6 +117,21 @@ class PeopleController extends Controller
 			$oExperiencias->hasta = $experiencia["exp_fecha_hasta"];
 			$oExperiencias->save();
 			if (!$oExperiencias)
+				DB::rollBack();
+		}
+		
+		/*Elimino las discapacidades*/
+		Disability::where('person_id',$oPersona->id)->delete();
+		/*Guardo los discapacidades*/
+		foreach ($json_persona["discapacidades"] as $discapacidad)
+		{	$oDiscapacidades = new Disability();
+			$oDiscapacidades->person_id=$oPersona->id;
+			$oDiscapacidades->catalog_id_discapacidad = $discapacidad["discapacidad"];
+			$oDiscapacidades->catalog_id_grado_discapacidad = $discapacidad["grado_discapacidad"];
+			$oDiscapacidades->porcentaje = $discapacidad["porcentaje"];
+			$oDiscapacidades->observacion = $discapacidad["observacion"];
+			$oDiscapacidades->save();
+			if (!$oDiscapacidades)
 				DB::rollBack();
 		}
 		DB::commit();
@@ -222,6 +238,21 @@ class PeopleController extends Controller
 			if (!$oExperiencias)
 				DB::rollBack();
 		}
+		
+		/*Elimino las discapacidades*/
+		Disability::where('person_id',$oPersona->id)->delete();
+		/*Guardo las discapacidades*/
+		foreach ($json_persona["discapacidades"] as $discapacidad)
+		{	$oDiscapacidades = new Disability();
+			$oDiscapacidades->person_id=$oPersona->id;
+			$oDiscapacidades->catalog_id_discapacidad = $discapacidad["discapacidad"];
+			$oDiscapacidades->catalog_id_grado_discapacidad = $discapacidad["grado_discapacidad"];
+			$oDiscapacidades->porcentaje = $discapacidad["porcentaje"];
+			$oDiscapacidades->observacion = $discapacidad["observacion"];
+			$oDiscapacidades->save();
+			if (!$oDiscapacidades)
+				DB::rollBack();
+		}
 		DB::commit();
 		print json_encode(array("result"=>"success","msg"=>"Todo OK","person_id"=>$oPersona->id));
 	}
@@ -235,8 +266,10 @@ class PeopleController extends Controller
 		$idiomas	= Catalog::where('catalog_type_id',5)->get();
 		$dominios	= Catalog::where('catalog_type_id',6)->get();
 		$habilidades	= Catalog::where('catalog_type_id',7)->get();
+		$discapacidades	= Catalog::where('catalog_type_id',8)->get();
+		$grado_discapacidad	= Catalog::where('catalog_type_id',9)->get();
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.reclutamiento.form_persona_crear',compact('tipo_doc','provinc','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','str_random'));
+		return view('pages.reclutamiento.form_persona_crear',compact('tipo_doc','provinc','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','discapacidades','grado_discapacidad','str_random'));
 	}
 	public function persona_edit_view(Request $request)
 	{	$id = $request->person_id;
@@ -252,13 +285,16 @@ class PeopleController extends Controller
 		$idiomas	= Catalog::where('catalog_type_id',5)->get();
 		$dominios	= Catalog::where('catalog_type_id',6)->get();
 		$habilidades	= Catalog::where('catalog_type_id',7)->get();
+		$discapacidades	= Catalog::where('catalog_type_id',8)->get();
+		$grado_discapacidad	= Catalog::where('catalog_type_id',9)->get();
 		//$person_estudio = Person::where('person_id',$person->id)->get();
 		$person_estudio = DB::table('studies')->join('catalogs','studies.catalog_id_nivel_estudio','=','catalogs.id')->where('person_id',$id)->select('studies.*','catalogs.descripcion')->get();
 		$person_training = DB::table('trainings')->join('catalogs as cat_modalidad','trainings.catalog_id_modalidad','=','cat_modalidad.id')->join('catalogs as cat_tipo_curso','trainings.catalog_id_tipo_curso','=','cat_tipo_curso.id')->where('person_id',$id)->select('trainings.*','cat_modalidad.descripcion as desc_modalidad','cat_tipo_curso.descripcion as desc_tipo_curso')->get();
 		$person_language = DB::table('languages')->join('catalogs as cat_idioma','languages.catalog_id_idioma','=','cat_idioma.id')->join('catalogs as cat_dominio_escrito','languages.catalog_id_dominio_escrito','=','cat_dominio_escrito.id')->join('catalogs as cat_dominio_leido','languages.catalog_id_dominio_leido','=','cat_dominio_leido.id')->join('catalogs as cat_dominio_oral','languages.catalog_id_dominio_oral','=','cat_dominio_oral.id')->where('languages.person_id',$id)->select('languages.*','cat_idioma.descripcion as desc_idioma','cat_dominio_escrito.descripcion as desc_dominio_escrito','cat_dominio_leido.descripcion as desc_dominio_leido','cat_dominio_oral.descripcion as desc_dominio_oral')->get();
+		$person_disability = DB::table('disabilities')->join('catalogs as cat_discapacidad','disabilities.catalog_id_discapacidad','=','cat_discapacidad.id')->join('catalogs as cat_grado_discapacidad','disabilities.catalog_id_grado_discapacidad','=','cat_grado_discapacidad.id')->where('person_id',$id)->select('disabilities.*','cat_discapacidad.descripcion as desc_discapacidad','cat_grado_discapacidad.descripcion as desc_grado_discapacidad')->get();
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
 		$person_previous_job = DB::table('previous_jobs')->where('person_id',$id)->get();
-		return view('pages.reclutamiento.form_persona_editar',compact('tipo_doc','provinc','city','town','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','person','person_estudio','person_training','person_language','person_previous_job','str_random'));
+		return view('pages.reclutamiento.form_persona_editar',compact('tipo_doc','provinc','city','town','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','discapacidades','grado_discapacidad','person','person_estudio','person_training','person_language','person_previous_job','person_disability','str_random'));
 	}
 	public function personas_view()
 	{	$personas	= DB::table('people')->join('document_types','people.document_type_id','=','document_types.id')->select('people.*','document_types.descripcion')->get();

@@ -52,7 +52,15 @@ class CatalogsTableSeeder extends Seeder
 						
 						array('catalog_type_id'=>7,'descripcion'=>'ESCRITO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
 						array('catalog_type_id'=>7,'descripcion'=>'ORAL','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
-						array('catalog_type_id'=>7,'descripcion'=>'LEÍDO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())
+						array('catalog_type_id'=>7,'descripcion'=>'LEÍDO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						
+						array('catalog_type_id'=>8,'descripcion'=>'TIPO DE DISCAPACIDAD 1','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>8,'descripcion'=>'TIPO DE DISCAPACIDAD 2','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>8,'descripcion'=>'TIPO DE DISCAPACIDAD 3','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						
+						array('catalog_type_id'=>9,'descripcion'=>'DISCAPACIDAD GRADO 1','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>9,'descripcion'=>'DISCAPACIDAD GRADO 2','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>9,'descripcion'=>'DISCAPACIDAD GRADO 3','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())
 					);
 		DB::table('catalogs')->insert($data);
     }

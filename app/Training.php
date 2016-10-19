@@ -10,4 +10,7 @@ class Training extends Model
     //use SoftDeletes;
 	//protected $dates = ['deleted_at'];
 	//protected $softDelete = true;
+	public function people()
+	{	return $this->hasMany('App\Person');
+	}
 }

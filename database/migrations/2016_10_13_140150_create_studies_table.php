@@ -14,7 +14,7 @@ class CreateStudiesTable extends Migration
     public function up()
     {
         Schema::create('studies', function (Blueprint $table) {
-            $table->increments('id');
+            //$table->increments('id');
 			$table->integer('person_id');
 			$table->integer('catalog_id_nivel_estudio');
 			$table->string('institucion',100);

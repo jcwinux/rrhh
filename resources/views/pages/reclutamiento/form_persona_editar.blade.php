@@ -26,7 +26,7 @@
 											<span class="input-group-btn">
 												<select id="document_type" class="selectpicker" data-style="btn-default" data-width="auto">
 												@foreach ($tipo_doc as $t)
-													<option value="{{$t->id}}">{{$t->descripcion}}</option>
+													<option value="{{$t->id}}" {{($person->document_type_id==$t->id?'selected':'')}}>{{$t->descripcion}}</option>
 												@endforeach
 												</select>
 											</span>
@@ -59,11 +59,11 @@
 										<label class="control-label col-sm-2">Sexo <span class="required">*</span></label>
 										<div class="col-sm-3">
 											<div id="gender" class="btn-group" data-toggle="buttons">
-												<label class="btn btn-primary active" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-													<input type="radio" id="hombre" name="sexo" value="hombre" checked>Hombre
+												<label class="btn btn-{{($person->sexo==1?'primary active':'default')}}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+													<input type="radio" id="hombre" name="sexo" value="hombre" {{($person->sexo==1?'checked="checked"':'')}}>Hombre
 												</label>
-												<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-													<input type="radio" id="mujer" name="sexo" value="mujer">&nbsp; Mujer &nbsp;
+												<label class="btn btn-{{($person->sexo==0?'primary active':'default')}}" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+													<input type="radio" id="mujer" name="sexo" value="mujer" {{($person->sexo==0?'checked="checked"':'')}}>&nbsp; Mujer &nbsp;
 												</label>
 											</div>
 										</div>
@@ -332,6 +332,41 @@
 								</tbody>
 								</table>
                             </fieldset>
+							<fieldset>
+                                <legend class="section">
+                                    Discapacidades
+                                    <button type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalDiscapacidades" data-backdrop="static">
+                                        <i class="fa fa-plus"></i>
+                                        Añadir
+                                    </button>
+                                </legend>
+								<table class="table table-hover table-bordered" id="discapacidades" name="discapacidades">
+								<thead>
+									<tr>
+										<th width="25%">Discapacidad</th>
+										<th width="25%">Grado</th>
+										<th width="10%">Porcentaje</th>
+										<th width="30%">Observación</th>
+										<th width="10%">Observación</th>
+									</tr>
+								</thead>
+								<tbody id="det_discapacidades">
+									@foreach ($person_disability as $pd)
+									<tr>
+										<td data-discapacidad="{{$pd->catalog_id_discapacidad}}">{{$pd->desc_discapacidad}}</td>
+										<td data-grado_discapacidad="{{$pd->catalog_id_grado_discapacidad}}">{{$pd->desc_grado_discapacidad}}</td>
+										<td data-porcentaje="{{$pd->porcentaje}}">{{$pd->porcentaje}}%</td>
+										<td>{{$pd->observacion}}</td>
+										<td class="text-align-center">
+											<a class="btnDelDiscapacidad" title="Eliminar">
+												<span class="glyphicon glyphicon-trash"></span>
+											</a>
+										</td>
+									</tr>
+									@endforeach
+								</tbody>
+								</table>
+                            </fieldset>
                             <div class="form-actions">
                                 <div class="row">
                                     <div class="col-sm-7 col-sm-offset-5">
@@ -595,6 +630,65 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 					<button type="button" class="btn btn-primary" id="AgregarExperienciaLaboral" name="AgregarExperienciaLaboral">Agregar</button>
+				</div>
+
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div>
+	<div id="modalDiscapacidades" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					<h4 class="modal-title" id="myModalLabel2">Discapacidades</h4>
+				</div>
+				<div class="modal-body">
+					<fieldset>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label" for="discapacidad">Discapacidad</label>
+								<select id="discapacidad" name="discapacidad" class="form-control">
+								@foreach ($discapacidades as $discapacidad)
+									<option value="{{$discapacidad->id}}">{{$discapacidad->descripcion}}</option>
+								@endforeach
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label" for="grado">Grado</label>
+								<select id="grado_discapacidad" name="grado_discapacidad" class="form-control">
+								@foreach ($grado_discapacidad as $gd)
+									<option value="{{$gd->id}}">{{$gd->descripcion}}</option>
+								@endforeach
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label" for="porcentaje">Porcentaje</label>
+								<input type="number" max="100" min="1" id="porcentaje" name="porcentaje" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label class="control-label" for="observacion">Observaciones</label>
+								<textarea id="observacion" name="observacion" class="form-control"></textarea>
+							</div>
+						</div>
+					</div>
+				</fieldset>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary" id="AgregarDiscapacidad" name="AgregarDiscapacidad">Agregar</button>
 				</div>
 
 			</div><!-- /.modal-content -->

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePreviousJobsTable extends Migration
+class CreateDisabilitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreatePreviousJobsTable extends Migration
      */
     public function up()
     {
-        Schema::create('previous_jobs', function (Blueprint $table) {
+        Schema::create('disabilities', function (Blueprint $table) {
             //$table->increments('id');
 			$table->integer('person_id');
-			$table->string('empresa',100);
-			$table->string('direccion',100);
-			$table->string('cargo',100);
-			$table->string('descripcion',300);
-			$table->date('desde');
-			$table->date('hasta');
+			$table->integer('catalog_id_discapacidad');
+			$table->integer('catalog_id_grado_discapacidad');
+			$table->integer('porcentaje');
+			$table->string('observacion',200);
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ class CreatePreviousJobsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('previous_jobs');
+        Schema::dropIfExists('disabilities');
     }
 }
