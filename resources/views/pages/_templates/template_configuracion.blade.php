@@ -6,8 +6,9 @@
    @include('pages._templates._common.head')
 </head>
 <body>
-	@include('pages._templates._menu.menu_configuracion')
+	@include('pages._templates._menu.menu_reclutamiento')
 	@include('pages._templates._common.header')
+	@yield('content')
 	@include('pages._templates._common.script')
 	@include('pages._templates._common.script_boton_conf')
 </body>

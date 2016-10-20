@@ -31,7 +31,13 @@
 							<td>{{$persona->nombre_1}} {{$persona->nombre_2}}</td>
 							<td>{{$persona->apellido_1}} {{$persona->apellido_2}}</td>
 							<td>{{$persona->fecha_ncto}}</td>
-							<td>{{$persona->estado}}</td>
+							<td>
+								@if ($persona->estado=="ACTIVO")
+									<span class="label label-success">{{$persona->estado}}</span>
+								@else
+									<span class="label label-default">{{$persona->estado}}</span>
+								@endif
+							</td>
 							<td class="text-align-center">
 								<a title="Editar" class="btnDelEstudio" href="persona_edit/{{$persona->id}}">
 									<span class="glyphicon glyphicon-pencil"></span>

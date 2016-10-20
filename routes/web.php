@@ -31,7 +31,13 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 		return view('modulos');
 	});
 	Route::get('/configuracion', function () {
-		return view('pages.configuracion.index');
+		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
+		return view('pages.configuracion.index',compact('str_random'));
+	});
+	Route::get('/catalogo', function () {
+		$tipo_cat = App\CatalogType::all();
+		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
+		return view('pages.configuracion.form_catalogo',compact('str_random','tipo_cat'));
 	});
 	Route::get('/personal', function () {
 		return view('pages.personal.index');
@@ -67,7 +73,13 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 		return Response::json($towns);
 	});
 	
+	Route::get('/ajax-catalogo_por_tipo/{cat_tipo_id}',function ($cat_tipo_id) {
+		$catalogo = App\Catalog::where('catalog_type_id','=',$cat_tipo_id)->get();
+		$html = view('pages.configuracion.tabla_catalogo', compact('view','catalogo'))->render();
+        return Response::json(compact('html'));
+	});
 	Route::post('/crearPersona', 'PeopleController@crearPersona');
 	Route::patch('/persona_edit/{person_id}/edit', 'PeopleController@editarPersona');
+	Route::post('/crearItemCatalogo', 'CatalogController@store');
 }
 );

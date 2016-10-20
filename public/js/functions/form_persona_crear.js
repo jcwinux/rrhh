@@ -235,6 +235,35 @@ $(document).ready(function(){
 	
 	/*Agregar discapacidad*/
 	$('#AgregarDiscapacidad').on('click',function(e){
+		/*Validación de campos*/
+		if (!$('#discapacidad').val())
+		{	$('#discapacidad').addClass('parsley-error');
+			return false;
+		}
+		else
+		{	$('#discapacidad').removeClass('parsley-error');
+		}
+		if (!$('#grado_discapacidad').val())
+		{	$('#grado_discapacidad').addClass('parsley-error');
+			return false;
+		}
+		else
+		{	$('#grado_discapacidad').removeClass('parsley-error');
+		}
+		if (!$('#porcentaje').val())
+		{	$('#porcentaje').addClass('parsley-error');
+			return false;
+		}
+		else
+		{	$('#porcentaje').removeClass('parsley-error');
+		}
+		if (!$('#observacion').val())
+		{	$('#observacion').addClass('parsley-error');
+			return false;
+		}
+		else
+		{	$('#observacion').removeClass('parsley-error');
+		}
 		row = 
 			'<tr>'+
 				'<td data-discapacidad="'+$('#discapacidad option:selected').val()+'">'+$('#discapacidad option:selected').text()+'</td>'+

@@ -22,7 +22,6 @@ class PeopleTableSeeder extends Seeder
 							 'catalog_id_estado_civil'=>$faker->numberBetween(1,5),
 							 'trato'=>$faker->title,
 							 'sexo'=>$faker->numberBetween(1,0),
-							 'discapacidad'=>$faker->numberBetween(1,0),
 							 //'grupo_sanguineo'=>'',
 							 'email_institucional'=>$faker->email,
 							 'email_personal'=>$faker->email,
@@ -38,7 +37,8 @@ class PeopleTableSeeder extends Seeder
 							 'username'=>$faker->userName,
 							 'password'=>bcrypt('123'),
 							 'created_at'=>Carbon\Carbon::now()->todatetimestring(),
-							 'updated_at'=>Carbon\Carbon::now()->todatetimestring());
+							 'updated_at'=>Carbon\Carbon::now()->todatetimestring(),
+							 'estado'=>$faker->randomElement(array('ACTIVO','INACTIVO')));
 							 
 		DB::table('People')->insert($data);
     }

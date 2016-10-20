@@ -26,7 +26,6 @@ class CreatePeopleTable extends Migration
 			$table->string('nacionalidad',50)->default('ECUATORIANO');
 			$table->string('trato',30);
 			$table->boolean('sexo');
-			$table->boolean('discapacidad')->nullable();
 			$table->string('grupo_sanguineo',30)->nullable();
 			$table->string('email_institucional',50)->nullable();
 			$table->string('email_personal',50)->nullable();
