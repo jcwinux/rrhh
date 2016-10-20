@@ -21,10 +21,10 @@
 		<td>{{$cat->id}}</td>
 		<td>{{$cat->descripcion}}</td>
 		<td class="text-align-center">
-			<button id="del_item_cat" name="del_item_cat" type="button" class="btn btn-transparent btn-xs pull-right">
+			<button type="button" class="btn btn-transparent btn-xs pull-right">
 				<i class="glyphicon glyphicon-trash"></i>
 			</button>
-			<button id="edit_item_cat" name="edit_item_cat" type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalCatalogoItem" data-backdrop="static">
+			<button type="button" onclick="showCatalog({{$cat->id}})" class="btn btn-transparent btn-xs pull-right editar_cat" data-toggle="modal" data-target="#modalCatalogoItem" data-backdrop="static">
 				<i class="glyphicon glyphicon-pencil"></i>
 			</button>
 		</td>

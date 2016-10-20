@@ -81,5 +81,7 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::post('/crearPersona', 'PeopleController@crearPersona');
 	Route::patch('/persona_edit/{person_id}/edit', 'PeopleController@editarPersona');
 	Route::post('/crearItemCatalogo', 'CatalogController@store');
+	/*Formulario para consultar datos de un ítem del catálogo*/
+	Route::get('/ajax-catalog_show/{catalog_id}', 'CatalogController@show');
 }
 );

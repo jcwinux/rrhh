@@ -157,6 +157,7 @@ class PeopleController extends Controller
 		$oPersona->catalog_id_estado_civil = $json_persona["estado_civil"];
 		$oPersona->trato = $json_persona["trato"];
 		$oPersona->sexo = ($json_persona["sexo"]?1:0);
+		
 		$oPersona->grupo_sanguineo = '';
 		$oPersona->email_institucional = '';
 		$oPersona->email_personal = $json_persona["correo_electronico"];

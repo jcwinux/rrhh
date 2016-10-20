@@ -1,9 +1,5 @@
 $(document).ready(function(){
 	/*Configurando ajax*/
-	$('#del_item_cat').on('click',function(){
-			alert ("CLICK");
-	});
-	
 	$(function () {
 		$.ajaxSetup({
 			headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
@@ -56,3 +52,11 @@ $(document).ready(function(){
 		});
 	}
 });
+function showCatalog(id)
+{	$.get('/ajax-catalog_show/'+id, function (data){
+		var json = $.parseJSON(data);
+		$("#tipo_catalogo_nuevo").val(json.catalog_type_id);
+		$('#item_cat_descripcion').val(json.descripcion);
+		$('#catalog_id').val(json.id);
+	});
+}

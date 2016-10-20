@@ -24,7 +24,6 @@
 				</section>
 			</div>
 		</div>
-		
 		<div class="row">
 			<div class="col-sm-12">
                 <section class="widget" id="tabla_items_cat">
@@ -61,6 +60,7 @@
 						<div class="form-group">
 							<label class="control-label" for="cargo">Descripción del ítem</label>
 							<input type="text" id="item_cat_descripcion" name="item_cat_descripcion" class="form-control">
+							<input type="hidden" id="catalog_id" name="catalog_id" value="" />
 						</div>
 					</div>
 				</div>

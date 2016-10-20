@@ -50,9 +50,9 @@ class CatalogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($catalog_id)
+    {	$oCatalog = Catalog::find($catalog_id);
+		print json_encode($oCatalog);
     }
 
     /**
