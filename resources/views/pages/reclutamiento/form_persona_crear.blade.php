@@ -334,6 +334,16 @@
 						<label class="control-label" for="anio">Año</label>
 						<input type="text" id="anio" name="anio" class="form-control">
 					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-4" for="mask-phone">
+							Phone
+							<span class="help-block">(123) 456-7890</span>
+						</label>
+						<div class="col-sm-7">
+							<input id="mask-phone" type="text" class="form-control">
+						</div>
+					</div>
 				</fieldset>
 				</div>
 				<div class="modal-footer">

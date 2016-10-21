@@ -10,7 +10,6 @@
 			Añadir
 		</button>
 	</legend>
-	<!--<table class="table table-hover table-bordered" id="items_cat_agregados" name="items_cat_agregados">-->
 	<table id="datatable-table" class="table table-striped table-hover" id="items_cat_agregados" name="items_cat_agregados">
 	<thead>
 		<tr>

@@ -53,5 +53,6 @@
 	</div>
 </script>
 
+
 <!--Funciones del sistema-->
 @yield('javascript_functions')

@@ -258,15 +258,15 @@ class PeopleController extends Controller
 	public function persona_new_view()
 	{	$tipo_doc	= DocumentType::all();
 		$provinc	= Province::all();
-		$est_civil	= Catalog::where('catalog_type_id',1)->get();
-		$niv_estudio = Catalog::where('catalog_type_id',2)->get();
-		$tipo_curso	= Catalog::where('catalog_type_id',3)->get();
-		$mod_curs	= Catalog::where('catalog_type_id',4)->get();
-		$idiomas	= Catalog::where('catalog_type_id',5)->get();
-		$dominios	= Catalog::where('catalog_type_id',6)->get();
-		$habilidades	= Catalog::where('catalog_type_id',7)->get();
-		$discapacidades	= Catalog::where('catalog_type_id',8)->get();
-		$grado_discapacidad	= Catalog::where('catalog_type_id',9)->get();
+		$est_civil	= Catalog::where(['catalog_type_id'=>1,'estado'=>'ACTIVO'])->get();
+		$niv_estudio = Catalog::where(['catalog_type_id'=>2,'estado'=>'ACTIVO'])->get();
+		$tipo_curso	= Catalog::where(['catalog_type_id'=>3,'estado'=>'ACTIVO'])->get();
+		$mod_curs	= Catalog::where(['catalog_type_id'=>4,'estado'=>'ACTIVO'])->get();
+		$idiomas	= Catalog::where(['catalog_type_id'=>5,'estado'=>'ACTIVO'])->get();
+		$dominios	= Catalog::where(['catalog_type_id'=>6,'estado'=>'ACTIVO'])->get();
+		$habilidades	= Catalog::where(['catalog_type_id'=>7,'estado'=>'ACTIVO'])->get();
+		$discapacidades	= Catalog::where(['catalog_type_id'=>8,'estado'=>'ACTIVO'])->get();
+		$grado_discapacidad	= Catalog::where(['catalog_type_id'=>9,'estado'=>'ACTIVO'])->get();
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
 		return view('pages.reclutamiento.form_persona_crear',compact('tipo_doc','provinc','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','discapacidades','grado_discapacidad','str_random'));
 	}
