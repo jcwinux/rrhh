@@ -1,4 +1,7 @@
 @if (count($catalogo)>0)
+<!--Hay que poner los js cuando son cargados por medio de ajax-->
+<script src="{{asset('lib/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('js/tables-dynamic.js')}}"></script>
 <fieldset>
 	<legend class="section">
 		Ítems
@@ -7,7 +10,8 @@
 			Añadir
 		</button>
 	</legend>
-	<table class="table table-hover table-bordered" id="items_cat_agregados" name="items_cat_agregados">
+	<!--<table class="table table-hover table-bordered" id="items_cat_agregados" name="items_cat_agregados">-->
+	<table id="datatable-table" class="table table-striped table-hover" id="items_cat_agregados" name="items_cat_agregados">
 	<thead>
 		<tr>
 			<th width="10%">ID</th>

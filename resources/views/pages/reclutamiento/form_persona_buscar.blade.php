@@ -40,7 +40,7 @@
 							</td>
 							<td class="text-align-center">
 								<a title="Editar" class="btnDelEstudio" href="persona_edit/{{$persona->id}}">
-									<span class="glyphicon glyphicon-pencil"></span>
+									<span class="fa fa-pencil"></span>
 								</a>
 							</td>
                         </tr>
