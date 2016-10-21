@@ -80,7 +80,8 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	});
 	Route::post('/crearPersona', 'PeopleController@crearPersona');
 	Route::patch('/persona_edit/{person_id}/edit', 'PeopleController@editarPersona');
-	Route::post('/crearItemCatalogo', 'CatalogController@store');
+	Route::post('/guardarItemCatalogo', 'CatalogController@store');
+	Route::post('/cambiarEstado/', 'CatalogController@change_state');
 	/*Formulario para consultar datos de un ítem del catálogo*/
 	Route::get('/ajax-catalog_show/{catalog_id}', 'CatalogController@show');
 }

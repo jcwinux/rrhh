@@ -11,7 +11,8 @@
 	<thead>
 		<tr>
 			<th width="10%">ID</th>
-			<th width="80%">Descripción ítem</th>
+			<th width="70%">Descripción ítem</th>
+			<th width="10%">Estado</th>
 			<th width="10%">Opciones</th>
 		</tr>
 	</thead>
@@ -20,12 +21,25 @@
 	<tr>
 		<td>{{$cat->id}}</td>
 		<td>{{$cat->descripcion}}</td>
+		<td>
+			@if ($cat->estado=="ACTIVO")
+				<span class="label label-success">{{$cat->estado}}</span>
+			@else
+				<span class="label label-default">{{$cat->estado}}</span>
+			@endif
+		</td>
 		<td class="text-align-center">
-			<button type="button" class="btn btn-transparent btn-xs pull-right">
-				<i class="glyphicon glyphicon-trash"></i>
-			</button>
-			<button type="button" onclick="showCatalog({{$cat->id}})" class="btn btn-transparent btn-xs pull-right editar_cat" data-toggle="modal" data-target="#modalCatalogoItem" data-backdrop="static">
-				<i class="glyphicon glyphicon-pencil"></i>
+			@if ($cat->estado=="ACTIVO")
+				<button type="button" title="Inactivar" onclick="change_state({{$cat->id}},'INACTIVAR')" class="btn btn-transparent btn-xs pull-right">
+					<i class="fa fa-times"></i>
+				</button>
+			@else
+				<button type="button" title="Activar" onclick="change_state({{$cat->id}},'ACTIVAR')" class="btn btn-transparent btn-xs pull-right">
+					<i class="fa fa-check"></i>
+				</button>
+			@endif
+			<button type="button" title="Modificar" onclick="showCatalog({{$cat->id}})" class="btn btn-transparent btn-xs pull-right editar_cat" data-toggle="modal" data-target="#modalCatalogoItem" data-backdrop="static">
+				<i class="fa fa-pencil"></i>
 			</button>
 		</td>
 	</tr>

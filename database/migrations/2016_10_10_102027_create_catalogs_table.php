@@ -18,6 +18,7 @@ class CreateCatalogsTable extends Migration
 			$table->integer('catalog_type_id')->unsigned();
 			$table->integer('padre')->nullable();
 			$table->string('descripcion',200);
+			$table->string('estado',25)->default('ACTIVO');
             $table->timestamps();
 			
 			/*$table->foreign('catalog_type_id')->references('id')->on('catalog_types');

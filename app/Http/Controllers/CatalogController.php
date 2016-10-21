@@ -36,8 +36,11 @@ class CatalogController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $oCatalog = new Catalog();
+    {	if ($request->catalog_id=="")
+			$oCatalog = new Catalog();
+		else
+			$oCatalog = Catalog::find($request->catalog_id);
+		
 		$oCatalog->catalog_type_id=$request->catalog_type_id;
 		$oCatalog->descripcion=$request->descripcion;
 		$oCatalog->save();
@@ -87,5 +90,15 @@ class CatalogController extends Controller
     public function destroy($id)
     {
         //
+    }
+	
+	public function change_state(Request $request)
+    {	$oCatalog = Catalog::find($request->catalog_id);
+		if($request->accion=="ACTIVAR")
+			$oCatalog->estado="ACTIVO";
+		if($request->accion=="INACTIVAR")
+			$oCatalog->estado="INACTIVO";
+		$oCatalog->save();
+		print json_encode(array("result"=>"success","msg"=>"Todo OK","catalog_id"=>$oCatalog->id));
     }
 }
