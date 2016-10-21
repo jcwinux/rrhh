@@ -46,6 +46,10 @@ $(document).ready(function(){
 		});
 	});
 });
+function clean()
+{	$('#item_cat_descripcion').val('');
+	$('#catalog_id').val('');
+}
 function cargarCatalogo(tipo_cat)
 	{	if(!tipo_cat)
 			tipo_cat=-1;

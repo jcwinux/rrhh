@@ -2,7 +2,7 @@
 <fieldset>
 	<legend class="section">
 		Ítems
-		<button id="agregar_item_cat" name="agregar_item_cat" type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalCatalogoItem" data-backdrop="static">
+		<button id="agregar_item_cat" name="agregar_item_cat" onclick="clean()" type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalCatalogoItem" data-backdrop="static">
 			<i class="fa fa-plus"></i>
 			Añadir
 		</button>
@@ -33,14 +33,14 @@
 				<button type="button" title="Inactivar" onclick="change_state({{$cat->id}},'INACTIVAR')" class="btn btn-transparent btn-xs pull-right">
 					<i class="fa fa-times"></i>
 				</button>
+				<button type="button" title="Modificar" onclick="showCatalog({{$cat->id}})" class="btn btn-transparent btn-xs pull-right editar_cat" data-toggle="modal" data-target="#modalCatalogoItem" data-backdrop="static">
+				<i class="fa fa-pencil"></i>
+			</button>
 			@else
 				<button type="button" title="Activar" onclick="change_state({{$cat->id}},'ACTIVAR')" class="btn btn-transparent btn-xs pull-right">
 					<i class="fa fa-check"></i>
 				</button>
 			@endif
-			<button type="button" title="Modificar" onclick="showCatalog({{$cat->id}})" class="btn btn-transparent btn-xs pull-right editar_cat" data-toggle="modal" data-target="#modalCatalogoItem" data-backdrop="static">
-				<i class="fa fa-pencil"></i>
-			</button>
 		</td>
 	</tr>
 	@endforeach
