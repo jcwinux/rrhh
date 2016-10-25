@@ -34,11 +34,8 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
 		return view('pages.configuracion.index',compact('str_random'));
 	});
-	Route::get('/catalogo', function () {
-		$tipo_cat = App\CatalogType::all();
-		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.configuracion.form_catalogo',compact('str_random','tipo_cat'));
-	});
+	Route::get('/catalogo', 'CatalogController@index');
+	Route::get('/rol', 'RoleController@index');
 	Route::get('/personal', function () {
 		return view('pages.personal.index');
 	});
@@ -78,11 +75,18 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 		$html = view('pages.configuracion.tabla_catalogo', compact('view','catalogo'))->render();
         return Response::json(compact('html'));
 	});
+	Route::get('/ajax-roles',function () {
+		$roles = App\Role::all();
+		$html = view('pages.configuracion.tabla_rol', compact('view','roles'))->render();
+        return Response::json(compact('html'));
+	});
 	Route::post('/crearPersona', 'PeopleController@crearPersona');
 	Route::patch('/persona_edit/{person_id}/edit', 'PeopleController@editarPersona');
 	Route::post('/guardarItemCatalogo', 'CatalogController@store');
 	Route::post('/cambiarEstado/', 'CatalogController@change_state');
 	/*Formulario para consultar datos de un ítem del catálogo*/
 	Route::get('/ajax-catalog_show/{catalog_id}', 'CatalogController@show');
+	Route::post('/guardarRol', 'RoleController@store');
+	Route::post('/cambiarEstadoRol/', 'RoleController@change_state');
 }
 );

@@ -179,7 +179,7 @@
                             </fieldset>
 							<fieldset>
                                 <legend class="section">
-                                    Formación académica
+                                    <i class="fa fa-mortar-board"></i> Formación académica
                                     <button type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalEstudiosRealizados" data-backdrop="static">
                                         <i class="fa fa-plus"></i>
                                         Añadir
@@ -200,7 +200,7 @@
                             </fieldset>
 							<fieldset>
                                 <legend class="section">
-                                    Cursos realizados
+                                    <i class="fa fa-child"></i> Cursos realizados
                                     <button type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalCursosRealizados" data-backdrop="static">
                                         <i class="fa fa-plus"></i>
                                         Añadir
@@ -225,7 +225,7 @@
                             </fieldset>
 							<fieldset>
                                 <legend class="section">
-                                    Idiomas
+                                    <i class="fa fa-language"></i> Idiomas
                                     <button type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalIdiomas" data-backdrop="static">
                                         <i class="fa fa-plus"></i>
                                         Añadir
@@ -247,7 +247,7 @@
                             </fieldset>
 							<fieldset>
                                 <legend class="section">
-                                    Experiencia laboral
+                                    <i class="fa fa-folder-open"></i> Experiencia laboral
                                     <button type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalExperienciasLaborales" data-backdrop="static">
                                         <i class="fa fa-plus"></i>
                                         Añadir
@@ -271,7 +271,7 @@
                             </fieldset>
 							<fieldset>
                                 <legend class="section">
-                                    Discapacidades
+                                    <i class="fa fa-wheelchair"></i> Discapacidades 
                                     <button type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalDiscapacidades" data-backdrop="static">
                                         <i class="fa fa-plus"></i>
                                         Añadir

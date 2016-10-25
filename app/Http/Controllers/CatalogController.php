@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Catalog;
+use App\CatalogType;
 
 class CatalogController extends Controller
 {
@@ -15,8 +16,9 @@ class CatalogController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {	$tipo_cat = CatalogType::all();
+		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
+		return view('pages.configuracion.form_catalogo',compact('str_random','tipo_cat'));
     }
 
     /**
