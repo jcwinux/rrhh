@@ -4,7 +4,7 @@
 <fieldset>
 	<legend class="section">
 		Ítems
-		<button id="agregar_rol" name="agregar_rol" onclick="clean()" type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalRol" data-backdrop="static">
+		<button id="agregar_rol" name="agregar_rol" onclick="clear()" type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalRol" data-backdrop="static">
 			<i class="fa fa-plus"></i>
 			Añadir
 		</button>

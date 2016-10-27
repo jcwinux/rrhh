@@ -6,13 +6,6 @@ $(document).ready(function(){
 		});
 	});
 	
-	$('#tipo_catalogo').on('change', function(e){
-		var tipo_cat = e.target.value;
-		if (!tipo_cat)
-			tipo_cat = -1;
-		cargarCatalogo(tipo_cat);
-	});
-	
 	$('#GuardarRol').on('click', function(e){
 		/*Validación de campos*/
 		if (!$('#nombre_rol').val())
@@ -65,7 +58,7 @@ $(document).ready(function(){
 		});
 	});
 });
-function clean()
+function clear()
 {	$('#rol_id').val('');
 	$('#nombre_rol').val('');
 	$('#descripcion_rol').val('');

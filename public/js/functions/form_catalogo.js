@@ -46,7 +46,7 @@ $(document).ready(function(){
 		});
 	});
 });
-function clean()
+function clear()
 {	$('#item_cat_descripcion').val('');
 	$('#catalog_id').val('');
 }

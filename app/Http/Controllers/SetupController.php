@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 use App\Http\Requests;
-use App\Role;
-class PermissionsController extends Controller
+
+class SetupController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class PermissionsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {	$roles = Role::where('estado','ACTIVO')->get();
-		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.configuracion.form_permisos',compact('str_random','roles'));
+    {	$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
+		return view('pages.configuracion.index',compact('str_random'));
     }
 
     /**
@@ -84,13 +83,4 @@ class PermissionsController extends Controller
     {
         //
     }
-	
-	public function modulos_asignados($role_id)
-	{	$modules = DB::table('modules_roles')->join('modules','modules_roles.module_id','=','modules.id')
-											 ->where('modules_roles.role_id',$role_id)
-											 ->where('modules_roles.estado','ACTIVO')
-											 ->select('modules.id','modules.nombre')
-											 ->get();
-		return response()->json($modules);
-	}
 }

@@ -5,7 +5,7 @@
 <fieldset>
 	<legend class="section">
 		Ítems
-		<button id="agregar_item_cat" name="agregar_item_cat" onclick="clean()" type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalCatalogoItem" data-backdrop="static">
+		<button id="agregar_item_cat" name="agregar_item_cat" onclick="clear()" type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalCatalogoItem" data-backdrop="static">
 			<i class="fa fa-plus"></i>
 			Añadir
 		</button>

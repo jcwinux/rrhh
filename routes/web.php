@@ -30,17 +30,10 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 {	Route::get('/modulos', function () {
 		return view('modulos');
 	});
-	Route::get('/configuracion', function () {
-		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.configuracion.index',compact('str_random'));
-	});
+	Route::get('/configuracion', 'SetupController@index');
 	Route::get('/catalogo', 'CatalogController@index');
 	Route::get('/rol', 'RoleController@index');
-	Route::get('/permisos', function(){
-		$roles = App\Role::where('estado','ACTIVO')->get();
-		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.configuracion.form_permisos',compact('str_random','roles'));
-	});
+	Route::get('/permisos', 'PermissionsController@index');
 	
 	Route::get('/personal', function () {
 		return view('pages.personal.index');
@@ -71,14 +64,7 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 		return Response::json($cities);
 	});
 	
-	Route::get('/ajax-modulos_asignados/{role_id}',function ($role_id) {
-		$modules = DB::table('modules_roles')->join('modules','modules_roles.module_id','=','modules.id')
-											 ->where('modules_roles.role_id',$role_id)
-											 ->where('modules_roles.estado','ACTIVO')
-											 ->select('modules.id','modules.nombre')
-											 ->get();
-		return Response::json($modules);
-	});
+	Route::get('/ajax-modulos_asignados/{role_id}','PermissionsController@modulos_asignados');
 	
 	Route::get('/ajax-towns/{city_id}',function ($city_id) {
 		$towns = App\Town::where('city_id','=',$city_id)->get();
