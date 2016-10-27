@@ -37,7 +37,7 @@
 				<button type="button" title="Inactivar" onclick="change_state({{$rol->id}},'INACTIVAR')" class="btn btn-transparent btn-xs pull-right">
 					<i class="fa fa-times"></i>
 				</button>
-				<button type="button" title="Modificar" onclick="showCatalog({{$rol->id}})" class="btn btn-transparent btn-xs pull-right editar_cat" data-toggle="modal" data-target="#modalCatalogoItem" data-backdrop="static">
+				<button type="button" title="Modificar" onclick="showRole({{$rol->id}})" class="btn btn-transparent btn-xs pull-right editar_cat" data-toggle="modal" data-target="#modalRol" data-backdrop="static">
 				<i class="fa fa-pencil"></i>
 			</button>
 			@else

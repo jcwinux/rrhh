@@ -56,6 +56,7 @@ $(document).ready(function(){
 				console.log(json_x);
 				$('#rol_id').val(json_x.rol_id);
 				Messenger().post("El registro ha sido grabado exitosamente!");
+				clean();
 				cargarRoles();
 			},
 			error: function(data){
@@ -65,20 +66,29 @@ $(document).ready(function(){
 	});
 });
 function clean()
-{	$('#item_cat_descripcion').val('');
-	$('#catalog_id').val('');
+{	$('#rol_id').val('');
+	$('#nombre_rol').val('');
+	$('#descripcion_rol').val('');
+	$.each($("input[name='modulos']"), function(){
+		$(this).attr('checked',false);
+	});
 }
 function cargarRoles()
 {	$.get('/ajax-roles/', function (data){
 		$('#tabla_roles').html(data.html);
 	});
 }
-function showCatalog(id)
-{	$.get('/ajax-catalog_show/'+id, function (data){
+function showRole(id)
+{	$.get('/ajax-rol_show/'+id, function (data){
 		var json = $.parseJSON(data);
-		$("#tipo_catalogo_nuevo").val(json.catalog_type_id);
-		$('#item_cat_descripcion').val(json.descripcion);
-		$('#catalog_id').val(json.id);
+		$("#rol_id").val(json.rol.id);
+		$('#nombre_rol').val(json.rol.nombre);
+		$('#descripcion_rol').val(json.rol.descripcion);
+		$('#list_modulos').empty();
+		$.each(json.modulos, function(key,value){
+			li = '<img src="img/1.png" alt="" class="pull-left img-circle"/><div class="news-item-info"><div class="name">'+value.nombre+'</div><input id="mod_'+value.id+'" data-modulo_id="'+value.id+'" name="modulos" type="checkbox" class="pull-right" style="margin-right: 15px;margin-left: 15px" '+(value.estado=='ACTIVO'?'checked':'')+'/><div class="position">'+value.descripcion+'</div><div class="time">Creación '+value.created_at+'</div></div>';
+			$('#list_modulos').append("<li>"+li+"</li>");
+		});
 	});
 }
 function change_state(rol_id,action)

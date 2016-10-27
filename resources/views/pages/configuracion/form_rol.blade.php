@@ -42,7 +42,7 @@
 					<div class="col-sm-12">
 						<div class="form-group">
 							<h4>Módulos del sistema</h4>
-							<ul class="news-list news-list-no-hover">
+							<ul class="news-list news-list-no-hover" id="list_modulos">
 							@foreach ($modulos as $mod)
 								<li>
 									<img src="img/1.png" alt="" class="pull-left img-circle"/>

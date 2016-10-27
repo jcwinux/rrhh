@@ -51,13 +51,13 @@ function clean()
 	$('#catalog_id').val('');
 }
 function cargarCatalogo(tipo_cat)
-	{	if(!tipo_cat)
-			tipo_cat=-1;
-		$.get('/ajax-catalogo_por_tipo/'+tipo_cat, function (data){
-			$('#tabla_items_cat').html(data.html);
-			$('#tipo_catalogo_nuevo').val(tipo_cat);
-		});
-	}
+{	if(!tipo_cat)
+		tipo_cat=-1;
+	$.get('/ajax-catalogo_por_tipo/'+tipo_cat, function (data){
+		$('#tabla_items_cat').html(data.html);
+		$('#tipo_catalogo_nuevo').val(tipo_cat);
+	});
+}
 function showCatalog(id)
 {	$.get('/ajax-catalog_show/'+id, function (data){
 		var json = $.parseJSON(data);

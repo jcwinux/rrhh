@@ -36,6 +36,12 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	});
 	Route::get('/catalogo', 'CatalogController@index');
 	Route::get('/rol', 'RoleController@index');
+	Route::get('/permisos', function(){
+		$roles = App\Role::where('estado','ACTIVO')->get();
+		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
+		return view('pages.configuracion.form_permisos',compact('str_random','roles'));
+	});
+	
 	Route::get('/personal', function () {
 		return view('pages.personal.index');
 	});
@@ -65,6 +71,15 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 		return Response::json($cities);
 	});
 	
+	Route::get('/ajax-modulos_asignados/{role_id}',function ($role_id) {
+		$modules = DB::table('modules_roles')->join('modules','modules_roles.module_id','=','modules.id')
+											 ->where('modules_roles.role_id',$role_id)
+											 ->where('modules_roles.estado','ACTIVO')
+											 ->select('modules.id','modules.nombre')
+											 ->get();
+		return Response::json($modules);
+	});
+	
 	Route::get('/ajax-towns/{city_id}',function ($city_id) {
 		$towns = App\Town::where('city_id','=',$city_id)->get();
 		return Response::json($towns);
@@ -75,6 +90,13 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 		$html = view('pages.configuracion.tabla_catalogo', compact('view','catalogo'))->render();
         return Response::json(compact('html'));
 	});
+	
+	Route::get('/ajax-forms_por_modulo/{module_id}',function ($module_id) {
+		$forms = App\Form::where('module_id','=',$module_id)->get();
+		$html = view('pages.configuracion.tabla_permisos', compact('view','forms'))->render();
+        return Response::json(compact('html'));
+	});
+	
 	Route::get('/ajax-roles',function () {
 		$roles = App\Role::all();
 		$html = view('pages.configuracion.tabla_rol', compact('view','roles'))->render();
@@ -88,5 +110,6 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::get('/ajax-catalog_show/{catalog_id}', 'CatalogController@show');
 	Route::post('/guardarRol', 'RoleController@store');
 	Route::post('/cambiarEstadoRol/', 'RoleController@change_state');
+	Route::get('/ajax-rol_show/{rol_id}', 'RoleController@show');
 }
 );

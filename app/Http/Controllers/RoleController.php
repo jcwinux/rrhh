@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Module;
 use App\Role;
 use App\ModulesRole;
+use Response;
 
 class RoleController extends Controller
 {
@@ -67,19 +68,6 @@ class RoleController extends Controller
 			if (!$oModuleRole)
 				DB::rollBack();
 		}
-		
-		/*Guardo los discapacidades*/
-		/*foreach ($json_persona["discapacidades"] as $discapacidad)
-		{	$oDiscapacidades = new Disability();
-			$oDiscapacidades->person_id=$oPersona->id;
-			$oDiscapacidades->catalog_id_discapacidad = $discapacidad["discapacidad"];
-			$oDiscapacidades->catalog_id_grado_discapacidad = $discapacidad["grado_discapacidad"];
-			$oDiscapacidades->porcentaje = $discapacidad["porcentaje"];
-			$oDiscapacidades->observacion = $discapacidad["observacion"];
-			$oDiscapacidades->save();
-			if (!$oDiscapacidades)
-				DB::rollBack();
-		}*/
 		DB::commit();
 		print json_encode(array("result"=>"success","msg"=>"Todo OK","rol_id"=>$oRol->id));
     }
@@ -90,9 +78,17 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($role_id)
+    {	$oRole = Role::find($role_id);
+		$oModulo = DB::table('modules_roles')
+						->join('modules','modules.id','=','modules_roles.module_id')
+						->where('modules_roles.role_id',$role_id)
+						->select('modules.id','modules.nombre','modules.descripcion','modules.created_at','modules_roles.estado')
+						->get();
+		
+		//print json_encode($oRole);
+		//Response::json(array('rol'=>$oRole,'modulos'=>$oModulo));
+		print json_encode(array('rol'=>$oRole,'modulos'=>$oModulo));
     }
 
     /**
