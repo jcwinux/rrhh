@@ -5,10 +5,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Response;
 use App\Module;
+use App\Form;
 use App\Role;
 use App\ModulesRole;
-use Response;
+use App\FormFunction;
+use App\ModulesRolesForm;
+use App\ModulesRolesFormsFunctions;
 
 class RoleController extends Controller
 {
@@ -67,6 +71,32 @@ class RoleController extends Controller
 			$oModuleRole->save();
 			if (!$oModuleRole)
 				DB::rollBack();
+			
+			/*Agrego los forms*/
+			$oForms = Form::where('module_id',$oModuleRole->module_id)->get();
+			foreach ($oForms as $oForm)
+			{	$oModuleRoleForm = ModulesRolesForm::where('module_role_id',$oModuleRole->id)->where('form_id','=',$oForm->id)->first();
+				if (!$oModuleRoleForm)
+				{	$oModuleRoleForm = new ModulesRolesForm();
+					$oModuleRoleForm->module_role_id = $oModuleRole->id;
+					$oModuleRoleForm->form_id = $oForm->id;
+					$oModuleRoleForm->save();
+					if (!$oModuleRoleForm)
+						DB::rollBack();
+				}
+				$oFormFunctions = FormFunction::where('form_id',$oForm->id)->get();
+				foreach ($oFormFunctions as $oFormFunction)
+				{	$oModuleRoleFormFunction = ModulesRolesFormsFunctions::where('module_role_form_id',$oModuleRoleForm->id)->where('form_function_id',$oFormFunction->id)->first();
+					if (!$oModuleRoleFormFunction)
+					{	$oModuleRoleFormFunction = new ModulesRolesFormsFunctions();
+						$oModuleRoleFormFunction->module_role_form_id = $oModuleRoleForm->id;
+						$oModuleRoleFormFunction->form_function_id = $oFormFunction->id;
+						$oModuleRoleFormFunction->save();
+						if (!$oModuleRoleFormFunction)
+							DB::rollBack();
+					}
+				}
+			}
 		}
 		DB::commit();
 		print json_encode(array("result"=>"success","msg"=>"Todo OK","rol_id"=>$oRol->id));

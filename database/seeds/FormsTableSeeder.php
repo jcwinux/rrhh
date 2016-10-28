@@ -13,8 +13,8 @@ class FormsTableSeeder extends Seeder
     {
          $data = array 
 					(
-						array('module_id'=>1,'nombre'=>'Ingresar persona','descripcion'=>'Permite la toma de datos para una persona que no existe en el sistema','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
-						array('module_id'=>1,'nombre'=>'Editar persona','descripcion'=>'Permite la toma de datos para una persona que no existe en el sistema','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())
+						array('module_id'=>2,'nombre'=>'Ingresar persona','descripcion'=>'Permite la toma de datos para una persona que no existe en el sistema','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('module_id'=>2,'nombre'=>'Editar persona','descripcion'=>'Permite la modificación de datos para una persona que ya existe en el sistema','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())
 					);
 		DB::table('forms')->insert($data);
     }
