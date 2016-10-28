@@ -35,3 +35,12 @@ function cargarFormularios(module_id)
 		$('#tabla_formularios').html(data.html);
 	});
 }
+function showFormFunctions(id)
+{	$.get('/ajax-form_functions/'+id, function (data){
+		$('#tbl_funciones tbody').empty();
+		$.each(data, function(key,value){
+			tr = '<tr><td class="text-align-center" width="10%"><input type="checkbox"/></td><td width="90%">'+value.nombre+'</td></tr>';
+			$('#tbl_funciones tbody').append(tr);
+		});
+	});
+}

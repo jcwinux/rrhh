@@ -41,7 +41,7 @@
 	</div>
 </div>
 <!--Modales-->
-<div id="modalCatalogoItem" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+<div id="modalFunciones" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -53,18 +53,14 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="form-group">
-							<label class="control-label" for="empresa">Tipo de catálogo</label>
-							<select class="form-control" id="tipo_catalogo_nuevo" name="tipo_catalogo_nuevo" disabled="disabled">
-							</select>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="form-group">
-							<label class="control-label" for="cargo">Descripción del ítem</label>
-							<input type="text" id="item_cat_descripcion" name="item_cat_descripcion" class="form-control">
-							<input type="hidden" id="catalog_id" name="catalog_id" value="" />
+						<table id="tbl_funciones" class="table table-hover table-bordered">
+						<tbody>
+							<tr>
+								<td class="text-align-center" width="10%"><input type="checkbox"/></td>
+								<td width="90%">Guardar</td>
+							</tr>
+						</tbody>
+						</table>
 						</div>
 					</div>
 				</div>

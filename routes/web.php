@@ -65,6 +65,7 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	});
 	
 	Route::get('/ajax-modulos_asignados/{role_id}','PermissionsController@modulos_asignados');
+	Route::get('/ajax-form_functions/{id}','PermissionsController@modules_roles_forms_functions_show');
 	
 	Route::get('/ajax-towns/{city_id}',function ($city_id) {
 		$towns = App\Town::where('city_id','=',$city_id)->get();
@@ -77,8 +78,12 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
         return Response::json(compact('html'));
 	});
 	
-	Route::get('/ajax-forms_por_modulo/{module_id}',function ($module_id) {
-		$forms = App\Form::where('module_id','=',$module_id)->get();
+	Route::get('/ajax-forms_por_modulo/{module_role_id}',function ($module_role_id) {
+		//$forms = App\Form::where('module_id','=',$module_id)->get();
+		$forms = DB::table('modules_roles_forms')->join('forms','modules_roles_forms.form_id','=','forms.id')
+												 ->where('modules_roles_forms.module_role_id',$module_role_id)
+												 ->select('forms.nombre','forms.descripcion','modules_roles_forms.id','modules_roles_forms.estado')
+												 ->get();
 		$html = view('pages.configuracion.tabla_permisos', compact('view','forms'))->render();
         return Response::json(compact('html'));
 	});

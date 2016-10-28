@@ -93,4 +93,12 @@ class PermissionsController extends Controller
 											 ->get();
 		return response()->json($modules);
 	}
+	
+	public function modules_roles_forms_functions_show($id)
+	{	$funciones = DB::table('modules_roles_forms_functions')->join('form_functions','modules_roles_forms_functions.form_function_id','=','form_functions.id')
+											 ->where('modules_roles_forms_functions.module_role_form_id',$id)
+											 ->select('modules_roles_forms_functions.id','modules_roles_forms_functions.estado','form_functions.nombre')
+											 ->get();
+		return response()->json($funciones);
+	}
 }

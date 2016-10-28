@@ -86,19 +86,19 @@ function showRole(id)
 }
 function change_state(rol_id,action)
 {	data_post = 'rol_id='+rol_id+'&accion='+action;
-		$.ajax({
-			type: "POST",
-			url: "cambiarEstadoRol",
-			data: data_post,
-			success: function(data){
-				var json_x = $.parseJSON(data);
-				console.log(json_x);
-				/*Recarga la tabla de catálogo*/
-				cargarRoles();
-				Messenger().post("El registro ha sido modificado exitosamente!");
-			},
-			error: function(data){
-				Messenger().post("¡Ocurrió un error!");
-			}
-		});
+	$.ajax({
+		type: "POST",
+		url: "cambiarEstadoRol",
+		data: data_post,
+		success: function(data){
+			var json_x = $.parseJSON(data);
+			console.log(json_x);
+			/*Recarga la tabla de catálogo*/
+			cargarRoles();
+			Messenger().post("El registro ha sido modificado exitosamente!");
+		},
+		error: function(data){
+			Messenger().post("¡Ocurrió un error!");
+		}
+	});
 }

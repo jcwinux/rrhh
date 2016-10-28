@@ -33,7 +33,7 @@
 				<i class="fa fa-pencil"></i>
 			</button>
 			@else
-				<button type="button" title="Activar" onclick="change_state({{$form->id}},'ACTIVAR')" class="btn btn-transparent btn-xs pull-right">
+				<button type="button" title="Activar" onclick="showFormFunctions({{$form->id}});" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalFunciones" data-backdrop="static">
 					<i class="fa fa-plus"></i>
 				</button>
 			@endif
