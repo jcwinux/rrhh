@@ -102,5 +102,7 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::post('/guardarRol', 'RoleController@store');
 	Route::post('/cambiarEstadoRol/', 'RoleController@change_state');
 	Route::get('/ajax-rol_show/{rol_id}', 'RoleController@show');
+	/*Permisos*/
+	Route::get('/ajax-cambiarEstadoPermiso/{id}/{estado}/{formulario}', 'PermissionsController@modules_roles_forms_functions_change_state');
 }
 );

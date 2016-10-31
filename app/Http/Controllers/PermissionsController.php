@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests;
 use App\Role;
+use App\ModulesRolesForm;
+use App\ModulesRolesFormsFunctions;
+
 class PermissionsController extends Controller
 {
     /**
@@ -100,5 +103,24 @@ class PermissionsController extends Controller
 											 ->select('modules_roles_forms_functions.id','modules_roles_forms_functions.estado','form_functions.nombre')
 											 ->get();
 		return response()->json($funciones);
+	}
+	
+	public function modules_roles_forms_functions_change_state($id,$estado,$formulario)
+	{	$obj_permiso = ModulesRolesFormsFunctions::find($id);
+		if ($estado=="true")
+			$obj_permiso->estado='ACTIVO';
+		else
+			$obj_permiso->estado='INACTIVO';
+		$obj_permiso->save();
+		
+		$obj_form = ModulesRolesForm::find($formulario);
+		$count_funct = ModulesRolesFormsFunctions::where('module_role_form_id',$formulario)->where('estado','ACTIVO')->count();
+		if ($count_funct>0)
+			$obj_form->estado= 'ACTIVO';
+		else
+			$obj_form->estado= 'INACTIVO';
+		$obj_form->save();
+		
+		return response()->json(array("result"=>"success","object"=>$obj_permiso->id));
 	}
 }

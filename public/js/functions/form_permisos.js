@@ -39,8 +39,20 @@ function showFormFunctions(id)
 {	$.get('/ajax-form_functions/'+id, function (data){
 		$('#tbl_funciones tbody').empty();
 		$.each(data, function(key,value){
-			tr = '<tr><td class="text-align-center" width="10%"><input type="checkbox"/></td><td width="90%">'+value.nombre+'</td></tr>';
+			checked = (value.estado=='ACTIVO'?'checked':'');
+			tr = '<tr><td class="text-align-center" width="10%"><input type="checkbox" class="mylink" data-id="'+value.id+'" data-formulario="'+id+'" '+checked+'/></td><td width="90%">'+value.nombre+'</td></tr>';
 			$('#tbl_funciones tbody').append(tr);
 		});
 	});
 }
+$(function() {
+    $(document).on('change', '.mylink', function() {
+		id = $(this).attr('data-id');
+        estado = $(this).prop('checked');
+		formulario = $(this).attr('data-formulario');
+	   $.get('/ajax-cambiarEstadoPermiso/'+id+'/'+estado+'/'+formulario, function (data){
+		   showFormFunctions(formulario);
+		   cargarFormularios($('#modulos_asignados :selected').val());
+		});
+    });
+});

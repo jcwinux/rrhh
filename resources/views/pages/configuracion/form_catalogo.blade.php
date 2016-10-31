@@ -9,7 +9,7 @@
 						<legend class="section">Catálogos del sistema</legend>
 						<div class="form-group">
 							<div class="cols-md-6">
-								<label class="control-label col-sm-2" for="correo_electronico">Tipo</label>
+								<label class="control-label col-sm-2" for="tipo_catalogo">Catálogo</label>
 								<div class="col-sm-3">
 									<select class="form-control" id="tipo_catalogo" name="tipo_catalogo">
 										<option value=""></option>
@@ -20,14 +20,14 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<section class="widget" id="tabla_items_cat">
+									
+								</section>
+							</div>
+						</div>
 					</fieldset>
-				</section>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-                <section class="widget" id="tabla_items_cat">
-					
 				</section>
 			</div>
 		</div>

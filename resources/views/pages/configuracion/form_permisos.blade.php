@@ -27,14 +27,14 @@
 								</div>
 							</div>
 						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<section class="widget" id="tabla_formularios">
+									
+								</section>
+							</div>
+						</div>
 					</fieldset>
-				</section>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12">
-                <section class="widget" id="tabla_formularios">
-					
 				</section>
 			</div>
 		</div>
@@ -54,12 +54,9 @@
 					<div class="col-sm-12">
 						<div class="form-group">
 						<table id="tbl_funciones" class="table table-hover table-bordered">
-						<tbody>
-							<tr>
-								<td class="text-align-center" width="10%"><input type="checkbox"/></td>
-								<td width="90%">Guardar</td>
-							</tr>
-						</tbody>
+							<tbody>
+							
+							</tbody>
 						</table>
 						</div>
 					</div>
@@ -68,7 +65,6 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-primary" id="GuardarItemCatalogo" name="GuardarItemCatalogo">Agregar</button>
 			</div>
 
 		</div><!-- /.modal-content -->

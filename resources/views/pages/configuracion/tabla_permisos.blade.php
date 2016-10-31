@@ -25,18 +25,9 @@
 			@endif
 		</td>
 		<td class="text-align-center">
-			@if ($form->estado=="ACTIVO")
-				<button type="button" title="Inactivar" onclick="change_state({{$form->id}},'INACTIVAR')" class="btn btn-transparent btn-xs pull-right">
-					<i class="fa fa-minus"></i>
-				</button>
-				<button type="button" title="Modificar" onclick="showCatalog({{$form->id}})" class="btn btn-transparent btn-xs pull-right editar_cat" data-toggle="modal" data-target="#modalCatalogoItem" data-backdrop="static">
-				<i class="fa fa-pencil"></i>
+			<button type="button" title="Activar" onclick="showFormFunctions({{$form->id}});" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalFunciones" data-backdrop="static">
+				<i class="fa fa-plus"></i>
 			</button>
-			@else
-				<button type="button" title="Activar" onclick="showFormFunctions({{$form->id}});" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalFunciones" data-backdrop="static">
-					<i class="fa fa-plus"></i>
-				</button>
-			@endif
 		</td>
 	</tr>
 	@endforeach
