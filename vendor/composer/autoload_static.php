@@ -299,6 +299,7 @@ class ComposerStaticInit339f24fb0188ee367c77c2b982b54b9e
         'CreateStudiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_13_140150_create_studies_table.php',
         'CreateTownsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_06_102308_create_towns_table.php',
         'CreateTrainingsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_12_103307_create_trainings_table.php',
+        'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_08_092855_create_users_table.php',
         'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
         'DocumentTypesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/DocumentTypesTableSeeder.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',

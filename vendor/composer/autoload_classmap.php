@@ -28,6 +28,7 @@ return array(
     'CreateStudiesTable' => $baseDir . '/database/migrations/2016_10_13_140150_create_studies_table.php',
     'CreateTownsTable' => $baseDir . '/database/migrations/2016_10_06_102308_create_towns_table.php',
     'CreateTrainingsTable' => $baseDir . '/database/migrations/2016_10_12_103307_create_trainings_table.php',
+    'CreateUsersTable' => $baseDir . '/database/migrations/2016_11_08_092855_create_users_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'DocumentTypesTableSeeder' => $baseDir . '/database/seeds/DocumentTypesTableSeeder.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

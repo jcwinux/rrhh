@@ -104,5 +104,14 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::get('/ajax-rol_show/{rol_id}', 'RoleController@show');
 	/*Permisos*/
 	Route::get('/ajax-cambiarEstadoPermiso/{id}/{estado}/{formulario}', 'PermissionsController@modules_roles_forms_functions_change_state');
+	/*Usuarios*/
+	Route::get('/usuario', 'UserController@index');
+	Route::post('/guardarUsuario', 'UserController@store');
+	Route::get('/ajax-usuarios', 'UserController@view');
+	Route::post('/cambiarEstadoUsuario/', 'UserController@change_state');
+	Route::get('/ajax-usuario_show/{user_id}', 'UserController@show');
 }
 );
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
