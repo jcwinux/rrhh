@@ -38,11 +38,12 @@ function cargarFormularios(module_id)
 function showFormFunctions(id)
 {	$.get('/ajax-form_functions/'+id, function (data){
 		$('#tbl_funciones tbody').empty();
+		p = '';
 		$.each(data, function(key,value){
 			checked = (value.estado=='ACTIVO'?'checked':'');
-			tr = '<tr><td class="text-align-center" width="10%"><input type="checkbox" class="mylink" data-id="'+value.id+'" data-formulario="'+id+'" '+checked+'/></td><td width="90%">'+value.nombre+'</td></tr>';
-			$('#tbl_funciones tbody').append(tr);
+			p = p + '<p><div class="checkbox checkbox-success"><input type="checkbox" id="checkbox'+value.id+'" class="mylink" data-id="'+value.id+'" data-formulario="'+id+'" '+checked+'/><label class="checkbox" for="checkbox'+value.id+'">'+value.nombre+'</label></div></p>';
 		});
+		$('#div_funciones').html(p);
 	});
 }
 $(function() {

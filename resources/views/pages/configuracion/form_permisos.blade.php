@@ -52,12 +52,9 @@
 				<fieldset>
 				<div class="row">
 					<div class="col-sm-12">
+						<div id="div_funciones" class="form-group">
+						</div>
 						<div class="form-group">
-						<table id="tbl_funciones" class="table table-hover table-bordered">
-							<tbody>
-							
-							</tbody>
-						</table>
 						</div>
 					</div>
 				</div>

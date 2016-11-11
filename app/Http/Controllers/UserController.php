@@ -117,12 +117,13 @@ class UserController extends Controller
 		$oUser->save();
 		return response()->json(array("result"=>"success","msg"=>"Todo OK","user_id"=>$oUser->id));
 	}
-	public function validate_username()
-	{	/*if(!ctype_alpha($username))
-			return response()->ajax(array("result"=>"error","msg"=>"Usuario inválido: Solo se aceptan letras [a-z]."));
-		if(strlen($username)>6)
-			return response()->ajax(array("result"=>"error","msg"=>"Usuario inválido: El nombre de usuario debe contener mínimo 6 letras."));
-		*/
-		return response()->ajax(array("result"=>"success","msg"=>"Nombre de usuario disponible."));
+	public function validate_username($username)
+	{	if(!ctype_alpha($username))
+			return response()->json(array("result"=>"error","msg"=>"Usuario inválido: Solo se aceptan letras [a-z]."));
+		if(strlen($username)<6)
+			return response()->json(array("result"=>"error","msg"=>"Usuario inválido: El nombre de usuario debe contener mínimo 6 letras."));
+		if (User::where('username',$username)->count())
+			return response()->json(array("result"=>"error","msg"=>"Usuario inválido: El nombre de usuario no está disponible."));
+		return response()->json(array("result"=>"success","msg"=>"Nombre de usuario disponible."));
 	}
 }

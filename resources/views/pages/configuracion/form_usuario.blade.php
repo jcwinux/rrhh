@@ -43,6 +43,8 @@
 						<div class="form-group">
 							<label class="control-label" for="correo_usuario">Correo</label>
 							<input type="text" id="correo_usuario" name="correo_usuario" class="form-control">
+							<ul id="correo_check_info" class="parsley-errors-list filled">
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -51,9 +53,7 @@
 						<div class="form-group">
 							<label class="control-label" for="username_usuario">Usuario</label>
 							<input type="text" id="username_usuario" name="username_usuario" class="form-control">
-							<ul id="parsley-id-8" class="parsley-errors-list filled">
-								<!--<li class="parsley-type">El nombre de usuario no es válido, solo debe ingresar letras [a-z] sin tildes.</li>-->
-								<li class="parsley-type">El nombre de usuario ya existe.</li>
+							<ul id="username_check_info" class="parsley-errors-list filled">
 							</ul>
 						</div>
 					</div>
@@ -74,7 +74,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-primary" id="GuardarRol" name="GuardarUsuario">Guardar</button>
+				<button type="button" class="btn btn-primary" id="GuardarUsuario" name="GuardarUsuario">Guardar</button>
 			</div>
 
 		</div><!-- /.modal-content -->

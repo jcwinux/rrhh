@@ -5,6 +5,30 @@ $(document).ready(function(){
 			headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
 		});
 	});
+	$('#username_usuario').on('keyup', function(){
+		$.get('/ajax-validate_username/'+$('#username_usuario').val(), function (data){
+			$('#username_check_info').empty();
+			if (data.result=="error")
+			{	$('#GuardarUsuario').prop('disabled',true);
+				$('#username_check_info').append('<li class="parsley-type">'+data.msg+'</li>');
+			}
+			else
+			{	$('#GuardarUsuario').prop('disabled',false);
+			}
+		});
+	});
+	$('#correo_usuario').on('keyup', function(){
+		$.get('/ajax-validate_email/'+$('#correo_usuario').val(), function (data){
+			$('#correo_check_info').empty();
+			if (data.result=="error")
+			{	$('#GuardarUsuario').prop('disabled',true);
+				$('#correo_check_info').append('<li class="parsley-type">'+data.msg+'</li>');
+			}
+			else
+			{	$('#GuardarUsuario').prop('disabled',false);
+			}
+		});
+	});
 	$('#agregar_usuario').on('click', function(e){
 		$('#user_id').val('');
 		$('#nombre_usuario').val('');
@@ -12,8 +36,12 @@ $(document).ready(function(){
 		$('#apellido_usuario').val('');
 		$('#username_usuario').val('');
 		$("#sel_roles option:first");
+		$('#correo_check_info').empty();
+		$('#username_check_info').empty();
+		//$('#GuardarUsuario').prop('disabled',false);
+		//$('#username_usuario').prop('disabled',false);
 	});
-	$('#GuardarRol').on('click', function(e){
+	$('#GuardarUsuario').on('click', function(e){
 		/*Validación de campos*/
 		if (!$('#nombre_usuario').val())
 		{	$('#nombre_usuario').addClass('parsley-error');
@@ -86,14 +114,10 @@ function showUser(id)
 		$('#correo_usuario').val(json.correo);
 		$('#sel_roles').val(json.role_id);
 		$('#username_usuario').val(json.username);
+		$('#username_usuario').prop('disabled',true);
 		$('#user_id').val(id);
 	});
 }
-$('#username_usuario').on('keyup', function(e){
-	$.get('/ajax-validate_username/', function (data){
-		
-	});
-});
 function change_state(user_id,action)
 {	data_post = 'user_id='+user_id+'&accion='+action;
 	$.ajax({
