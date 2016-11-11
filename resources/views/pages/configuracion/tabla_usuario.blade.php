@@ -4,7 +4,7 @@
 <fieldset>
 	<legend class="section">
 		Usuarios
-		<button id="agregar_usuario" name="agregar_usuario" onclick="clear()" type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalUsuario" data-backdrop="static">
+		<button id="agregar_usuario" name="agregar_usuario" onclick="clear();" type="button" class="btn btn-transparent btn-xs pull-right" data-toggle="modal" data-target="#modalUsuario" data-backdrop="static">
 			<i class="fa fa-plus"></i>
 			Añadir
 		</button>

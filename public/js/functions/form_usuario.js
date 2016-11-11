@@ -5,7 +5,14 @@ $(document).ready(function(){
 			headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
 		});
 	});
-	
+	$('#agregar_usuario').on('click', function(e){
+		$('#user_id').val('');
+		$('#nombre_usuario').val('');
+		$('#correo_usuario').val('');
+		$('#apellido_usuario').val('');
+		$('#username_usuario').val('');
+		$("#sel_roles option:first");
+	});
 	$('#GuardarRol').on('click', function(e){
 		/*Validación de campos*/
 		if (!$('#nombre_usuario').val())
@@ -58,7 +65,6 @@ $(document).ready(function(){
 			success: function(data){
 				$('#user_id').val(data.user_id);
 				Messenger().post("El registro ha sido grabado exitosamente!");
-				clear();
 				cargarUsuarios();
 			},
 			error: function(data){
@@ -67,14 +73,6 @@ $(document).ready(function(){
 		});
 	});
 });
-function clear()
-{	$('#user_id').val('');
-	$('#nombre_usuario').val('');
-	$('#correo_usuario').val('');
-	$('#apellido_usuario').val('');
-	$('#username_usuario').val('');
-	$("#sel_roles option:first");
-}
 function cargarUsuarios()
 {	$.get('/ajax-usuarios/', function (data){
 		$('#tabla_usuarios').html(data.html);
@@ -91,6 +89,11 @@ function showUser(id)
 		$('#user_id').val(id);
 	});
 }
+$('#username_usuario').on('keyup', function(e){
+	$.get('/ajax-validate_username/', function (data){
+		
+	});
+});
 function change_state(user_id,action)
 {	data_post = 'user_id='+user_id+'&accion='+action;
 	$.ajax({

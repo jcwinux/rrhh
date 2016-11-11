@@ -110,6 +110,7 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::get('/ajax-usuarios', 'UserController@view');
 	Route::post('/cambiarEstadoUsuario/', 'UserController@change_state');
 	Route::get('/ajax-usuario_show/{user_id}', 'UserController@show');
+	Route::get('/ajax-validate_username/', 'UserController@validate_username');
 }
 );
 Auth::routes();

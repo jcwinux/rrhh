@@ -66,7 +66,7 @@ class UserController extends Controller
      */
     public function show($id)
     {	$oUser = User::find($id);
-		response()->json($oUser);
+		return response()->json($oUser);
     }
 
     /**
@@ -116,5 +116,13 @@ class UserController extends Controller
 			$oUser->estado="INACTIVO";
 		$oUser->save();
 		return response()->json(array("result"=>"success","msg"=>"Todo OK","user_id"=>$oUser->id));
+	}
+	public function validate_username()
+	{	/*if(!ctype_alpha($username))
+			return response()->ajax(array("result"=>"error","msg"=>"Usuario inválido: Solo se aceptan letras [a-z]."));
+		if(strlen($username)>6)
+			return response()->ajax(array("result"=>"error","msg"=>"Usuario inválido: El nombre de usuario debe contener mínimo 6 letras."));
+		*/
+		return response()->ajax(array("result"=>"success","msg"=>"Nombre de usuario disponible."));
 	}
 }
