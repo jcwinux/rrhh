@@ -32,7 +32,7 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	});
 	Route::get('/configuracion', 'SetupController@index');
 	Route::get('/catalogo', 'CatalogController@index');
-	Route::get('/rol', 'RoleController@index');
+	Route::get('/roles', 'RoleController@index');
 	Route::get('/permisos', 'PermissionsController@index');
 	
 	Route::get('/personal', function () {
@@ -105,7 +105,7 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	/*Permisos*/
 	Route::get('/ajax-cambiarEstadoPermiso/{id}/{estado}/{formulario}', 'PermissionsController@modules_roles_forms_functions_change_state');
 	/*Usuarios*/
-	Route::get('/usuario', 'UserController@index');
+	Route::get('/usuarios', 'UserController@index');
 	Route::post('/guardarUsuario', 'UserController@store');
 	Route::get('/ajax-usuarios', 'UserController@view');
 	Route::post('/cambiarEstadoUsuario/', 'UserController@change_state');

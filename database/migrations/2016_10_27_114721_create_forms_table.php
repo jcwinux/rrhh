@@ -18,6 +18,8 @@ class CreateFormsTable extends Migration
 			$table->integer('module_id');
 			$table->string('nombre',100);
 			$table->string('descripcion',250);
+			$table->string('icono',100)->nullable();
+			$table->string('ruta',100)->nullable();
 			$table->string('estado',25)->default('INACTIVO');
             $table->timestamps();
         });
