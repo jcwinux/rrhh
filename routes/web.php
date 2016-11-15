@@ -79,9 +79,9 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	});
 	
 	Route::get('/ajax-forms_por_modulo/{module_role_id}',function ($module_role_id) {
-		//$forms = App\Form::where('module_id','=',$module_id)->get();
 		$forms = DB::table('modules_roles_forms')->join('forms','modules_roles_forms.form_id','=','forms.id')
 												 ->where('modules_roles_forms.module_role_id',$module_role_id)
+												 ->where('forms.estado','ACTIVO')
 												 ->select('forms.nombre','forms.descripcion','modules_roles_forms.id','modules_roles_forms.estado')
 												 ->get();
 		$html = view('pages.configuracion.tabla_permisos', compact('view','forms'))->render();

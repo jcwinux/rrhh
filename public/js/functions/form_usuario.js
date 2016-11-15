@@ -38,8 +38,8 @@ $(document).ready(function(){
 		$("#sel_roles option:first");
 		$('#correo_check_info').empty();
 		$('#username_check_info').empty();
-		//$('#GuardarUsuario').prop('disabled',false);
-		//$('#username_usuario').prop('disabled',false);
+		$('#GuardarUsuario').prop('disabled',false);
+		$('#username_usuario').prop('disabled',false);
 	});
 	$('#GuardarUsuario').on('click', function(e){
 		/*Validación de campos*/
