@@ -17,6 +17,8 @@ class CreateModulesTable extends Migration
             $table->increments('id');
 			$table->string('nombre',50);
 			$table->string('descripcion',100);
+			$table->string('ruta',100);
+			$table->string('img',100);
 			$table->string('estado')->default('ACTIVO');
             $table->timestamps();
         });

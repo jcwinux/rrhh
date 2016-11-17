@@ -54,5 +54,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 		'sessionTimeOut' => \App\Http\Middleware\SessionTimeOutMiddleware::class,
 		'index' => \App\Http\Middleware\IndexMiddleware::class,
+		'route_permission' => \App\Http\Middleware\RoutePermissions::class,
     ];
 }

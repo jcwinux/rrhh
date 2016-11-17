@@ -22,68 +22,22 @@
 		 <div class="widget col-md-4 col-md-offset-4">
 			<div id="carousel-example-generic" class="carousel slide">
 				<ol class="carousel-indicators outer">
-					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="3"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="4"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="5"></li>
+				@foreach ($modulos as $key=>$modulo)
+					<li data-target="#carousel-example-generic" data-slide-to="{{$key}}" class="{{ ($key==0?' active':'') }}"></li>
+				@endforeach
 				</ol>
 				<div class="carousel-inner text-align-center">
-					<div class="item active">
-						<h4 class="no-margin"><em>Reclutamiento y selección</em></h4>
+				@foreach ($modulos as $key=>$modulo)
+					<div class="item {{ ($key==0?' active':'') }}">
+						<h4 class="no-margin"><em>{{$modulo->nombre}}</em></h4>
 						<div class="thumbnail" style="margin: 30px;">
-							<a href="reclutamiento">
+							<a href="{{$modulo->ruta}}">
 								<img src="img/5.jpg" alt="...">
 							</a>
 						</div>
-						<p><small>Built-in Twitter Bootstrap 3 support</small></p>
+						<p><small>{{$modulo->descripcion}}</small></p>
 					</div>
-					<div class="item">
-						<h4 class="no-margin"><em>Personal</em></h4>
-						<div class="thumbnail" style="margin: 30px;">
-							<a href="personal">
-								<img src="img/5.jpg" alt="...">
-							</a>
-						</div>
-						<p><small>Simple & intuitive code</small></p>
-					</div>
-					<div class="item">
-						<h4 class="no-margin"><em>Horarios</em></h4>
-						<div class="thumbnail" style="margin: 30px;">
-							<a href="horarios">
-								<img src="img/5.jpg" alt="...">
-							</a>
-						</div>
-						<p><small>Light Blue is really easy to customize</small></p>
-					</div>
-					<div class="item">
-						<h4 class="no-margin"><em>Beneficios</em></h4>
-						<div class="thumbnail" style="margin: 30px;">
-							<a href="beneficios">
-								<img src="img/5.jpg" alt="...">
-							</a>
-						</div>
-						<p><small>Light Blue is really easy to customize</small></p>
-					</div>
-					<div class="item">
-						<h4 class="no-margin"><em>Nómina</em></h4>
-						<div class="thumbnail" style="margin: 30px;">
-							<a href="nomina">
-								<img src="img/5.jpg" alt="...">
-							</a>
-						</div>
-						<p><small>Light Blue is really easy to customize</small></p>
-					</div>
-					<div class="item">
-						<h4 class="no-margin"><em>Evaluación</em></h4>
-						<div class="thumbnail" style="margin: 30px;">
-							<a href="evaluacion">
-								<img src="img/5.jpg" alt="...">
-							</a>
-						</div>
-						<p><small>Light Blue is really easy to customize</small></p>
-					</div>
+				@endforeach
 				</div>
 				<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
 					<i class="fa fa-angle-left"></i>

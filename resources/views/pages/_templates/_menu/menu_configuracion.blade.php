@@ -5,7 +5,7 @@
 	<ul id="side-nav" class="side-nav">
 	@foreach (Auth::user()->showMenu(1) as $row)
 		<li class="active">
-			<a href="{{$row->ruta}}" title="{{$row->descripcion}}"><i class="{{$row->icono}}"></i> <span class="name">{{$row->nombre}}</span></a>
+			<a href="#" onclick="location.href='{{url($row->ruta)}}'" title="{{$row->descripcion}}"><i class="{{$row->icono}}"></i> <span class="name">{{$row->nombre}}</span></a>
 		</li>
 	@endforeach
 	</ul>

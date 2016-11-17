@@ -27,13 +27,23 @@ Route::get('/',function () {
 
 /*Seguridad: Toda ruta debe tener una sesión activa*/
 Route::group(['middleware'=>['auth','sessionTimeOut']], function()
-{	Route::get('/modulos', function () {
-		return view('modulos');
+{	/*Sin permiso para acceder a una ruta específica*/
+	Route::get('/sinacceso',function () {
+		return view('nopermiso');
+	});
+
+	Route::get('/modulos', function () {
+		$modulos = DB::table('modules_roles')->join('modules','modules_roles.module_id','modules.id')
+											 ->where('modules_roles.role_id',Auth::user()->role_id)
+											 ->where('modules_roles.estado','ACTIVO')
+											 ->select('modules.id as id','modules.nombre as nombre','modules.descripcion as descripcion','modules.ruta as ruta')
+											 ->get();
+		return view('modulos',compact('modulos'));
 	});
 	Route::get('/configuracion', 'SetupController@index');
-	Route::get('/catalogo', 'CatalogController@index');
-	Route::get('/roles', 'RoleController@index');
-	Route::get('/permisos', 'PermissionsController@index');
+	Route::get('/catalogo', 'CatalogController@index')->middleware('route_permission:4');
+	Route::get('/roles', 'RoleController@index')->middleware('route_permission:2');
+	Route::get('/permisos', 'PermissionsController@index')->middleware('route_permission:3');
 	
 	Route::get('/personal', function () {
 		return view('pages.personal.index');
@@ -105,13 +115,12 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	/*Permisos*/
 	Route::get('/ajax-cambiarEstadoPermiso/{id}/{estado}/{formulario}', 'PermissionsController@modules_roles_forms_functions_change_state');
 	/*Usuarios*/
-	Route::get('/usuarios', 'UserController@index');
+	Route::get('/usuarios', 'UserController@index')->middleware('route_permission:1');
 	Route::post('/guardarUsuario', 'UserController@store');
 	Route::get('/ajax-usuarios', 'UserController@view');
 	Route::post('/cambiarEstadoUsuario/', 'UserController@change_state');
 	Route::get('/ajax-usuario_show/{user_id}', 'UserController@show');
 	Route::get('/ajax-validate_username/{username}', 'UserController@validate_username');
-	
 	/*Validaciones*/
 	Route::get('/ajax-validate_email/{username}', 'GeneralController@validate_email');
 }
