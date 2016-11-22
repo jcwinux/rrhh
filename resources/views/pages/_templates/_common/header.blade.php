@@ -88,7 +88,7 @@
 					</li>
 					<li role="presentation">
 						<a href="cambiarClave" class="link">
-							<i class="fa fa-user"></i>
+							<i class="glyphicon glyphicon-refresh"></i>
 							Cambiar contraseña
 						</a>
 					</li>
