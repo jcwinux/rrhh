@@ -149,7 +149,7 @@ class UserController extends Controller
 		}
 		else{
 			Session::flash('result', 'error');
-			Session::flash('message', 'La contraseña actual ingresada no coincide.');
+			Session::flash('message', 'La contraseña actual ingresada no es la correcta.');
 		}
 		return Redirect::back();
 	}
