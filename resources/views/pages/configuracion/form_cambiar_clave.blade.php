@@ -6,7 +6,7 @@
 		 {{ csrf_field() }}
 			<section class="widget">
 				<fieldset>
-					<legend class="section">Cambiar contraseña</legend>
+					<legend class="section">Cambiar contraseñas</legend>
 					<div class="form-group">
 						<div class="row">
 							<div class="cols-md-6">
