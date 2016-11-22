@@ -84,12 +84,12 @@
 				<ul id="account-menu" class="dropdown-menu account" role="menu">
 					<li role="presentation" class="account-picture">
 						<img src="img/2.png" alt="">
-						{{ Auth::user()->nombre }} {{ Auth::user()->apellido }}
+						{{ Auth::user()->nombre }}
 					</li>
 					<li role="presentation">
-						<a href="form_account.html" class="link">
+						<a href="cambiarClave" class="link">
 							<i class="fa fa-user"></i>
-							Perfil
+							Cambiar contraseña
 						</a>
 					</li>
 				</ul>

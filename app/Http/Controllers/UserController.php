@@ -2,9 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
+use Session;
 
 use App\Http\Requests;
+
 
 use App\Role;
 use App\User;
@@ -125,5 +131,26 @@ class UserController extends Controller
 		if (User::where('username',$username)->count())
 			return response()->json(array("result"=>"error","msg"=>"Usuario inválido: El nombre de usuario no está disponible."));
 		return response()->json(array("result"=>"success","msg"=>"Nombre de usuario disponible."));
+	}
+	public function change_pass(Request $request)
+	{	if (Hash::check($request->clave_actual, Auth::user()->password)) {
+			if ($request->nueva_clave == $request->repita_clave){
+				$user = User::find(Auth::user()->id);
+				$user->password = bcrypt($request->nueva_clave);
+				$user->save();
+				Session::flash('result', 'success');
+				Session::flash('message', 'La contraseña ha sido cambiada exitosamente.');
+			}
+			else{
+				Session::flash('result', 'error');
+				Session::flash('message', 'La confirmación de las contraseña no coinciden.');
+			}
+			
+		}
+		else{
+			Session::flash('result', 'error');
+			Session::flash('message', 'La contraseña actual ingresada no coincide.');
+		}
+		return Redirect::back();
 	}
 }

@@ -121,8 +121,13 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::post('/cambiarEstadoUsuario/', 'UserController@change_state');
 	Route::get('/ajax-usuario_show/{user_id}', 'UserController@show');
 	Route::get('/ajax-validate_username/{username}', 'UserController@validate_username');
+	Route::get('/cambiarClave', function (){
+		return view('pages.configuracion.form_cambiar_clave');
+	});
+	Route::post('/cambiarClave/cambiar', 'UserController@change_pass');
 	/*Validaciones*/
 	Route::get('/ajax-validate_email/{username}', 'GeneralController@validate_email');
+	
 }
 );
 Auth::routes();
