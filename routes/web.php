@@ -125,6 +125,12 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 		return view('pages.configuracion.form_cambiar_clave');
 	});
 	Route::post('/cambiarClave/cambiar', 'UserController@change_pass');
+	/*Departamentos*/
+	Route::get('/departamentos', 'DepartmentController@index');//->middleware('route_permission:1');
+	Route::post('/guardarDepartamento', 'DepartmentController@store');
+	Route::get('/ajax-departamento_show/{departamento_id}', 'DepartmentController@show');
+	Route::get('/ajax-departamentos', 'DepartmentController@view');
+	Route::post('/cambiarEstadoDepartamento/', 'DepartmentController@change_state');
 	/*Validaciones*/
 	Route::get('/ajax-validate_email/{username}', 'GeneralController@validate_email');
 	
