@@ -289,6 +289,7 @@ class ComposerStaticInit339f24fb0188ee367c77c2b982b54b9e
         'CreateFormFunctionsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_27_115342_create_form_functions_table.php',
         'CreateFormsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_27_114721_create_forms_table.php',
         'CreateLanguagesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_14_095756_create_languages_table.php',
+        'CreateLocationsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_23_110355_create_locations_table.php',
         'CreateModulesRolesFormsFunctionsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_27_132923_create_modules_roles_forms_functions_table.php',
         'CreateModulesRolesFormsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_27_132906_create_modules_roles_forms_table.php',
         'CreateModulesRolesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_25_144634_create_modules_roles_table.php',
