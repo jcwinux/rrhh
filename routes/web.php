@@ -145,6 +145,10 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::get('/ajax-centro_costo_show/{centro_costo_id}', 'CostCenterController@show');
 	Route::get('/ajax-centros_costos', 'CostCenterController@view');
 	Route::post('/cambiarEstadoCentroCosto/', 'CostCenterController@change_state');
+	/*Cargos*/
+	Route::get('/cargos', 'JobController@index');//->middleware('route_permission:9');
+	Route::get('/ajax-cargos/{department_id}', 'JobController@view');
+	Route::post('/guardarCargo', 'JobController@store');
 }
 );
 Auth::routes();
