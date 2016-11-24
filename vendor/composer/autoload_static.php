@@ -283,6 +283,7 @@ class ComposerStaticInit339f24fb0188ee367c77c2b982b54b9e
         'CreateCatalogTypesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_10_101811_create_catalog_types_table.php',
         'CreateCatalogsTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_10_102027_create_catalogs_table.php',
         'CreateCitiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_06_090134_create_cities_table.php',
+        'CreateCostCentersTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_23_153407_create_cost_centers_table.php',
         'CreateDepartmentsTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_22_121559_create_departments_table.php',
         'CreateDisabilitiesTable' => __DIR__ . '/../..' . '/database/migrations/2016_10_19_141117_create_disabilities_table.php',
         'CreateDocumentTypesTable' => __DIR__ . '/../..' . '/database/migrations/2016_09_23_222119_create_document_types_table.php',

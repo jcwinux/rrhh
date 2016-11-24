@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-
-use App\Department;
-
-class DepartmentController extends Controller
+use App\CostCenter;
+class CostCenterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,9 @@ class DepartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {	$departamentos = Department::all();
+    {	$centros_costos = CostCenter::all();
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.configuracion.form_departamento',compact('str_random','departamentos'));
+		return view('pages.personal.form_centro_costo',compact('centros_costos','str_random'));
     }
 
     /**
@@ -38,18 +36,19 @@ class DepartmentController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {	$json_department = json_decode($request->data,true);
-		if ($json_department["departamento_id"]=="")
-		{	$oDepartment = new Department();
+    {	$json_cost_center = json_decode($request->data,true);
+		if ($json_cost_center["centro_costo_id"]=="")
+		{	$oCostCenter = new CostCenter();
 		}
 		else
-			$oDepartment = Department::find($json_department["departamento_id"]);
+			$oCostCenter = CostCenter::find($json_cost_center["centro_costo_id"]);
 		
-		$oDepartment->nombre		= $json_department["nombre_departamento"];
-		$oDepartment->descripcion	= $json_department["descripcion_departamento"];
-		$oDepartment->save();
+		$oCostCenter->nombre		= $json_cost_center["nombre_centro_costo"];
+		$oCostCenter->descripcion	= $json_cost_center["descripcion_centro_costo"];
+		$oCostCenter->cuenta_contable	= $json_cost_center["cuenta_contable_centro_costo"];
+		$oCostCenter->save();
 		
-		return response()->json(array("result"=>"success","msg"=>"Todo OK","departamento_id"=>$oDepartment->id));
+		return response()->json(array("result"=>"success","msg"=>"Todo OK","centro_costo_id"=>$oCostCenter->id));
     }
 
     /**
@@ -58,9 +57,9 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {	$oDepartment = Department::find($id);
-		return response()->json($oDepartment);
+	 public function show($id)
+    {	$oCostCenter = CostCenter::find($id);
+		return response()->json($oCostCenter);
     }
 
     /**
@@ -96,19 +95,18 @@ class DepartmentController extends Controller
     {
         //
     }
-	
 	public function view()
-	{	$departamentos = Department::all();
-		$html = view('pages.configuracion.tabla_departamento', compact('view','departamentos'))->render();
+    {	$centros_costos = CostCenter::all();
+		$html = view('pages.personal.tabla_centro_costo', compact('view','centros_costos'))->render();
         return response()->json(compact('html'));
-	}
+    }
 	public function change_state(Request $request)
-	{	$oDepartment = Department::find($request->departamento_id);
+	{	$oCostCenter = CostCenter::find($request->centro_costo_id);
 		if($request->accion=="ACTIVAR")
-			$oDepartment->estado="ACTIVO";
+			$oCostCenter->estado="ACTIVO";
 		if($request->accion=="INACTIVAR")
-			$oDepartment->estado="INACTIVO";
-		$oDepartment->save();
-		return response()->json(array("result"=>"success","msg"=>"Todo OK","departamento_id"=>$oDepartment->id));
+			$oCostCenter->estado="INACTIVO";
+		$oCostCenter->save();
+		return response()->json(array("result"=>"success","msg"=>"Todo OK","centro_costo_id"=>$oCostCenter->id));
 	}
 }

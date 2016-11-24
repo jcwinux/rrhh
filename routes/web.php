@@ -126,20 +126,25 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	});
 	Route::post('/cambiarClave/cambiar', 'UserController@change_pass');
 	/*Departamentos*/
-	Route::get('/departamentos', 'DepartmentController@index');//->middleware('route_permission:1');
+	Route::get('/departamentos', 'DepartmentController@index')->middleware('route_permission:7');
 	Route::post('/guardarDepartamento', 'DepartmentController@store');
 	Route::get('/ajax-departamento_show/{departamento_id}', 'DepartmentController@show');
 	Route::get('/ajax-departamentos', 'DepartmentController@view');
 	Route::post('/cambiarEstadoDepartamento/', 'DepartmentController@change_state');
 	/*Departamentos*/
-	Route::get('/ubicaciones', 'LocationController@index');//->middleware('route_permission:1');
+	Route::get('/ubicaciones', 'LocationController@index')->middleware('route_permission:8');
 	Route::post('/guardarUbicacion', 'LocationController@store');
 	Route::get('/ajax-ubicacion_show/{ubicacion_id}', 'LocationController@show');
 	Route::get('/ajax-ubicaciones', 'LocationController@view');
 	Route::post('/cambiarEstadoUbicacion/', 'LocationController@change_state');
 	/*Validaciones*/
 	Route::get('/ajax-validate_email/{username}', 'GeneralController@validate_email');
-	
+	/*Centros de costos*/
+	Route::get('/centros_costos', 'CostCenterController@index')->middleware('route_permission:9');
+	Route::post('/guardarCentroCosto', 'CostCenterController@store');
+	Route::get('/ajax-centro_costo_show/{centro_costo_id}', 'CostCenterController@show');
+	Route::get('/ajax-centros_costos', 'CostCenterController@view');
+	Route::post('/cambiarEstadoCentroCosto/', 'CostCenterController@change_state');
 }
 );
 Auth::routes();

@@ -8,6 +8,7 @@
 <body>
 	@include('pages._templates._menu.menu_personal')
 	@include('pages._templates._common.header')
+	@yield('content')
 	@include('pages._templates._common.script')
 	@include('pages._templates._common.script_boton_conf')
 </body>
