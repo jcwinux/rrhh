@@ -58,7 +58,8 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {	
+    {	$oJob = Job::find($id);
+		return response()->json($oJob);
     }
 
     /**
@@ -100,4 +101,14 @@ class JobController extends Controller
 		$html = view('pages.personal.tabla_cargo', compact('view','cargos'))->render();
         return response()->json(compact('html'));
 	}
+	
+	public function change_state(Request $request)
+    {	$oJob = Job::find($request->cargo_id);
+		if($request->accion=="ACTIVAR")
+			$oJob->estado="ACTIVO";
+		if($request->accion=="INACTIVAR")
+			$oJob->estado="INACTIVO";
+		$oJob->save();
+		return response()->json(array("result"=>"success","msg"=>"Todo OK","cargo_id"=>$oJob->id));
+    }
 }

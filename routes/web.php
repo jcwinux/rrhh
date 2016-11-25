@@ -149,6 +149,8 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::get('/cargos', 'JobController@index');//->middleware('route_permission:9');
 	Route::get('/ajax-cargos/{department_id}', 'JobController@view');
 	Route::post('/guardarCargo', 'JobController@store');
+	Route::get('/ajax-cargo_show/{cargo_id}', 'JobController@show');
+	Route::post('/cambiarEstadoCargo/', 'JobController@change_state');
 }
 );
 Auth::routes();

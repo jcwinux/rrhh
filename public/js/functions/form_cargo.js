@@ -41,10 +41,6 @@ $(document).ready(function(){
 			success: function(data){
 				var json_x = data;
 				console.log(json_x);
-				/*Limpia text*/
-				$('#cargo_id').val('');
-				$('#nombre').val('');
-				$('#descripcion').val('');
 				/*Recarga la tabla de catálogo*/
 				cargarCargos(departamento_id);
 				Messenger().post("El registro ha sido grabado exitosamente!");
@@ -67,25 +63,26 @@ function cargarCargos(departamento)
 		$('#departamento_nuevo').val(departamento);
 	});
 }
-function showCatalog(id)
-{	$.get('/ajax-catalog_show/'+id, function (data){
-		var json = $.parseJSON(data);
-		$("#tipo_catalogo_nuevo").val(json.catalog_type_id);
-		$('#item_cat_descripcion').val(json.descripcion);
-		$('#catalog_id').val(json.id);
+function showCargo(id)
+{	$.get('/ajax-cargo_show/'+id, function (data){
+		var json = data;
+		$("#departamento_nuevo").val(json.departamento_id);
+		$('#nombre').val(json.nombre);
+		$('#descripcion').val(json.descripcion);
+		$('#cargo_id').val(json.id);
 	});
 }
-function change_state(catalog_id,action)
-{	data_post = 'catalog_id='+catalog_id+'&accion='+action;
+function change_state(cargo_id,action)
+{	data_post = 'cargo_id='+cargo_id+'&accion='+action;
 		$.ajax({
 			type: "POST",
-			url: "cambiarEstado",
+			url: "cambiarEstadoCargo",
 			data: data_post,
 			success: function(data){
-				var json_x = $.parseJSON(data);
+				var json_x = data;
 				console.log(json_x);
 				/*Recarga la tabla de catálogo*/
-				cargarCatalogo($('#tipo_catalogo_nuevo option:selected').val());
+				cargarCargos($('#departamento option:selected').val());
 				Messenger().post("El registro ha sido modificado exitosamente!");
 			},
 			error: function(data){
