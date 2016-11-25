@@ -23,7 +23,9 @@ class FormsTableSeeder extends Seeder
 			
 			array('module_id'=>1,'nombre'=>'Departamento','descripcion'=>'Permite consulta, ingreso, modificación y desactivación de los departamentos de la empresa.','icono'=>'/departamentos','ruta'=>'/usuarios','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
 			
-			array('module_id'=>3,'nombre'=>'Centros de costo','descripcion'=>'Permite consulta, ingreso, modificación y desactivación de las centros de costo.','icono'=>'glyphicon glyphicon-barcode','ruta'=>'/centros_costos','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())
+			array('module_id'=>3,'nombre'=>'Centros de costo','descripcion'=>'Permite consulta, ingreso, modificación y desactivación de las centros de costo.','icono'=>'glyphicon glyphicon-barcode','ruta'=>'/centros_costos','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+			
+			array('module_id'=>3,'nombre'=>'Cargos','descripcion'=>'Permite consulta, ingreso, modificación y desactivación de los cargos.','icono'=>'fa fa-suitcase','ruta'=>'/cargos','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())
 		);
 		DB::table('forms')->insert($data);
     }
