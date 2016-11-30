@@ -268,7 +268,7 @@ class PeopleController extends Controller
 		$discapacidades	= Catalog::where(['catalog_type_id'=>8,'estado'=>'ACTIVO'])->get();
 		$grado_discapacidad	= Catalog::where(['catalog_type_id'=>9,'estado'=>'ACTIVO'])->get();
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.reclutamiento.form_persona_crear',compact('tipo_doc','provinc','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','discapacidades','grado_discapacidad','str_random'));
+		return view('pages.personal.form_persona_crear',compact('tipo_doc','provinc','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','discapacidades','grado_discapacidad','str_random'));
 	}
 	public function persona_edit_view(Request $request)
 	{	$id = $request->person_id;
@@ -293,11 +293,11 @@ class PeopleController extends Controller
 		$person_disability = DB::table('disabilities')->join('catalogs as cat_discapacidad','disabilities.catalog_id_discapacidad','=','cat_discapacidad.id')->join('catalogs as cat_grado_discapacidad','disabilities.catalog_id_grado_discapacidad','=','cat_grado_discapacidad.id')->where('person_id',$id)->select('disabilities.*','cat_discapacidad.descripcion as desc_discapacidad','cat_grado_discapacidad.descripcion as desc_grado_discapacidad')->get();
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
 		$person_previous_job = DB::table('previous_jobs')->where('person_id',$id)->get();
-		return view('pages.reclutamiento.form_persona_editar',compact('tipo_doc','provinc','city','town','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','discapacidades','grado_discapacidad','person','person_estudio','person_training','person_language','person_previous_job','person_disability','str_random'));
+		return view('pages.personal.form_persona_editar',compact('tipo_doc','provinc','city','town','est_civil','niv_estudio','tipo_curso','mod_curs','idiomas','dominios','habilidades','discapacidades','grado_discapacidad','person','person_estudio','person_training','person_language','person_previous_job','person_disability','str_random'));
 	}
 	public function personas_view()
 	{	$personas	= DB::table('people')->join('document_types','people.document_type_id','=','document_types.id')->select('people.*','document_types.descripcion')->get();
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.reclutamiento.form_persona_buscar',compact('personas','str_random'));
+		return view('pages.personal.form_persona_buscar',compact('personas','str_random'));
 	}
 }
