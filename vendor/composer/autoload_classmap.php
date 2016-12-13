@@ -12,6 +12,7 @@ return array(
     'CreateCatalogTypesTable' => $baseDir . '/database/migrations/2016_10_10_101811_create_catalog_types_table.php',
     'CreateCatalogsTable' => $baseDir . '/database/migrations/2016_10_10_102027_create_catalogs_table.php',
     'CreateCitiesTable' => $baseDir . '/database/migrations/2016_10_06_090134_create_cities_table.php',
+    'CreateContractTypesTable' => $baseDir . '/database/migrations/2016_12_12_105021_create_contract_types_table.php',
     'CreateCostCentersTable' => $baseDir . '/database/migrations/2016_11_23_153407_create_cost_centers_table.php',
     'CreateDepartmentsTable' => $baseDir . '/database/migrations/2016_11_22_121559_create_departments_table.php',
     'CreateDisabilitiesTable' => $baseDir . '/database/migrations/2016_10_19_141117_create_disabilities_table.php',

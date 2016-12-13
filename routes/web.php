@@ -151,6 +151,12 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::post('/guardarCargo', 'JobController@store');
 	Route::get('/ajax-cargo_show/{cargo_id}', 'JobController@show');
 	Route::post('/cambiarEstadoCargo/', 'JobController@change_state');
+	/*Tipos de contrato*/
+	Route::get('/tipos_contrato', 'ContractTypeController@index');//->middleware('route_permission:10');
+	Route::post('/guardarTipoContrato', 'ContractTypeController@store');
+	Route::get('/ajax-tipo_contrato_show/{ubicacion_id}', 'ContractTypeController@show');
+	Route::get('/ajax-tipos_contrato', 'ContractTypeController@view');
+	Route::post('/cambiarEstadoTipoContrato/', 'ContractTypeController@change_state');
 }
 );
 Auth::routes();

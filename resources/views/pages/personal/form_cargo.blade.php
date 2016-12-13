@@ -63,12 +63,26 @@
 							<input type="hidden" id="cargo_id" name="cargo_id" value="" />
 						</div>
 					</div>
-				</div>
+				</div>				
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="form-group">
 							<label class="control-label" for="descripcion">Descripción</label>
 							<textarea id="descripcion" name="descripcion" class="form-control"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="control-label" for="departamento">Código sectorial</label>
+							<input type="text" class="form-control" />
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="form-group">
+							<label class="control-label" for="departamento">Sueldo referencial</label>
+							<input type="text" class="form-control" />
 						</div>
 					</div>
 				</div>

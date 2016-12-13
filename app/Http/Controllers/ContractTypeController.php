@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\ContractType;
 
-use App\Job;
-use App\Department;
-
-class JobController extends Controller
+class ContractTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +15,9 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {	$departamentos 	= Department::where('estado','ACTIVO')->get();
-		$supervisores 	= Job::where('estado','ACTIVO')->get();
+    {	$tipos_contrato = ContractType::all();
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		return view('pages.personal.form_cargo',compact('str_random','departamentos','supervisores'));
+        return view('pages.personal.form_tipo_contrato',compact('str_random','tipos_contrato'));
     }
 
     /**
@@ -40,16 +37,16 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {	if ($request->cargo_id=="")
-			$oJob = new Job();
+    {	$json_contract_type = json_decode($request->data,true);
+		if ($json_contract_type["tipo_contrato_id"]=="")
+			$oTipoContrato = new ContractType();
 		else
-			$oJob = Job::find($request->cargo_id);
+			$oTipoContrato = ContractType::find($json_contract_type["tipo_contrato_id"]);
 		
-		$oJob->departamento_id=$request->departamento_id;
-		$oJob->nombre=$request->nombre;
-		$oJob->descripcion=$request->descripcion;
-		$oJob->save();
-		return response()->json(array("result"=>"success","msg"=>"Todo OK","cargo_id"=>$oJob->id));
+		$oTipoContrato->nombre = $json_contract_type["nombre_tipo_contrato"];
+		$oTipoContrato->descripcion = $json_contract_type["descripcion_tipo_contrato"];
+		$oTipoContrato->save();
+		return response()->json(array("result"=>"success","msg"=>"Todo OK","tipo_contrato_id"=>$oTipoContrato->id));
     }
 
     /**
@@ -59,8 +56,8 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {	$oJob = Job::find($id);
-		return response()->json($oJob);
+    {	$oTipoContrato = ContractType::find($id);
+		return response()->json($oTipoContrato);
     }
 
     /**
@@ -97,19 +94,19 @@ class JobController extends Controller
         //
     }
 	
-	public function view($department_id)
-	{	$cargos = Job::where('departamento_id','=',$department_id)->get();
-		$html = view('pages.personal.tabla_cargo', compact('view','cargos'))->render();
+	public function view()
+	{	$tipos_contrato = ContractType::all();
+		$html = view('pages.personal.tabla_tipo_contrato', compact('view','tipos_contrato'))->render();
         return response()->json(compact('html'));
 	}
 	
 	public function change_state(Request $request)
-    {	$oJob = Job::find($request->cargo_id);
+    {	$oTipoContrato = ContractType::find($request->tipo_contrato_id);
 		if($request->accion=="ACTIVAR")
-			$oJob->estado="ACTIVO";
+			$oTipoContrato->estado="ACTIVO";
 		if($request->accion=="INACTIVAR")
-			$oJob->estado="INACTIVO";
-		$oJob->save();
-		return response()->json(array("result"=>"success","msg"=>"Todo OK","cargo_id"=>$oJob->id));
+			$oTipoContrato->estado="INACTIVO";
+		$oTipoContrato->save();
+		return response()->json(array("result"=>"success","msg"=>"Todo OK","tipo_contrato_id"=>$oTipoContrato->id));
     }
 }
