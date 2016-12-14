@@ -16,6 +16,7 @@ class CreateDocumentTypesTable extends Migration
         Schema::create('document_types', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('descripcion',50)->unique();
+			$table->string('estado',25)->default('ACTIVO');
             $table->timestamps();
         });
     }

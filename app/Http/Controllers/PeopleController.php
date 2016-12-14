@@ -256,7 +256,7 @@ class PeopleController extends Controller
 		print json_encode(array("result"=>"success","msg"=>"Todo OK","person_id"=>$oPersona->id));
 	}
 	public function persona_new_view()
-	{	$tipo_doc	= DocumentType::all();
+	{	$tipo_doc	= DocumentType::where(['estado'=>'ACTIVO'])->get();
 		$provinc	= Province::all();
 		$est_civil	= Catalog::where(['catalog_type_id'=>1,'estado'=>'ACTIVO'])->get();
 		$niv_estudio = Catalog::where(['catalog_type_id'=>2,'estado'=>'ACTIVO'])->get();
@@ -299,5 +299,9 @@ class PeopleController extends Controller
 	{	$personas	= DB::table('people')->join('document_types','people.document_type_id','=','document_types.id')->select('people.*','document_types.descripcion')->get();
 		$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
 		return view('pages.personal.form_persona_buscar',compact('personas','str_random'));
+	}
+	public function show_by_ID($num_identificacion, $document_type_id)
+	{	$persona = Person::where('num_identificacion',$num_identificacion)->where('document_type_id',$document_type_id)->select('nombre_1','nombre_2','apellido_1','apellido_2','id')->first();
+		return response()->json($persona);
 	}
 }

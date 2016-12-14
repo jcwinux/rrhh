@@ -18,7 +18,7 @@ class CreateFormFunctionsTable extends Migration
 			$table->integer('form_id');
 			$table->string('nombre',100);
 			$table->string('descripcion',250);
-			$table->string('estado',25)->default('INACTIVO');
+			$table->string('estado',25)->default('ACTIVO');
             $table->timestamps();
         });
     }

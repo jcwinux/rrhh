@@ -42,8 +42,8 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	});
 	Route::get('/configuracion', 'SetupController@index');
 	Route::get('/catalogo', 'CatalogController@index')->middleware('route_permission:4');
-	Route::get('/roles', 'RoleController@index')->middleware('route_permission:2');
-	Route::get('/permisos', 'PermissionsController@index')->middleware('route_permission:3');
+	Route::get('/roles', 'RoleController@index');//->middleware('route_permission:2');
+	Route::get('/permisos', 'PermissionsController@index');//->middleware('route_permission:3');
 	
 	Route::get('/personal', function () {
 		return view('pages.personal.index');
@@ -156,7 +156,9 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::post('/guardarTipoContrato', 'ContractTypeController@store');
 	Route::get('/ajax-tipo_contrato_show/{ubicacion_id}', 'ContractTypeController@show');
 	Route::get('/ajax-tipos_contrato', 'ContractTypeController@view');
-	Route::post('/cambiarEstadoTipoContrato/', 'ContractTypeController@change_state');
+	/*Contratación*/
+	Route::get('/contratar', 'ContractController@index');
+	Route::get('/ajax-buscarPersonaByID/{document_type_id}/{num_identificacion}', 'PeopleController@show_by_ID');
 }
 );
 Auth::routes();

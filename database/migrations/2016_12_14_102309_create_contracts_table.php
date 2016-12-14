@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateModulesRolesFormsFunctionsTable extends Migration
+class CreateContractsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateModulesRolesFormsFunctionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules_roles_forms_functions', function (Blueprint $table) {
+        Schema::create('contracts', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('module_role_form_id');
-			$table->integer('form_function_id');
-			$table->string('estado',25)->default('ACTIVO');
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ class CreateModulesRolesFormsFunctionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modules_roles_forms_functions');
+        Schema::dropIfExists('contracts');
     }
 }

@@ -17,7 +17,7 @@ class CreateModulesRolesTable extends Migration
             $table->increments('id');
 			$table->integer('role_id');
 			$table->integer('module_id');
-			$table->string('estado',25)->default('INACTIVO');
+			$table->string('estado',25)->default('ACTIVO');
             $table->timestamps();
         });
     }
