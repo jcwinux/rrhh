@@ -48,16 +48,19 @@
 					</div>
 					<div class="row form-group">
 						<div class="col-sm-2">
-							<label class="control-label" for="apellido_persona">Apellidos</label>
+							<label class="control-label" for="nombres_completos_persona">Nombres completos</label>
 						</div>
 						<div class="col-sm-4">
-							<input class="form-control" id="apellido_persona" name="apellido_persona" disabled="disabled"/>
+							<input class="form-control" id="nombres_completos_persona" name="nombres_completos_persona" disabled="disabled"/>
 						</div>
 						<div class="col-sm-2">
-							<label class="control-label" for="nombre_persona">Nombres</label>
+							<label class="control-label" for="id_persona">Código interno</label>
 						</div>
-						<div class="col-sm-4">
-							<input class="form-control" id="nombre_persona" name="nombre_persona" disabled="disabled"/>
+						<div class="col-sm-2">
+							<input class="form-control" id="id_persona" name="id_persona" disabled="disabled"/>
+						</div>
+						<div class="col-sm-2">
+							<span id="estado_persona" name="estado_persona"></span>
 						</div>
 					</div>
 					<div class="row">
@@ -70,13 +73,18 @@
 							<label class="control-label" for="nombre_centro_costo">Departamento</label>
 						</div>
 						<div class="col-sm-4">
-							<select class="form-control" disabled="disabled"></select>
+							<select id="sel_departamentos" name="sel_departamentos" class="form-control">
+								<option value=""></option>
+								@foreach ($departamentos as $departamento)
+								<option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+								@endforeach
+							</select>
 						</div>
 						<div class="col-sm-2">
-							<label class="control-label" for="nombre_centro_costo">Cargo</label>
+							<label class="control-label" for="sel_cargos">Cargo</label>
 						</div>
 						<div class="col-sm-4">
-							<select class="form-control" disabled="disabled"></select>
+							<select id="sel_cargos" name="sel_cargos" class="form-control"></select>
 						</div>
 					</div>
 					<div class="row form-group">
@@ -84,13 +92,21 @@
 							<label class="control-label" for="nombre_centro_costo">Tipo de contrato</label>
 						</div>
 						<div class="col-sm-4">
-							<select class="form-control" disabled="disabled"></select>
+							<select  id="sel_tipos_contrato" name="sel_tipos_contrato" class="form-control">
+								@foreach ($tipos_contrato as $tipo_contrato)
+								<option value="{{$tipo_contrato->id}}">{{$tipo_contrato->nombre}}</option>
+								@endforeach
+							</select>
 						</div>
 						<div class="col-sm-2">
 							<label class="control-label" for="nombre_centro_costo">Ubicación</label>
 						</div>
 						<div class="col-sm-4">
-							<select class="form-control" disabled="disabled"></select>
+							<select id="sel_ubicaciones" name="sel_ubicaciones" class="form-control">
+								@foreach ($ubicaciones as $ubicacion)
+								<option value="{{$ubicacion->id}}">{{$ubicacion->nombre}}</option>
+								@endforeach
+							</select>
 						</div>
 					</div>
 					<div class="row form-group">
@@ -104,7 +120,11 @@
 							<label class="control-label" for="nombre_centro_costo">Forma pago</label>
 						</div>
 						<div class="col-sm-4">
-							<select class="form-control" disabled="disabled"></select>
+							<select class="form-control">
+								@foreach ($formas_pago as $forma_pago)
+									<option value="{{$forma_pago->id}}">{{$forma_pago->descripcion}}</option>
+								@endforeach
+							</select>
 						</div>
 					</div>
 					<div class="row form-group">
@@ -137,6 +157,12 @@
 					</div>
 					<div class="row form-group">
 						<div class="col-sm-2">
+							<label class="control-label" for="sueldo_referencial">Sueldo ref. $</label>
+						</div>
+						<div class="col-sm-2">
+							<input id="sueldo_referencial" class="form-control" required="required" type="text" name="sueldo_referencial" disabled="disabled" value="" >
+						</div>
+						<div class="col-sm-2 col-sm-offset-2">
 							<label class="control-label" for="nombre_centro_costo">Sueldo $</label>
 						</div>
 						<div class="col-sm-2">
@@ -147,7 +173,77 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-primary" id="GuardarCentroCosto" name="GuardarCentroCosto">Contratar</button>
+				<button type="button" class="btn btn-primary" id="GuardarContrato" name="GuardarContrato">Contratar</button>
+				<button type="button" class="btn btn-primary" id="btnOpenModal" name="btnOpenModal">Open</button>
+			</div>
+
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div>
+
+<div id="modalBusquedaPersona" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header alert-primary">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myModalLabel2">Búsqueda</h4>
+			</div>
+			<div class="modal-body">
+				<!--Aquí va todo-->
+				<div class="row">
+					<div class="col-sm-10">
+						<input id="num_identificacion" class="form-control" required="required" type="text" name="num_identificacion" placeholder="Escriba apellidos o ID" maxlength="30">
+					</div>
+					<div class="col-sm-2">						
+						<button class="btn btn-primary" id="btnBuscarPersona" name="btnBuscarPersona"><span class="glyphicon glyphicon-search"></span></button>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<section class="widget" id="tabla_centros_costos">
+							<table id="datatable-table" class="table table-striped table-hover" id="personas_" name="personas_">
+								<thead>
+									<tr>
+										<th width="10%"></th>
+										<th width="20%">Identificación</th>
+										<th width="35%">Apellidos</th>
+										<th width="35%">Nombre</th>
+									</tr>
+								</thead>
+								<tbody id="personas_det">
+									<tr>
+										<td><input name="selec" type="radio"/></td>
+										<td>0927148320</td>
+										<td>Apellidos</td>
+										<td>Nombre</td>
+									</tr>
+									<tr>
+										<td><input name="selec" type="radio"/></td>
+										<td>0927148320</td>
+										<td>Apellidos</td>
+										<td>Nombre</td>
+									</tr>
+									<tr>
+										<td><input name="selec" type="radio"/></td>
+										<td>0927148320</td>
+										<td>Apellidos</td>
+										<td>Nombre</td>
+									</tr>
+									<tr>
+										<td><input name="selec" type="radio"/></td>
+										<td>0927148320</td>
+										<td>Apellidos</td>
+										<td>Nombre</td>
+									</tr>
+								</tbody>
+							</table>
+						</section>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+				<button type="button" class="btn btn-primary" id="GuardarContrato" name="GuardarContrato">Seleccionar</button>
 			</div>
 
 		</div><!-- /.modal-content -->

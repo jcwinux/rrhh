@@ -21,7 +21,8 @@ class CatalogTypesTableSeeder extends Seeder
 						array('descripcion'=>'Nivel dominio','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),//6
 						array('descripcion'=>'Habilidad/Ámbito de un idioma','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),//7
 						array('descripcion'=>'Discapacidades','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),//8
-						array('descripcion'=>'Grado de discapacidad','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())//9
+						array('descripcion'=>'Grado de discapacidad','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),//9
+						array('descripcion'=>'Forma de pago','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())//10
 					);
 		DB::table('catalog_types')->insert($data);
     }

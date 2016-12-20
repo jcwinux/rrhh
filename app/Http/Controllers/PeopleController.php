@@ -301,7 +301,7 @@ class PeopleController extends Controller
 		return view('pages.personal.form_persona_buscar',compact('personas','str_random'));
 	}
 	public function show_by_ID($num_identificacion, $document_type_id)
-	{	$persona = Person::where('num_identificacion',$num_identificacion)->where('document_type_id',$document_type_id)->select('nombre_1','nombre_2','apellido_1','apellido_2','id')->first();
+	{	$persona = Person::where('num_identificacion',$num_identificacion)->where('document_type_id',$document_type_id)->select('nombre_1','nombre_2','apellido_1','apellido_2','id','estado')->first();
 		return response()->json($persona);
 	}
 }

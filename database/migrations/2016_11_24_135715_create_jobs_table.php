@@ -18,6 +18,8 @@ class CreateJobsTable extends Migration
 			$table->integer('departamento_id');
 			$table->string('nombre',100);
 			$table->string('descripcion',250);
+			$table->string('codigo_sectorial',50)->nullable();
+			$table->string('sueldo_referencial',25)->nullable();
 			$table->string('estado',25)->default('ACTIVO');
             $table->timestamps();
         });

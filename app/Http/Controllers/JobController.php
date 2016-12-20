@@ -48,6 +48,8 @@ class JobController extends Controller
 		$oJob->departamento_id=$request->departamento_id;
 		$oJob->nombre=$request->nombre;
 		$oJob->descripcion=$request->descripcion;
+		$oJob->sueldo_referencial=$request->sueldo_referencial;
+		$oJob->codigo_sectorial=$request->codigo_sectorial;
 		$oJob->save();
 		return response()->json(array("result"=>"success","msg"=>"Todo OK","cargo_id"=>$oJob->id));
     }
@@ -112,4 +114,9 @@ class JobController extends Controller
 		$oJob->save();
 		return response()->json(array("result"=>"success","msg"=>"Todo OK","cargo_id"=>$oJob->id));
     }
+	
+	public function cargos_departamento($department_id)
+	{	$jobs = Job::where('departamento_id','=',$department_id)->where('estado','=','ACTIVO')->get();
+		return response()->json($jobs);
+	}
 }

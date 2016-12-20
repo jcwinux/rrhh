@@ -6,77 +6,62 @@ $(document).ready(function(){
 		});
 	});
 	
-	$('#GuardarTipoContrato').on('click', function(e){
-		/*Validación de campos*/
-		if (!$('#nombre_tipo_contrato').val())
-		{	$('#nombre_tipo_contrato').addClass('parsley-error');
-			return false;
-		}
-		else
-		{	$('#nombre_tipo_contrato').removeClass('parsley-error');
-		}
-		if (!$('#descripcion_tipo_contrato').val())
-		{	$('#descripcion_tipo_contrato').addClass('parsley-error');
-			return false;
-		}
-		else
-		{	$('#descripcion_tipo_contrato').removeClass('parsley-error');
-		}
-		tipo_contrato_id = $('#tipo_contrato_id').val();
-		nombre_tipo_contrato = $('#nombre_tipo_contrato').val();
-		descripcion_tipo_contrato = $('#descripcion_tipo_contrato').val();
-		
-		json_tipo_contrato = {};
-		json_tipo_contrato["tipo_contrato_id"] = tipo_contrato_id;
-		json_tipo_contrato["nombre_tipo_contrato"] = nombre_tipo_contrato;
-		json_tipo_contrato["descripcion_tipo_contrato"] = descripcion_tipo_contrato;
-		
-		$.ajax({
-			type: "POST",
-			url: "guardarTipoContrato",
-			data: {data: JSON.stringify(json_tipo_contrato)},
-			success: function(data){
-				$('#tipo_contrato_id').val(data.tipo_contrato_id);
-				Messenger().post("El registro ha sido grabado exitosamente!");
-				cargarTiposContrato();
-			},
-			error: function(data){
-				Messenger().post("¡Ocurrió un error!");
-			}
+	/**/
+	$("#btnOpenModal").click(function(){
+		$("#modalBusquedaPersona").modal();
+	});
+	
+	/*Llena los cargos que trabajan en un departamento*/
+	$('#sel_departamentos').on('change',function(e){
+		var department_id = e.target.value;
+		if (!department_id)
+			department_id = -1;
+		$.get('/ajax-cargos_departamento/'+department_id, function (data){
+			$('#sel_cargos').empty();
+			$('#sueldo_referencial').val('');
+			$('#sel_cargos').append('<option value=""></option');
+			$.each(data, function (index, cargosObj){
+				$('#sel_cargos').append('<option value="'+cargosObj.id+'" data-sueldo="'+cargosObj.sueldo_referencial+'">'+cargosObj.codigo_sectorial+': '+cargosObj.nombre+'</option>');
+			});
 		});
+	});
+	
+	$('#sel_cargos').on('change',function(e){
+		$('#sueldo_referencial').val($(this).find(':selected').data('sueldo'));
 	});
 	
 	$('#btnBuscarPersona').on('click', function(e){
 		/*Validación de campos*/
 		if (!$('#num_identificacion').val())
-		{	$('#num_identificacion').addClass('parsley-error');
-			$('#num_identificacion').focus();
+		{	$("#modalBusquedaPersona").modal();
 			return false;
 		}
 		else
 		{	$('#num_identificacion').removeClass('parsley-error');
 		}
+		$('#id_persona').val("");
+		$('#nombres_completos_persona').val("");
+		$('#estado_persona').text("");
+		$('#estado_persona').removeClass('label label-success');
+		$('#estado_persona').removeClass('label label-danger');
 		
-		/*if (!$('#descripcion_tipo_contrato').val())
-		{	$('#descripcion_tipo_contrato').addClass('parsley-error');
-			return false;
-		}
-		else
-		{	$('#descripcion_tipo_contrato').removeClass('parsley-error');
-		}
-		tipo_contrato_id = $('#tipo_contrato_id').val();
-		nombre_tipo_contrato = $('#nombre_tipo_contrato').val();
-		descripcion_tipo_contrato = $('#descripcion_tipo_contrato').val();
-		
-		json_tipo_contrato = {};
-		json_tipo_contrato["tipo_contrato_id"] = tipo_contrato_id;
-		json_tipo_contrato["nombre_tipo_contrato"] = nombre_tipo_contrato;
-		json_tipo_contrato["descripcion_tipo_contrato"] = descripcion_tipo_contrato;
-		*/
 		$.get('/ajax-buscarPersonaByID/'+$('#num_identificacion').val()+'/'+$('#document_type').val(), function (data){
-			var json = data;
-			$('#apellido_persona').val(json.apellido_1+' '+json.apellido_1);
-			$('#nombre_persona').val(json.nombre_1+' '+json.nombre_2);
+			if (!data.id)
+			{	Messenger().post("¡No existe registro!");
+			}
+			else
+			{	$('#nombres_completos_persona').val(data.nombre_1+' '+data.nombre_2+' '+data.apellido_1+' '+data.apellido_2);
+				$('#id_persona').val(data.id);
+				$('#estado_persona').text(data.estado);
+				if (data.estado=="ACTIVO")
+				{	$('#estado_persona').addClass('label label-success');
+					$('#GuardarContrato').prop('disabled',false);
+				}
+				else
+				{	$('#estado_persona').addClass('label label-danger');
+					$('#GuardarContrato').prop('disabled',true);
+				}
+			}
 		});
 	});
 });

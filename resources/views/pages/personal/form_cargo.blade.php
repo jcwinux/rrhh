@@ -75,14 +75,14 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="control-label" for="departamento">Código sectorial</label>
-							<input type="text" class="form-control" />
+							<label class="control-label" for="codigo_sectorial">Código sectorial</label>
+							<input id="codigo_sectorial" name="codigo_sectorial" type="text" class="form-control" />
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="control-label" for="departamento">Sueldo referencial</label>
-							<input type="text" class="form-control" />
+							<label class="control-label" for="sueldo_referencial">Sueldo referencial</label>
+							<input id="sueldo_referencial" name="sueldo_referencial" type="text" class="form-control" />
 						</div>
 					</div>
 				</div>

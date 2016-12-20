@@ -57,6 +57,7 @@
 
 <script src="{{asset('lib/messenger/build/js/messenger.js')}}"></script>
 <script src="{{asset('lib/messenger/build/js/messenger-theme-flat.js')}}"></script>
+<script src="{{asset('lib/messenger/build/js/messenger-theme-future.js')}}"></script>
 
 <!-- page template -->
 <script type="text/template" id="message-template">

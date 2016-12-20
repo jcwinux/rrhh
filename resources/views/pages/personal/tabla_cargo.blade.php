@@ -13,8 +13,9 @@
 	<thead>
 		<tr>
 			<th width="10%">ID</th>
-			<th width="30%">Cargo</th>
-			<th width="40%">Descripción</th>
+			<th width="25%">Cargo</th>
+			<th width="30%">Descripción</th>
+			<th width="15%">Cod. Sect.</th>
 			<th width="10%">Estado</th>
 			<th width="10%">Opciones</th>
 		</tr>
@@ -25,6 +26,7 @@
 		<td>{{$cargo->id}}</td>
 		<td>{{$cargo->nombre}}</td>
 		<td>{{$cargo->descripcion}}</td>
+		<td>{{$cargo->codigo_sectorial}}</td>
 		<td>
 			@if ($cargo->estado=="ACTIVO")
 				<span class="label label-success">{{$cargo->estado}}</span>

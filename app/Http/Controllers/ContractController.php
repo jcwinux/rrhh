@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\DocumentType;
+use App\Department;
+use App\Location;
+use App\ContractType;
+use App\Catalog;
 
 class ContractController extends Controller
 {
@@ -15,9 +19,13 @@ class ContractController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {	$str_random = array (rand(0,30000),rand(0,30000),rand(0,30000));
-		$tipo_doc	= DocumentType::where(['estado'=>'ACTIVO'])->get();
-		return view('pages.personal.form_contrato',compact('str_random','tipo_doc'));
+    {	$str_random 	= array (rand(0,30000),rand(0,30000),rand(0,30000));
+		$tipo_doc		= DocumentType::where(['estado'=>'ACTIVO'])->get();
+		$departamentos 	= Department::where(['estado'=>'ACTIVO'])->get();
+		$tipos_contrato	= ContractType::where(['estado'=>'ACTIVO'])->get();
+		$ubicaciones	= Location::where(['estado'=>'ACTIVO'])->get();
+		$formas_pago	= Catalog::where(['catalog_type_id'=>10,'estado'=>'ACTIVO'])->get();
+		return view('pages.personal.form_contrato',compact('str_random','tipo_doc','departamentos','tipos_contrato','ubicaciones','formas_pago'));
     }
 
     /**

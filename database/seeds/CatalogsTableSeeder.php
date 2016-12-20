@@ -60,7 +60,11 @@ class CatalogsTableSeeder extends Seeder
 						
 						array('catalog_type_id'=>9,'descripcion'=>'DISCAPACIDAD GRADO 1','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
 						array('catalog_type_id'=>9,'descripcion'=>'DISCAPACIDAD GRADO 2','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
-						array('catalog_type_id'=>9,'descripcion'=>'DISCAPACIDAD GRADO 3','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())
+						array('catalog_type_id'=>9,'descripcion'=>'DISCAPACIDAD GRADO 3','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						
+						array('catalog_type_id'=>10,'descripcion'=>'EFECTIVO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>10,'descripcion'=>'CHEQUE','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring()),
+						array('catalog_type_id'=>10,'descripcion'=>'DÉBITO BANCARIO','created_at'=>Carbon\Carbon::now()->todatetimestring(),'updated_at'=>Carbon\Carbon::now()->todatetimestring())
 					);
 		DB::table('catalogs')->insert($data);
     }
