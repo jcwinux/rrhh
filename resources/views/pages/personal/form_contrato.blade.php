@@ -192,58 +192,22 @@
 				<!--Aquí va todo-->
 				<div class="row">
 					<div class="col-sm-10">
-						<input id="num_identificacion" class="form-control" required="required" type="text" name="num_identificacion" placeholder="Escriba apellidos o ID" maxlength="30">
+						<input id="txt_buscar_persona" class="form-control" required="required" type="text" name="txt_buscar_persona" placeholder="Escriba apellidos o ID" maxlength="30">
 					</div>
 					<div class="col-sm-2">						
-						<button class="btn btn-primary" id="btnBuscarPersona" name="btnBuscarPersona"><span class="glyphicon glyphicon-search"></span></button>
+						<button class="btn btn-primary" id="btnBuscarPersonaGeneral" name="btnBuscarPersonaGeneral"><span class="glyphicon glyphicon-search"></span></button>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
-						<section class="widget" id="tabla_centros_costos">
-							<table id="datatable-table" class="table table-striped table-hover" id="personas_" name="personas_">
-								<thead>
-									<tr>
-										<th width="10%"></th>
-										<th width="20%">Identificación</th>
-										<th width="35%">Apellidos</th>
-										<th width="35%">Nombre</th>
-									</tr>
-								</thead>
-								<tbody id="personas_det">
-									<tr>
-										<td><input name="selec" type="radio"/></td>
-										<td>0927148320</td>
-										<td>Apellidos</td>
-										<td>Nombre</td>
-									</tr>
-									<tr>
-										<td><input name="selec" type="radio"/></td>
-										<td>0927148320</td>
-										<td>Apellidos</td>
-										<td>Nombre</td>
-									</tr>
-									<tr>
-										<td><input name="selec" type="radio"/></td>
-										<td>0927148320</td>
-										<td>Apellidos</td>
-										<td>Nombre</td>
-									</tr>
-									<tr>
-										<td><input name="selec" type="radio"/></td>
-										<td>0927148320</td>
-										<td>Apellidos</td>
-										<td>Nombre</td>
-									</tr>
-								</tbody>
-							</table>
+						<section class="widget" id="tabla_personas">
+						
 						</section>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-				<button type="button" class="btn btn-primary" id="GuardarContrato" name="GuardarContrato">Seleccionar</button>
 			</div>
 
 		</div><!-- /.modal-content -->
@@ -252,4 +216,5 @@
 @stop
 @section('javascript_functions')
 	 <script src="{{asset('js/functions/form_contrato.js')}}?{{$str_random[0]}}{{$str_random[1]}}{{$str_random[2]}}"></script> 
+	 <script src="{{asset('js/functions/tabla_busq_persona.js')}}?{{$str_random[0]}}{{$str_random[1]}}{{$str_random[2]}}"></script> 
 @stop

@@ -9,7 +9,7 @@
 			Añadir
 		</button>
 	</legend>
-	<table id="datatable-table" class="table table-striped table-hover" id="contratos_agregados" name="contratos_agregados">
+	<table class="table table-striped table-hover" id="contratos_agregados" name="contratos_agregados">
 	<thead>
 		<tr>
 			<th width="5%">ID</th>

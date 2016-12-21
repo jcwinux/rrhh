@@ -21091,6 +21091,9 @@ table.dataTable thead .sorting_desc_disabled {
   text-align: right;
 }
 
+table.dataTable tbody tr.selected{background-color:#B0BED9}
+
+
 /***********************************/
 /**           Rickshaw            **/
 /***********************************/

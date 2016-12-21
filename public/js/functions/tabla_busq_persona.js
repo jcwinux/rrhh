@@ -110,6 +110,9 @@ $(function(){
         $.extend( true, $.fn.dataTable.defaults, {
             "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
             "sPaginationType": "bootstrap",
+			"searching": false,
+			"select": true,
+			"pageLength": 5,
             "oLanguage": {
                 "sLengthMenu": "_MENU_ records per page"
             }
@@ -217,7 +220,7 @@ $(function(){
         } );
 
         var unsortableColumns = [];
-        $('#datatable-table').find('thead th').each(function(){
+        $('#busq_personas').find('thead th').each(function(){
             if ($(this).hasClass( 'no-sort')){
                 unsortableColumns.push({"bSortable": false});
             } else {
@@ -225,7 +228,7 @@ $(function(){
             }
         });
 
-        $("#datatable-table").dataTable({
+        var table = $("#busq_personas").dataTable({
             "sDom": "<'row'<'col-md-6 hidden-xs'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
             "oLanguage": {
                 "sLengthMenu": "_MENU_",
@@ -241,7 +244,24 @@ $(function(){
         $(".dataTables_length select").selectpicker({
             width: 'auto'
         });
+		
+		$('#busq_personas tbody').on( 'click', 'tr', function () {
+			if ( $(this).hasClass('selected') ) {
+				$(this).removeClass('selected');
+			}
+			else {
+				table.$('tr.selected').removeClass('selected');
+				$(this).addClass('selected');
+			}
+		} );
+		
+		$('#busq_personas tbody').on( 'dblclick', 'tr', function () {
+			var celda0 = $(this).children().eq(0);
+			$('#num_identificacion').val($(celda0).text());
+			$("#modalBusquedaPersona").modal('toggle');
+		} );
     }
+
 
     function pageLoad(){
         $('.widget').widgster();

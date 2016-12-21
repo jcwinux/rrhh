@@ -304,4 +304,16 @@ class PeopleController extends Controller
 	{	$persona = Person::where('num_identificacion',$num_identificacion)->where('document_type_id',$document_type_id)->select('nombre_1','nombre_2','apellido_1','apellido_2','id','estado')->first();
 		return response()->json($persona);
 	}
+	public function busq_personas($texto)
+	{	$people = Person::where('estado','ACTIVO')
+						  ->where(function ($query) use ($texto){
+								$query->orwhere('num_identificacion','like','%'.$texto.'%')
+									  ->orWhere('nombre_1','like','%'.$texto.'%')
+								      ->orWhere('nombre_2','like','%'.$texto.'%')
+								      ->orWhere('apellido_1','like','%'.$texto.'%')
+								      ->orWhere('apellido_2','like','%'.$texto.'%');
+						  })->get();
+		$html = view('pages.personal.busq_persona', compact('view','people'))->render();
+        return response()->json(compact('html'));
+	}
 }

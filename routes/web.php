@@ -160,6 +160,7 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::get('/contratar', 'ContractController@index');
 	Route::get('/ajax-buscarPersonaByID/{document_type_id}/{num_identificacion}', 'PeopleController@show_by_ID');
 	Route::get('/ajax-cargos_departamento/{department_id}','JobController@cargos_departamento');
+	Route::get('/ajax-buscar_personas/{texto}','PeopleController@busq_personas');
 }
 );
 Auth::routes();

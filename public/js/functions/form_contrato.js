@@ -11,6 +11,13 @@ $(document).ready(function(){
 		$("#modalBusquedaPersona").modal();
 	});
 	
+	$("#btnBuscarPersonaGeneral").click(function(){
+		$.get('/ajax-buscar_personas/'+$('#txt_buscar_persona').val(), function (data){
+			$('#tabla_personas').html(data.html);
+		});
+	});
+		
+		
 	/*Llena los cargos que trabajan en un departamento*/
 	$('#sel_departamentos').on('change',function(e){
 		var department_id = e.target.value;
