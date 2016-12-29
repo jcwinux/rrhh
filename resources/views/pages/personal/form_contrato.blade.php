@@ -174,7 +174,6 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
 				<button type="button" class="btn btn-primary" id="GuardarContrato" name="GuardarContrato">Contratar</button>
-				<button type="button" class="btn btn-primary" id="btnOpenModal" name="btnOpenModal">Open</button>
 			</div>
 
 		</div><!-- /.modal-content -->

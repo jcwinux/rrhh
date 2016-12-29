@@ -284,8 +284,11 @@ $(function(){
 			$("#modalBusquedaPersona").modal('toggle');
 		} );
     }
-
-
+	
+	$('#modalBusquedaPersona').on('hide.bs.modal', function () {
+		$("#modalContrato").css("overflow-y", "auto"); // 'auto' or 'scroll'
+	});
+	
     function pageLoad(){
         $('.widget').widgster();
         initBackgrid();
