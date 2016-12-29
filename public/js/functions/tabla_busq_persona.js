@@ -257,7 +257,30 @@ $(function(){
 		
 		$('#busq_personas tbody').on( 'dblclick', 'tr', function () {
 			var celda0 = $(this).children().eq(0);
-			$('#num_identificacion').val($(celda0).text());
+			var celda1 = $(this).children().eq(1);
+			var celda2 = $(this).children().eq(2);
+			var celda3 = $(this).children().eq(3);
+			var celda4 = $(this).children().eq(4);
+			var celda5 = $(this).children().eq(5);
+			
+			$('#document_type').val($(celda0).text()).change();
+			$('#num_identificacion').val($(celda1).text());
+			$('#id_persona').val($(celda2).text());
+			$('#nombres_completos_persona').val($(celda3).text()+' '+$(celda4).text());
+			
+			$('#estado_persona').removeClass('label label-success');
+			$('#estado_persona').removeClass('label label-danger');
+			$('#estado_persona').text($(celda5).text());
+			
+			if ($(celda5).text()=="ACTIVO")
+			{	$('#estado_persona').addClass('label label-success');
+				$('#GuardarContrato').prop('disabled',false);
+			}
+			else
+			{	$('#estado_persona').addClass('label label-danger');
+				$('#GuardarContrato').prop('disabled',true);
+			}
+			
 			$("#modalBusquedaPersona").modal('toggle');
 		} );
     }
