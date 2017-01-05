@@ -9,7 +9,7 @@
 						<legend class="section">Permisos</legend>
 						<div class="form-group">
 							<div class="cols-md-6">
-								<label class="control-label col-sm-2" for="correo_electronico">Rol</label>
+								<label class="control-label col-sm-2" for="rol">Rol</label>
 								<div class="col-sm-3">
 									<select class="form-control" id="rol" name="rol">
 										<option value=""></option>

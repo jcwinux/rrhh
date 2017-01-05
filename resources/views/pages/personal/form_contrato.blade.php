@@ -4,7 +4,7 @@
 	<div class="content container">
 		<div class="row">
 			<div class="col-sm-12">
-                <section class="widget" id="tabla_centros_costos">
+                <section class="widget" id="tabla_contratos">
 					@include('pages.personal.tabla_contrato')
 				</section>
 			</div>
@@ -57,7 +57,8 @@
 							<label class="control-label" for="id_persona">Código interno</label>
 						</div>
 						<div class="col-sm-2">
-							<input class="form-control" id="id_persona" name="id_persona" disabled="disabled"/>
+							<input type="text" class="form-control" id="id_persona" name="id_persona" disabled="disabled"/>
+							<input type="hidden" id="id_contrato" name="id_contrato"/>
 						</div>
 						<div class="col-sm-2">
 							<span id="estado_persona" name="estado_persona"></span>
@@ -120,7 +121,7 @@
 							<label class="control-label" for="nombre_centro_costo">Forma pago</label>
 						</div>
 						<div class="col-sm-4">
-							<select class="form-control">
+							<select id="sel_forma_pago" name="sel_forma_pago" class="form-control">
 								@foreach ($formas_pago as $forma_pago)
 									<option value="{{$forma_pago->id}}">{{$forma_pago->descripcion}}</option>
 								@endforeach
@@ -132,13 +133,13 @@
 							<label class="control-label" for="nombre_centro_costo">Es supervisor</label>
 						</div>
 						<div class="col-sm-4">
-							<input type="checkbox" />
+							<input id="chk_es_supervisor" name="chk_es_supervisor" type="checkbox" />
 						</div>
 						<div class="col-sm-2">
 							<label class="control-label" for="nombre_centro_costo">Supervisado por</label>
 						</div>
 						<div class="col-sm-4">
-							<select class="form-control" disabled="disabled"></select>
+							<select id="sel_supervisor" name="sel_supervisor" class="form-control" disabled="disabled"></select>
 						</div>
 					</div>
 					<div class="row form-group">
@@ -163,10 +164,10 @@
 							<input id="sueldo_referencial" class="form-control" required="required" type="text" name="sueldo_referencial" disabled="disabled" value="" >
 						</div>
 						<div class="col-sm-2 col-sm-offset-2">
-							<label class="control-label" for="nombre_centro_costo">Sueldo $</label>
+							<label class="control-label" for="sueldo">Sueldo $</label>
 						</div>
 						<div class="col-sm-2">
-							<input id="fecha_ini_contrato" class="form-control" required="required" type="text" name="fecha_ini_contrato" value="" >
+							<input id="sueldo" class="form-control" required="required" type="text" name="sueldo" value="" >
 						</div>
 					</div>
 				</fieldset>

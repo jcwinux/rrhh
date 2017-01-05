@@ -9,18 +9,38 @@
 			Añadir
 		</button>
 	</legend>
-	<table class="table table-striped table-hover" id="contratos_agregados" name="contratos_agregados">
+	<table id="datatable-table" class="table table-striped table-hover"  name="contratos_agregados">
 	<thead>
 		<tr>
-			<th width="5%">ID</th>
-			<th width="25%">Nombre</th>
-			<th width="25%">Descripción</th>
-			<th width="15%">Cuenta asociada</th>
-			<th width="10%">Estado</th>
+			<th width="10%">Tipo Doc.</th>
+			<th width="10%">Empleado</th>
+			<th width="10%">Contrato</th>
+			<th width="25%">Cargo</th>
+			<th width="15%">Departamento</th>
+			<th width="10%">Inicio</th>
+			<th width="10%">Fin</th>
 			<th width="10%">Opciones</th>
 		</tr>
 	</thead>
 	<tbody id="det_contrato">
+		@foreach ($contratos as $contrato)
+		<tr>
+			<td>{{$contrato->doc_descripcion}}</td>
+			<td>{{$contrato->num_identificacion}}</td>
+			<td>{{$contrato->tipo_contrato}}</td>
+			<td>{{$contrato->cargo}}</td>
+			<td>{{$contrato->departamento}}</td>
+			<td>{{$contrato->inicio_contrato}}</td>
+			<td>{{$contrato->fin_contrato}}</td>
+			<td class="text-align-center">
+				@if ($contrato->estado=="ACTIVO")
+					<button type="button" title="Modificar" onclick="showContrato({{$contrato->id}})" class="btn btn-transparent btn-xs pull-right editar_cat" data-toggle="modal" data-target="#modalContrato" data-backdrop="static">
+					<i class="fa fa-pencil"></i>
+				</button>
+				@endif
+			</td>
+		</tr>
+		@endforeach
 	</tbody>
 	</table>
 </fieldset>

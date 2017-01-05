@@ -158,9 +158,12 @@ Route::group(['middleware'=>['auth','sessionTimeOut']], function()
 	Route::get('/ajax-tipos_contrato', 'ContractTypeController@view');
 	/*Contratación*/
 	Route::get('/contratar', 'ContractController@index');
+	Route::post('/guardarContrato', 'ContractController@store');
 	Route::get('/ajax-buscarPersonaByID/{document_type_id}/{num_identificacion}', 'PeopleController@show_by_ID');
 	Route::get('/ajax-cargos_departamento/{department_id}','JobController@cargos_departamento');
 	Route::get('/ajax-buscar_personas/{texto}','PeopleController@busq_personas');
+	Route::get('/ajax-contratos', 'ContractController@view');
+	Route::get('/ajax-contrato/{contract_id}', 'ContractController@show');
 }
 );
 Auth::routes();
