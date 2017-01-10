@@ -1,6 +1,10 @@
 <!--Hay que poner los js cuando son cargados por medio de ajax-->
 <script src="{{asset('lib/datatables/media/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('js/tables-dynamic.js')}}"></script>
+@section('javascript_functions')
+	 <script src="{{asset('js/functions/form_contrato.js')}}?{{$str_random[0]}}{{$str_random[1]}}{{$str_random[2]}}"></script> 
+	 <script src="{{asset('js/functions/tabla_busq_persona.js')}}?{{$str_random[0]}}{{$str_random[1]}}{{$str_random[2]}}"></script> 
+@stop
 <fieldset>
 	<legend class="section">
 		Contratos

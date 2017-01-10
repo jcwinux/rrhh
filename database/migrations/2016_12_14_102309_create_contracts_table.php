@@ -21,6 +21,7 @@ class CreateContractsTable extends Migration
 			$table->integer('contract_type_id');			
 			$table->integer('location_id');
 			$table->integer('catalog_forma_pago_id');
+			$table->integer('employee_type_id');
 			$table->boolean('es_supervisor');
 			$table->integer('supervisor_id')->nullable();
 			$table->date('inicio_contrato');

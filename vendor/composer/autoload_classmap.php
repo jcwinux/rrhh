@@ -18,6 +18,7 @@ return array(
     'CreateDepartmentsTable' => $baseDir . '/database/migrations/2016_11_22_121559_create_departments_table.php',
     'CreateDisabilitiesTable' => $baseDir . '/database/migrations/2016_10_19_141117_create_disabilities_table.php',
     'CreateDocumentTypesTable' => $baseDir . '/database/migrations/2016_09_23_222119_create_document_types_table.php',
+    'CreateEmployeeTypesTable' => $baseDir . '/database/migrations/2017_01_10_101738_create_employee_types_table.php',
     'CreateFormFunctionsTable' => $baseDir . '/database/migrations/2016_10_27_115342_create_form_functions_table.php',
     'CreateFormsTable' => $baseDir . '/database/migrations/2016_10_27_114721_create_forms_table.php',
     'CreateJobsTable' => $baseDir . '/database/migrations/2016_11_24_135715_create_jobs_table.php',

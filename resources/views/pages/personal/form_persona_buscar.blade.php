@@ -35,7 +35,11 @@
 								@if ($persona->estado=="ACTIVO")
 									<span class="label label-success">{{$persona->estado}}</span>
 								@else
-									<span class="label label-default">{{$persona->estado}}</span>
+									@if ($persona->estado=="CONTRATADO")
+										<span class="label label-warning">{{$persona->estado}}</span>
+									@else
+										<span class="label label-default">{{$persona->estado}}</span>
+									@endif
 								@endif
 							</td>
 							<td class="text-align-center">

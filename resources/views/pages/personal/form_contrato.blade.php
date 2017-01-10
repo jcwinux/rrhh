@@ -115,7 +115,11 @@
 							<label class="control-label" for="nombre_centro_costo">Tipo de empleado</label>
 						</div>
 						<div class="col-sm-4">
-							<select class="form-control" disabled="disabled"></select>
+							<select id="sel_tipo_empleado" name="sel_tipo_empleado" class="form-control">
+								@foreach ($tipos_empleado as $tipo_empleado)
+									<option value="{{$tipo_empleado->id}}">{{$tipo_empleado->nombre}}</option>
+								@endforeach
+							</select>
 						</div>
 						<div class="col-sm-2">
 							<label class="control-label" for="nombre_centro_costo">Forma pago</label>
@@ -139,7 +143,12 @@
 							<label class="control-label" for="nombre_centro_costo">Supervisado por</label>
 						</div>
 						<div class="col-sm-4">
-							<select id="sel_supervisor" name="sel_supervisor" class="form-control" disabled="disabled"></select>
+							<select id="sel_supervisor" name="sel_supervisor" class="form-control">
+								<option value=""></option>
+								@foreach ($supervisores as $supervisor)
+									<option value="{{$supervisor->id}}">{{$supervisor->apellido_1}} {{$supervisor->apellido_2}} {{$supervisor->nombre_1}}</option>
+								@endforeach
+							</select>
 						</div>
 					</div>
 					<div class="row form-group">
@@ -213,8 +222,4 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->
 </div>
-@stop
-@section('javascript_functions')
-	 <script src="{{asset('js/functions/form_contrato.js')}}?{{$str_random[0]}}{{$str_random[1]}}{{$str_random[2]}}"></script> 
-	 <script src="{{asset('js/functions/tabla_busq_persona.js')}}?{{$str_random[0]}}{{$str_random[1]}}{{$str_random[2]}}"></script> 
 @stop

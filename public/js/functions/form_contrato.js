@@ -17,6 +17,11 @@ $(document).ready(function(){
 		});
 	});
 		
+	$("#agregar_contrato").click(function(){
+		clear();
+		$('#num_identificacion').focus();
+		$('#btnBuscarPersona').prop('disabled',false);
+	});
 		
 	/*Llena los cargos que trabajan en un departamento*/
 	$('#sel_departamentos').on('change',function(e){
@@ -44,6 +49,7 @@ $(document).ready(function(){
 		$('#estado_persona').text("");
 		$('#estado_persona').removeClass('label label-success');
 		$('#estado_persona').removeClass('label label-danger');
+		$('#estado_persona').removeClass('label label-warning');
 		
 		$.get('/ajax-buscarPersonaByID/'+$('#num_identificacion').val()+'/'+$('#document_type').val(), function (data){
 			if (!data.id)
@@ -53,13 +59,19 @@ $(document).ready(function(){
 			{	$('#nombres_completos_persona').val(data.nombre_1+' '+data.nombre_2+' '+data.apellido_1+' '+data.apellido_2);
 				$('#id_persona').val(data.id);
 				$('#estado_persona').text(data.estado);
-				if (data.estado=="ACTIVO")
-				{	$('#estado_persona').addClass('label label-success');
-					$('#GuardarContrato').prop('disabled',false);
-				}
-				else
-				{	$('#estado_persona').addClass('label label-danger');
-					$('#GuardarContrato').prop('disabled',true);
+				switch (data.estado)
+				{	case "ACTIVO":
+						$('#estado_persona').addClass('label label-success');
+						$('#GuardarContrato').prop('disabled',false);
+					break;
+					case "CONTRATADO":
+						$('#estado_persona').addClass('label label-warning');
+						$('#GuardarContrato').prop('disabled',true);
+					break;
+					case "INACTIVO":
+						$('#estado_persona').addClass('label label-danger');
+						$('#GuardarContrato').prop('disabled',true);
+					break;
 				}
 			}
 		});
@@ -98,6 +110,13 @@ $(document).ready(function(){
 		else
 		{	$('#sel_ubicaciones').removeClass('parsley-error');
 		}
+		if ($('#sel_supervisor').val()==$('#id_persona').val())
+		{	$('#sel_supervisor').addClass('parsley-error');
+			return false;
+		}
+		else
+		{	$('#sel_supervisor').removeClass('parsley-error');
+		}
 		if (!$('#fecha_ini_contrato').val())
 		{	$('#fecha_ini_contrato').addClass('parsley-error');
 			return false;
@@ -112,21 +131,21 @@ $(document).ready(function(){
 		else
 		{	$('#fecha_fin_contrato').removeClass('parsley-error');
 		}
-		if (!$('#fecha_ini_contrato').val())
-		{	$('#fecha_ini_contrato').addClass('parsley-error');
-			return false;
-		}
-		else
-		{	$('#fecha_ini_contrato').removeClass('parsley-error');
-		}
-		if (!$('#sueldo').val())
+		if (!$('#sueldo').val() || !$.isNumeric($('#sueldo').val()))
 		{	$('#sueldo').addClass('parsley-error');
 			return false;
 		}
 		else
 		{	$('#sueldo').removeClass('parsley-error');
 		}
-				
+		if ($('#fecha_fin_contrato').val()<=$('#fecha_ini_contrato').val())
+		{	$('#fecha_fin_contrato').addClass('parsley-error');
+			return false;
+		}
+		else
+		{	$('#fecha_fin_contrato').removeClass('parsley-error');
+		}
+		$('#GuardarContrato').prop('disabled',true);
 		json_contrato = {};
 		json_contrato["contrato_id"] = $('#id_contrato').val();
 		json_contrato["persona_id"] = $('#id_persona').val();
@@ -134,6 +153,7 @@ $(document).ready(function(){
 		json_contrato["cargo_id"] = $('#sel_cargos').val();
 		json_contrato["tipo_contrato_id"] = $('#sel_tipos_contrato').val();
 		json_contrato["forma_pago"] = $('#sel_forma_pago').val();
+		json_contrato["tipo_empleado"] = $('#sel_tipo_empleado').val();
 		json_contrato["es_supervisor"] = $('#chk_es_supervisor').is(':checked');
 		json_contrato["supervisado_por"] = $('#sel_supervisor').val();
 		json_contrato["inicio_contrato"] = $('#fecha_ini_contrato').val();
@@ -147,8 +167,8 @@ $(document).ready(function(){
 			success: function(data){
 				$('#id_contrato').val(data.contract_id);
 				Messenger().post("El registro ha sido grabado exitosamente!");
-				clear();
 				cargarContratos();
+				$('#GuardarContrato').prop('disabled',false);
 			},
 			error: function(data){
 				Messenger().post("¡Ocurrió un error!");
@@ -209,6 +229,7 @@ function clear()
 	$('#document_type').val($('#document_type option:first').val());
 	$('#nombres_completos_persona').val('');
 	$('#id_persona').val('');
+	$('#id_contrato').val('');
 	$('#estado_persona').text('');
 	$('#sel_departamentos').val($('#sel_departamentos option:first').val());
 	$('#sel_cargos').val($('#sel_cargos option:first').val());
@@ -216,6 +237,7 @@ function clear()
 	$('#sel_ubicaciones').val($('#sel_ubicaciones option:first').val());
 	$('#sel_forma_pago').val($('#sel_forma_pago option:first').val());
 	$('#sel_supervisor').val($('#sel_supervisor option:first').val());
+	$('#chk_es_supervisor').attr('checked',false);
 	$('#fecha_ini_contrato').val('');
 	$('#fecha_fin_contrato').val('');
 	$('#sueldo_referencial').val('');
@@ -229,10 +251,22 @@ function showContrato (id)
 		$('#id_persona').val(json.person_id);
 		$('#nombres_completos_persona').val(json.apellido_1+' '+json.apellido_2+' '+json.nombre_1+' '+json.nombre_2);
 		$('#sel_departamentos').val(json.department_id);
+		$('#sel_forma_pago').val(json.forma_pago_id);
+		$('#sel_tipo_empleado').val(json.employee_type_id);
+		$('#sel_supervisor').val(json.supervisor_id);
 		$('#fecha_ini_contrato').val(json.inicio_contrato);
 		$('#fecha_fin_contrato').val(json.fin_contrato);
 		$('#sueldo').val(json.salario);
+		$('#estado_persona').text("");
+		$('#estado_persona').removeClass('label label-success');
+		$('#estado_persona').removeClass('label label-danger');
+		$('#estado_persona').removeClass('label label-warning');
 		cargarCargos(json.department_id,json.job_id);
+		if (json.es_supervisor){
+			$('#chk_es_supervisor').prop('checked',true);
+		}
+		else{
+			$('#chk_es_supervisor').prop('checked',false);
+		}
 	});
-	
 }

@@ -316,4 +316,12 @@ class PeopleController extends Controller
 		$html = view('pages.personal.busq_persona', compact('view','people'))->render();
         return response()->json(compact('html'));
 	}
+	public function show_supervisores()
+	{	$supervisores = DB::table('people')->join('contracts','people.id','contracts.person_id')
+						   ->where('contracts.es_supervisor',1)
+						   ->where('contracts.estado','ACTIVO')
+						   ->select('people.nombre_1','people.nombre_2','people.apellido_1','people.apellido_2','people.id')
+						   ->get();
+		return response()->json($supervisores);
+	}
 }
